@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TCF Canada — Expression Écrite Guide | Maryjoe</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fira+Mono:wght@400;500&display=swap');
+
+  :root {
+    --navy:   #1B2A5E;
+    --blue:   #2563EB;
+    --teal:   #0D9488;
+    --gold:   #F59E0B;
+    --rose:   #E11D48;
+    --purple: #7C3AED;
+    --green:  #16A34A;
+    --t1:     #0D9488;
+    --t2:     #7C3AED;
+    --t3:     #E11D48;
+    --ltblue: #DBEAFE;
+    --ltrose: #FFE4E6;
+    --ltgrn:  #DCFCE7;
+    --ltyell: #FEF9C3;
+    --ltpurp: #EDE9FE;
+    --ltmint: #D1FAE5;
+    --lgrey:  #F8FAFC;
+    --dgrey:  #1E293B;
+    --mgrey:  #64748B;
+    --border: #E2E8F0;
+    --white:  #FFFFFF;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #F0F4FF;
+    color: var(--dgrey);
+    line-height: 1.65;
+  }
+
+  /* ─── SIDEBAR ─── */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 270px;
+    height: 100vh;
+    background: var(--navy);
+    overflow-y: auto;
+    z-index: 100;
+    padding-bottom: 40px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.2) transparent;
+  }
+
+  .sidebar-logo {
+    padding: 22px 18px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    background: rgba(0,0,0,0.15);
+  }
+
+  .sidebar-logo h2 {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: 0.3px;
+  }
+
+  .sidebar-logo p {
+    font-size: 10px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 3px;
+  }
+
+  .nav-section { padding: 8px 0 2px; }
+
+  .nav-section-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    padding: 6px 18px 4px;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 18px;
+    text-decoration: none;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.65);
+    border-left: 3px solid transparent;
+    transition: all 0.15s;
+  }
+
+  .nav-link:hover, .nav-link.active {
+    background: rgba(255,255,255,0.07);
+    color: #fff;
+    border-left-color: var(--gold);
+  }
+
+  .nav-chip {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .chip-t1 { background: var(--t1); color:#fff; }
+  .chip-t2 { background: var(--t2); color:#fff; }
+  .chip-t3 { background: var(--t3); color:#fff; }
+  .chip-ref { background: var(--gold); color: var(--navy); }
+
+  .search-bar {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .search-bar input {
+    width: 100%;
+    background: rgba(255,255,255,0.09);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 6px;
+    padding: 6px 11px;
+    color: #fff;
+    font-size: 11px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+  }
+
+  .search-bar input::placeholder { color: rgba(255,255,255,0.35); }
+  .search-bar input:focus { border-color: var(--gold); }
+
+  /* ─── PROGRESS ─── */
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 270px; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.1s;
+    z-index: 99;
+  }
+
+  /* ─── MAIN ─── */
+  .main {
+    margin-left: 270px;
+    padding: 32px 44px 100px;
+    max-width: 920px;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a3a7a 100%);
+    border-radius: 18px;
+    padding: 44px 40px;
+    margin-bottom: 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: 'EE';
+    position: absolute;
+    right: -10px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 140px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.04);
+    letter-spacing: -6px;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.15;
+  }
+
+  .hero p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    margin-top: 10px;
+    max-width: 480px;
+  }
+
+  .tache-pills {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .tache-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    border: 1.5px solid rgba(255,255,255,0.2);
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .tache-pill:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.5); }
+  .pill-t1 { background: rgba(13,148,136,0.3); }
+  .pill-t2 { background: rgba(124,58,237,0.3); }
+  .pill-t3 { background: rgba(225,29,72,0.3); }
+
+  /* ─── COMPARE TABLE ─── */
+  .compare-section {
+    background: #fff;
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+  }
+
+  .compare-section h2 {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .compare-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .compare-card {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid var(--border);
+  }
+
+  .compare-card-head {
+    padding: 12px 16px;
+    color: #fff;
+    font-weight: 800;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .compare-card-head span {
+    font-size: 10px;
+    font-weight: 500;
+    opacity: 0.8;
+  }
+
+  .compare-card-body {
+    padding: 14px 16px;
+    background: var(--lgrey);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .compare-card-body .row {
+    display: flex;
+    gap: 8px;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .compare-card-body .row:last-child { border-bottom: none; }
+
+  .row-label {
+    font-weight: 700;
+    font-size: 10px;
+    color: var(--mgrey);
+    min-width: 55px;
+    padding-top: 1px;
+  }
+
+  .row-val { font-size: 11px; color: var(--dgrey); }
+
+  /* ─── TÂCHE SECTIONS ─── */
+  .tache-section {
+    background: #fff;
+    border-radius: 16px;
+    margin-bottom: 36px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    scroll-margin-top: 24px;
+  }
+
+  .tache-header {
+    padding: 26px 30px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tache-header::after {
+    content: attr(data-num);
+    position: absolute;
+    right: 24px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 90px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.1);
+    letter-spacing: -3px;
+  }
+
+  .tache-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 6px;
+  }
+
+  .tache-header h2 {
+    font-size: 20px;
+    font-weight: 900;
+    color: #fff;
+  }
+
+  .tache-header p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 6px;
+  }
+
+  .tache-body { padding: 24px 30px; }
+
+  /* ─── SUB SECTIONS ─── */
+  .sub-section {
+    margin-bottom: 24px;
+  }
+
+  .sub-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--mgrey);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .sub-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ─── INFO BOXES ─── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .info-card {
+    border-radius: 10px;
+    padding: 14px 16px;
+    border: 1.5px solid var(--border);
+    background: var(--lgrey);
+  }
+
+  .info-card .ic-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--mgrey);
+    margin-bottom: 5px;
+  }
+
+  .info-card .ic-val {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--dgrey);
+  }
+
+  .info-card .ic-sub {
+    font-size: 11px;
+    color: var(--mgrey);
+    margin-top: 2px;
+  }
+
+  /* ─── TABLES ─── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .data-table th {
+    padding: 9px 12px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.3px;
+  }
+
+  .data-table td {
+    padding: 9px 12px;
+    border-top: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+    font-size: 12px;
+  }
+
+  .data-table tr:nth-child(even) td { background: var(--lgrey); }
+  .data-table tr:nth-child(odd)  td { background: #fff; }
+
+  /* ─── STRUCTURE BLOCK ─── */
+  .structure-block {
+    background: var(--navy);
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin: 14px 0;
+    font-family: 'Fira Mono', monospace;
+    font-size: 12px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.8;
+  }
+
+  .structure-block .s-room {
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .structure-block .s-phrase {
+    color: #86efac;
+  }
+
+  .structure-block .s-meta {
+    color: rgba(255,255,255,0.4);
+    font-style: italic;
+  }
+
+  /* ─── EXAMPLE PAIR ─── */
+  .ex-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 12px 0;
+  }
+
+  .ex-wrong {
+    background: var(--ltrose);
+    border: 1.5px solid var(--rose);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+
+  .ex-right {
+    background: var(--ltgrn);
+    border: 1.5px solid var(--green);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+
+  .ex-wrong strong, .ex-right strong {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .ex-wrong strong { color: var(--rose); }
+  .ex-right strong { color: var(--green); }
+
+  .ex-wrong p, .ex-right p {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  /* ─── TIP BOX ─── */
+  .tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 13px 16px;
+    background: var(--ltyell);
+    border: 1.5px solid var(--gold);
+    border-radius: 8px;
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--dgrey);
+    line-height: 1.5;
+  }
+
+  .tip-icon { font-size: 18px; flex-shrink: 0; }
+
+  /* ─── ALERT BOX ─── */
+  .alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    margin: 12px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    line-height: 1.5;
+  }
+
+  .alert-rose   { background: var(--ltrose); border-left: 3px solid var(--rose); }
+  .alert-teal   { background: var(--ltmint); border-left: 3px solid var(--teal); }
+  .alert-purple { background: var(--ltpurp); border-left: 3px solid var(--purple); }
+  .alert-blue   { background: var(--ltblue); border-left: 3px solid var(--blue); }
+  .alert-gold   { background: var(--ltyell); border-left: 3px solid var(--gold); }
+
+  /* ─── CHECKLIST ─── */
+  .checklist {
+    list-style: none;
+    margin: 12px 0;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    background: var(--lgrey);
+    border: 1px solid var(--border);
+  }
+
+  .checklist li::before {
+    content: '☐';
+    font-size: 14px;
+    flex-shrink: 0;
+    color: var(--mgrey);
+  }
+
+  /* ─── PHRASE TABLE ─── */
+  .phrase-list {
+    margin: 12px 0;
+  }
+
+  .phrase-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 10px;
+    padding: 9px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    border: 1px solid var(--border);
+    align-items: center;
+  }
+
+  .phrase-item:nth-child(odd)  { background: #fff; }
+  .phrase-item:nth-child(even) { background: var(--lgrey); }
+
+  .phrase-fr { font-family: 'Fira Mono', monospace; font-size: 11.5px; color: var(--navy); font-weight: 600; }
+  .phrase-en { font-size: 11px; color: var(--mgrey); }
+  .phrase-when { font-size: 10px; color: var(--mgrey); font-style: italic; }
+
+  .level-chip {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+
+  .lc-b2 { background: var(--teal); color:#fff; }
+  .lc-c1 { background: var(--blue); color:#fff; }
+  .lc-b1 { background: var(--mgrey); color:#fff; }
+
+  /* ─── SCORE TARGET ─── */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 14px 0;
+  }
+
+  .score-card {
+    border-radius: 10px;
+    padding: 14px 12px;
+    text-align: center;
+    border: 1.5px solid var(--border);
+    background: #fff;
+  }
+
+  .score-card .sc-judge {
+    font-size: 10px;
+    color: var(--mgrey);
+    margin-bottom: 4px;
+  }
+
+  .score-card .sc-target {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--navy);
+  }
+
+  .score-card .sc-label {
+    font-size: 10px;
+    color: var(--mgrey);
+    margin-top: 2px;
+  }
+
+  /* ─── MISTAKES TABLE ─── */
+  .mistake-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-bottom: 6px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    font-size: 12px;
+  }
+
+  .mistake-wrong {
+    padding: 10px 14px;
+    background: var(--ltrose);
+    color: var(--rose);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .mistake-right {
+    padding: 10px 14px;
+    background: var(--ltgrn);
+    color: var(--green);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* ─── TOPIC GRID ─── */
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 12px 0;
+  }
+
+  .topic-card {
+    border-radius: 8px;
+    padding: 12px 10px;
+    text-align: center;
+    border: 1.5px solid var(--border);
+    background: var(--lgrey);
+    font-size: 11px;
+    color: var(--dgrey);
+  }
+
+  .topic-card .tc-icon { font-size: 20px; display: block; margin-bottom: 5px; }
+  .topic-card .tc-name { font-weight: 700; font-size: 11px; }
+  .topic-card .tc-desc { font-size: 10px; color: var(--mgrey); margin-top: 2px; }
+
+  /* ─── QUICK REF ─── */
+  .quickref-section {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px 30px;
+    margin-bottom: 36px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    scroll-margin-top: 24px;
+  }
+
+  .quickref-section h2 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 20px;
+  }
+
+  .qr-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .qr-card {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1.5px solid var(--border);
+  }
+
+  .qr-head {
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .qr-body {
+    padding: 12px 14px;
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--dgrey);
+    background: var(--lgrey);
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--navy);
+    border-radius: 14px;
+    padding: 26px 30px;
+    margin-top: 44px;
+    text-align: center;
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+  }
+
+  .footer strong { color: var(--gold); }
+
+  /* ─── SCROLL TOP ─── */
+  .scroll-top {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 46px; height: 46px;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    transition: background 0.2s;
+    z-index: 200;
+  }
+
+  .scroll-top:hover { background: var(--blue); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .sidebar { width: 100%; height: auto; position: relative; }
+    .main { margin-left: 0; padding: 20px; }
+    .compare-grid, .info-grid, .score-grid { grid-template-columns: 1fr; }
+    .qr-grid { grid-template-columns: 1fr 1fr; }
+    .topic-grid { grid-template-columns: repeat(2, 1fr); }
+    .ex-pair { grid-template-columns: 1fr; }
+    .progress-bar { left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<!-- ═══════════════════════════════════════════════════
+     SIDEBAR
+═══════════════════════════════════════════════════ -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <h2>✍️ TCF — Expression Écrite</h2>
+    <p>Maryjoe Chioma Udochi | B2/C1 Target</p>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search topics..." onkeyup="filterNav()">
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Start Here</div>
+    <a href="#overview" class="nav-link">🏠 Overview & Comparison</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Tâche 1 — Short Message</div>
+    <a href="#t1-what" class="nav-link">📖 What is Tâche 1? <span class="nav-chip chip-t1">T1</span></a>
+    <a href="#t1-structure" class="nav-link">🏗️ Structure & Template <span class="nav-chip chip-t1">T1</span></a>
+    <a href="#t1-register" class="nav-link">👕 Register Rules <span class="nav-chip chip-t1">T1</span></a>
+    <a href="#t1-phrases" class="nav-link">💬 Key Phrases <span class="nav-chip chip-t1">T1</span></a>
+    <a href="#t1-mistakes" class="nav-link">🚨 Common Mistakes <span class="nav-chip chip-t1">T1</span></a>
+    <a href="#t1-checklist" class="nav-link">✅ Checklist <span class="nav-chip chip-t1">T1</span></a>
+    <a href="#t1-topics" class="nav-link">📋 Topic Bank <span class="nav-chip chip-t1">T1</span></a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Tâche 2 — Formal Letter</div>
+    <a href="#t2-what" class="nav-link">📖 What is Tâche 2? <span class="nav-chip chip-t2">T2</span></a>
+    <a href="#t2-structure" class="nav-link">🏗️ Structure & Template <span class="nav-chip chip-t2">T2</span></a>
+    <a href="#t2-register" class="nav-link">👔 Register Rules <span class="nav-chip chip-t2">T2</span></a>
+    <a href="#t2-phrases" class="nav-link">💬 Key Phrases <span class="nav-chip chip-t2">T2</span></a>
+    <a href="#t2-mistakes" class="nav-link">🚨 Common Mistakes <span class="nav-chip chip-t2">T2</span></a>
+    <a href="#t2-checklist" class="nav-link">✅ Checklist <span class="nav-chip chip-t2">T2</span></a>
+    <a href="#t2-topics" class="nav-link">📋 Topic Bank <span class="nav-chip chip-t2">T2</span></a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Tâche 3 — Essay & Debate</div>
+    <a href="#t3-what" class="nav-link">📖 What is Tâche 3? <span class="nav-chip chip-t3">T3</span></a>
+    <a href="#t3-structure" class="nav-link">🏗️ Structure & Template <span class="nav-chip chip-t3">T3</span></a>
+    <a href="#t3-register" class="nav-link">🎓 Register Rules <span class="nav-chip chip-t3">T3</span></a>
+    <a href="#t3-phrases" class="nav-link">💬 Key Phrases <span class="nav-chip chip-t3">T3</span></a>
+    <a href="#t3-mistakes" class="nav-link">🚨 Common Mistakes <span class="nav-chip chip-t3">T3</span></a>
+    <a href="#t3-checklist" class="nav-link">✅ Checklist <span class="nav-chip chip-t3">T3</span></a>
+    <a href="#t3-topics" class="nav-link">📋 Topic Bank <span class="nav-chip chip-t3">T3</span></a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Reference</div>
+    <a href="#scoring" class="nav-link">📊 Scoring Criteria <span class="nav-chip chip-ref">REF</span></a>
+    <a href="#quickref" class="nav-link">⚡ Quick Reference <span class="nav-chip chip-ref">REF</span></a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════════════════ -->
+<main class="main">
+
+  <!-- HERO -->
+  <div class="hero" id="overview">
+    <div class="hero-eyebrow">TCF Canada · Expression Écrite</div>
+    <h1>Your Complete Guide<br>to All 3 Tâches</h1>
+    <p>Everything you need to know about Tâche 1, 2 and 3 — structure, phrases, mistakes, checklists and topic banks. All in one place.</p>
+    <div class="tache-pills">
+      <a href="#t1-what" class="tache-pill pill-t1">✍️ Tâche 1 — Short Message</a>
+      <a href="#t2-what" class="tache-pill pill-t2">📝 Tâche 2 — Formal Letter</a>
+      <a href="#t3-what" class="tache-pill pill-t3">🎓 Tâche 3 — Essay & Debate</a>
+    </div>
+  </div>
+
+  <!-- COMPARISON -->
+  <div class="compare-section">
+    <h2>⚡ The 3 Tâches at a Glance</h2>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <div class="compare-card-head" style="background:var(--t1)">Tâche 1 <span>Short message / informal email</span></div>
+        <div class="compare-card-body">
+          <div class="row"><span class="row-label">Words</span><span class="row-val">60–120 words</span></div>
+          <div class="row"><span class="row-label">Who to</span><span class="row-val">Friend, neighbour, colleague</span></div>
+          <div class="row"><span class="row-label">Outfit</span><span class="row-val">👕 Casual / smart casual</span></div>
+          <div class="row"><span class="row-label">Opens</span><span class="row-val">Salut ! / Bonjour [Name],</span></div>
+          <div class="row"><span class="row-label">Closes</span><span class="row-val">À bientôt ! / Bisous,</span></div>
+          <div class="row"><span class="row-label">Task</span><span class="row-val">Describe, narrate, explain, invite</span></div>
+          <div class="row"><span class="row-label">Target</span><span class="row-val">13–15/20 (B2)</span></div>
+        </div>
+      </div>
+      <div class="compare-card">
+        <div class="compare-card-head" style="background:var(--t2)">Tâche 2 <span>Formal letter / semi-formal email</span></div>
+        <div class="compare-card-body">
+          <div class="row"><span class="row-label">Words</span><span class="row-val">120–180 words</span></div>
+          <div class="row"><span class="row-label">Who to</span><span class="row-val">Employer, school, landlord, airline</span></div>
+          <div class="row"><span class="row-label">Outfit</span><span class="row-val">👔 Full suit — very formal!</span></div>
+          <div class="row"><span class="row-label">Opens</span><span class="row-val">Madame, Monsieur,</span></div>
+          <div class="row"><span class="row-label">Closes</span><span class="row-val">Dans l'attente... cordiales salutations.</span></div>
+          <div class="row"><span class="row-label">Task</span><span class="row-val">Explain, complain, request, justify</span></div>
+          <div class="row"><span class="row-label">Target</span><span class="row-val">14–16/20 (B2/C1)</span></div>
+        </div>
+      </div>
+      <div class="compare-card">
+        <div class="compare-card-head" style="background:var(--t3)">Tâche 3 <span>Synthesis + argumentation essay</span></div>
+        <div class="compare-card-body">
+          <div class="row"><span class="row-label">Words</span><span class="row-val">180–240 words</span></div>
+          <div class="row"><span class="row-label">Who to</span><span class="row-val">No recipient — essay format</span></div>
+          <div class="row"><span class="row-label">Outfit</span><span class="row-val">🎓 Academic — very structured</span></div>
+          <div class="row"><span class="row-label">Opens</span><span class="row-val">TITRE: [Meaningful title — required!]</span></div>
+          <div class="row"><span class="row-label">Closes</span><span class="row-val">En conclusion, / En définitive,</span></div>
+          <div class="row"><span class="row-label">Task</span><span class="row-val">Synthesise 2 docs + argue your view</span></div>
+          <div class="row"><span class="row-label">Target</span><span class="row-val">14–16/20 (B2/C1)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       TÂCHE 1
+  ═══════════════════════════════════════════════ -->
+
+  <!-- T1: What is it -->
+  <div class="tache-section" id="t1-what">
+    <div class="tache-header" style="background: linear-gradient(135deg,#0D9488,#059669);" data-num="T1">
+      <div class="tache-label">Tâche 1</div>
+      <h2>What is Tâche 1?</h2>
+      <p>Short message — 60 to 120 words — informal or semi-formal register</p>
+    </div>
+    <div class="tache-body">
+      <p style="font-size:13px; color:var(--mgrey); margin-bottom:18px;">Think of Tâche 1 like sending a message to someone you know — or someone familiar. You need to describe, narrate, explain, or invite. Your language should feel natural and warm, not stiff and official.</p>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="ic-label">Word count</div>
+          <div class="ic-val">60–120 words</div>
+          <div class="ic-sub">Aim for 90–100 as your sweet spot</div>
+        </div>
+        <div class="info-card">
+          <div class="ic-label">Who you write to</div>
+          <div class="ic-val">Friend / Neighbour / Colleague</div>
+          <div class="ic-sub">Someone you know or have a casual relationship with</div>
+        </div>
+        <div class="info-card">
+          <div class="ic-label">Register (outfit)</div>
+          <div class="ic-val">👕 Informal or semi-formal</div>
+          <div class="ic-sub">Friendly, warm — not stiff. TU with friends, VOUS with strangers</div>
+        </div>
+        <div class="info-card">
+          <div class="ic-label">What you typically do</div>
+          <div class="ic-val">Describe · Narrate · Explain · Invite</div>
+          <div class="ic-sub">Tell a story, share news, make an invitation, ask for something</div>
+        </div>
+      </div>
+
+      <div class="alert alert-teal">
+        <span>💡</span>
+        <div><strong>Simple explanation:</strong> Tâche 1 is like writing a WhatsApp message or a friendly email. You have something to share or ask — and you write it clearly in French. Not too formal, not too casual. Think of it like texting a work friend. 📱</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- T1: Structure -->
+  <div class="tache-section" id="t1-structure">
+    <div class="tache-header" style="background: linear-gradient(135deg,#0D9488,#059669);" data-num="T1">
+      <div class="tache-label">Tâche 1</div>
+      <h2>Structure & Template</h2>
+      <p>The formula to follow every single time</p>
+    </div>
+    <div class="tache-body">
+      <div class="sub-section">
+        <div class="sub-title">The 6-Part Formula 🏗️</div>
+        <div class="structure-block">
+<span class="s-meta">De : maryjoe@email.com</span>
+<span class="s-meta">À : [recipient email]</span>
+<span class="s-meta">Objet : [Short clear subject — what is this about?]</span>
+
+<span class="s-room">PART 1 — Greeting</span>
+<span class="s-phrase">Salut [Name] !  /  Bonjour [Name],  /  Coucou [Name] !</span>
+
+<span class="s-room">PART 2 — Why you are writing</span>
+<span class="s-phrase">Je t'écris pour te raconter... / Je t'écris pour t'informer que...</span>
+<span class="s-phrase">Je te contacte au sujet de...</span>
+
+<span class="s-room">PART 3 — The main information</span>
+<span class="s-meta">[WHO / WHAT / WHEN / WHERE — answer all parts of the prompt!]</span>
+
+<span class="s-room">PART 4 — Extra detail or description</span>
+<span class="s-meta">[Use connectors: De plus... / Par ailleurs... / Cependant...]</span>
+
+<span class="s-room">PART 5 — Your request or what you want from them</span>
+<span class="s-phrase">Est-ce que tu peux... / N'oublie pas de... / Confirme ta présence...</span>
+
+<span class="s-room">PART 6 — Sign-off</span>
+<span class="s-phrase">À bientôt !  /  À très bientôt !  /  Bisous,  /  Cordialement,</span>
+<span class="s-phrase">[Your name]</span>
+        </div>
+      </div>
+
+      <div class="sub-section">
+        <div class="sub-title">Example — Invitation to a party 🎉</div>
+        <div class="structure-block" style="font-size:11.5px;">
+<span class="s-meta">De : maryjoe@email.com</span>
+<span class="s-meta">À : sophie@email.com</span>
+<span class="s-meta">Objet : Célébration de fin d'année — vous êtes invités !</span>
+
+Salut Sophie !
+
+<span class="s-phrase">Je t'écris pour te convier à notre célébration de fin d'année.</span>
+La fête <span class="s-phrase">aura lieu</span> le samedi 14 décembre, à partir de 19h.
+<span class="s-phrase">Elle se déroulera</span> chez moi, au centre-ville de Fredericton.
+
+<span class="s-phrase">Au programme :</span> de la musique, des danses joyeuses et un buffet garni.
+<span class="s-phrase">De plus,</span> des activités pour les enfants sont prévues.
+<span class="s-phrase">Cependant,</span> il n'y a pas de code vestimentaire.
+
+<span class="s-phrase">Merci de confirmer ta présence avant le 10 décembre.</span>
+<span class="s-phrase">Ce serait formidable</span> de te voir là-bas !
+
+À très bientôt,
+Maryjoe
+        </div>
+      </div>
+
+      <div class="tip"><span class="tip-icon">💡</span><span><strong>The Golden Rule for Tâche 1:</strong> Read the prompt carefully and find ALL the things it asks you to include. Write them in a list before you start. Every item you miss = points lost on Judge 1 immediately!</span></div>
+    </div>
+  </div>
+
+  <!-- T1: Register -->
+  <div class="tache-section" id="t1-register">
+    <div class="tache-header" style="background: linear-gradient(135deg,#0D9488,#059669);" data-num="T1">
+      <div class="tache-label">Tâche 1</div>
+      <h2>Register Rules 👕</h2>
+      <p>Informal vs semi-formal — how to know which one to use</p>
+    </div>
+    <div class="tache-body">
+      <table class="data-table">
+        <thead><tr style="background:var(--t1)">
+          <th>Situation in prompt</th><th>Register to use</th><th>Opening</th><th>Sign-off</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Writing to a FRIEND</td><td>👕 Informal — TU</td><td>Salut [Name] !</td><td>À bientôt ! / Bisous,</td></tr>
+          <tr><td>Writing to FAMILY</td><td>👕 Informal — TU</td><td>Coucou [Name] !</td><td>Gros bisous,</td></tr>
+          <tr><td>Writing to a NEIGHBOUR</td><td>👔 Semi-formal — VOUS</td><td>Bonjour [Name],</td><td>Cordialement,</td></tr>
+          <tr><td>Writing to a COLLEAGUE</td><td>👔 Semi-formal — VOUS</td><td>Bonjour [Name],</td><td>Bien cordialement,</td></tr>
+          <tr><td>Writing to a STRANGER (seller)</td><td>👔 Semi-formal — VOUS</td><td>Bonjour,</td><td>Cordialement,</td></tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-rose">
+        <span>🚨</span>
+        <div><strong>The register switch trap!</strong> The moment you choose TU or VOUS — it is locked in for the ENTIRE email. Every verb, every pronoun, every possessive must match. It is like a light switch — ON or OFF. Never both! 💡</div>
+      </div>
+
+      <div class="sub-section" style="margin-top:18px;">
+        <div class="sub-title">TU vs VOUS quick reference</div>
+        <table class="data-table">
+          <thead><tr style="background:var(--navy)">
+            <th>Meaning</th><th>TU 👕</th><th>VOUS 👔</th>
+          </tr></thead>
+          <tbody>
+            <tr><td>you are</td><td>tu es</td><td>vous êtes</td></tr>
+            <tr><td>you can</td><td>tu peux</td><td>vous pouvez</td></tr>
+            <tr><td>your (thing)</td><td>ton / ta / tes</td><td>votre / vos</td></tr>
+            <tr><td>don't forget</td><td>n'oublie pas</td><td>n'oubliez pas</td></tr>
+            <tr><td>confirm</td><td>confirme</td><td>confirmez</td></tr>
+            <tr><td>contact me</td><td>contacte-moi</td><td>contactez-moi</td></tr>
+            <tr><td>please</td><td>s'il te plaît</td><td>s'il vous plaît</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- T1: Phrases -->
+  <div class="tache-section" id="t1-phrases">
+    <div class="tache-header" style="background: linear-gradient(135deg,#0D9488,#059669);" data-num="T1">
+      <div class="tache-label">Tâche 1</div>
+      <h2>Key Phrases to Memorise 💬</h2>
+      <p>Use these in every Tâche 1 — they signal B2/C1 immediately</p>
+    </div>
+    <div class="tache-body">
+      <div class="sub-section">
+        <div class="sub-title">Opening phrases</div>
+        <table class="data-table">
+          <thead><tr style="background:var(--t1)"><th>French phrase</th><th>💬 English</th><th>Level</th></tr></thead>
+          <tbody>
+            <tr><td><em>Je t'écris pour te raconter...</em></td><td>I am writing to tell you about...</td><td><span class="level-chip lc-b1">B1</span></td></tr>
+            <tr><td><em>Je t'écris pour t'informer que...</em></td><td>I am writing to let you know that...</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>Je te contacte au sujet de...</em></td><td>I am contacting you regarding...</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>J'ai bien pris connaissance de votre annonce...</em></td><td>I have carefully noted your advertisement...</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+            <tr><td><em>Je me réjouis de t'écrire pour...</em></td><td>I am delighted to write to you to...</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sub-section">
+        <div class="sub-title">Event / place / time phrases</div>
+        <table class="data-table">
+          <thead><tr style="background:var(--t1)"><th>French phrase</th><th>💬 English</th><th>Level</th></tr></thead>
+          <tbody>
+            <tr><td><em>La fête aura lieu le [date]...</em></td><td>The party will take place on [date]...</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>Elle se déroulera à...</em></td><td>It will take place at...</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>À partir de [heure]...</em></td><td>Starting from [time]...</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>À proximité de...</em></td><td>Near / in the vicinity of...</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+            <tr><td><em>Au programme : ...</em></td><td>On the agenda / What's planned:...</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sub-section">
+        <div class="sub-title">Request / RSVP phrases</div>
+        <table class="data-table">
+          <thead><tr style="background:var(--t1)"><th>French phrase</th><th>💬 English</th><th>Level</th></tr></thead>
+          <tbody>
+            <tr><td><em>Merci de confirmer ta présence.</em></td><td>Please confirm your attendance.</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>N'hésite pas à m'écrire si tu as des questions.</em></td><td>Don't hesitate to write if you have questions.</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>Ce serait formidable si tu pouvais venir !</em></td><td>It would be wonderful if you could come!</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+            <tr><td><em>Je reste disponible selon tes disponibilités.</em></td><td>I remain available according to your schedule.</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+            <tr><td><em>J'espère te voir nombreux !</em></td><td>I hope to see you all there!</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- T1: Mistakes -->
+  <div class="tache-section" id="t1-mistakes">
+    <div class="tache-header" style="background: linear-gradient(135deg,#0D9488,#059669);" data-num="T1">
+      <div class="tache-label">Tâche 1</div>
+      <h2>Common Mistakes 🚨</h2>
+      <p>From your own writing — these cost you real points!</p>
+    </div>
+    <div class="tache-body">
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ en mardi 14 juillet</div>
+        <div class="mistake-right">✅ le mardi 14 juillet — day name = LE always!</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ une rouge robe</div>
+        <div class="mistake-right">✅ une robe rouge — colour ALWAYS after noun!</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ Je vous écris pour t'inviter</div>
+        <div class="mistake-right">✅ Je vous écris pour vous inviter — pick one!</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ Ce m'a fait pleurer</div>
+        <div class="mistake-right">✅ Cela m'a fait pleurer — Cela before other verbs!</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ je suggère que nous portons</div>
+        <div class="mistake-right">✅ je suggère que nous portions — subjonctif!</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ à côte de la gare</div>
+        <div class="mistake-right">✅ à côté de / à proximité de la gare</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ Depuis c'est Noël</div>
+        <div class="mistake-right">✅ Étant donné que c'est Noël — Depuis = time only!</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ le appartement</div>
+        <div class="mistake-right">✅ l'appartement — vowel = l' always!</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ il aura beaucoup à manger</div>
+        <div class="mistake-right">✅ il y aura beaucoup à manger — never drop the Y!</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ Ma famille et moi sont organisé</div>
+        <div class="mistake-right">✅ Ma famille et moi avons organisé — moi + someone = AVONS!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- T1: Checklist -->
+  <div class="tache-section" id="t1-checklist">
+    <div class="tache-header" style="background: linear-gradient(135deg,#0D9488,#059669);" data-num="T1">
+      <div class="tache-label">Tâche 1</div>
+      <h2>Your Checklist ✅</h2>
+      <p>Tick every box before you submit — every unticked box = lost points!</p>
+    </div>
+    <div class="tache-body">
+      <ul class="checklist">
+        <li>Clear subject line (Objet:) written</li>
+        <li>Correct informal or semi-formal opening used</li>
+        <li>Said WHY you are writing in the first sentence</li>
+        <li>Answered ALL parts of the prompt (read it 3 times!)</li>
+        <li>Included WHEN / WHERE / WHAT if the prompt requires it</li>
+        <li>Used at least 3 connectors (de plus, cependant, par ailleurs, ainsi...)</li>
+        <li>TU or VOUS used consistently throughout — no switching!</li>
+        <li>Every adjective placed correctly (BAGS before, colours after)</li>
+        <li>Feminine -e added on all adjectives describing ME (Maryjoe)</li>
+        <li>No naked nouns — every noun has an article</li>
+        <li>A1 words replaced with B2/C1 staircase upgrades</li>
+        <li>At least 60 words written — count before submitting!</li>
+        <li>Proper sign-off used (not just "bye"!)</li>
+        <li>Your name signed at the bottom</li>
+      </ul>
+
+      <div class="score-grid">
+        <div class="score-card">
+          <div class="sc-judge">Judge 1 — Task</div>
+          <div class="sc-target" style="color:var(--t1)">4.5</div>
+          <div class="sc-label">out of 5</div>
+        </div>
+        <div class="score-card">
+          <div class="sc-judge">Judge 2 — Grammar</div>
+          <div class="sc-target" style="color:var(--blue)">3.5</div>
+          <div class="sc-label">out of 5</div>
+        </div>
+        <div class="score-card">
+          <div class="sc-judge">Judge 3 — Flow</div>
+          <div class="sc-target" style="color:var(--purple)">4</div>
+          <div class="sc-label">out of 5</div>
+        </div>
+        <div class="score-card">
+          <div class="sc-judge">Judge 4 — Vocab</div>
+          <div class="sc-target" style="color:var(--rose)">3.5</div>
+          <div class="sc-label">out of 5</div>
+        </div>
+      </div>
+      <p style="text-align:center; font-size:12px; color:var(--mgrey); margin-top:8px;">Target: <strong>15.5/20 (B2/C1)</strong></p>
+    </div>
+  </div>
+
+  <!-- T1: Topics -->
+  <div class="tache-section" id="t1-topics">
+    <div class="tache-header" style="background: linear-gradient(135deg,#0D9488,#059669);" data-num="T1">
+      <div class="tache-label">Tâche 1</div>
+      <h2>Topic Bank 📋</h2>
+      <p>Common Tâche 1 scenarios — practise them all!</p>
+    </div>
+    <div class="tache-body">
+      <div class="topic-grid">
+        <div class="topic-card"><span class="tc-icon">🎉</span><span class="tc-name">Party / Event</span><span class="tc-desc">Invite friends to a celebration</span></div>
+        <div class="topic-card"><span class="tc-icon">🏠</span><span class="tc-name">New Home</span><span class="tc-desc">Describe your new apartment</span></div>
+        <div class="topic-card"><span class="tc-icon">🚲</span><span class="tc-name">Selling</span><span class="tc-desc">Respond to a "for sale" ad</span></div>
+        <div class="topic-card"><span class="tc-icon">💼</span><span class="tc-name">Job Interview</span><span class="tc-desc">Tell a friend how it went</span></div>
+        <div class="topic-card"><span class="tc-icon">🍽️</span><span class="tc-name">Restaurant</span><span class="tc-desc">Recommend a place you visited</span></div>
+        <div class="topic-card"><span class="tc-icon">🔇</span><span class="tc-name">Noise</span><span class="tc-desc">Ask neighbour to lower music</span></div>
+        <div class="topic-card"><span class="tc-icon">🔧</span><span class="tc-name">Repairs</span><span class="tc-desc">Tell landlord about broken item</span></div>
+        <div class="topic-card"><span class="tc-icon">🔄</span><span class="tc-name">Swap shifts</span><span class="tc-desc">Ask colleague to swap work days</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       TÂCHE 2
+  ═══════════════════════════════════════════════ -->
+
+  <!-- T2: What is it -->
+  <div class="tache-section" id="t2-what">
+    <div class="tache-header" style="background: linear-gradient(135deg,#7C3AED,#6D28D9);" data-num="T2">
+      <div class="tache-label">Tâche 2</div>
+      <h2>What is Tâche 2?</h2>
+      <p>Formal letter or email — 120 to 180 words — always very formal register</p>
+    </div>
+    <div class="tache-body">
+      <p style="font-size:13px; color:var(--mgrey); margin-bottom:18px;">Think of Tâche 2 like writing an official letter to someone in authority. Your language must be polished, structured, and professional. Think job interview suit — every word counts. 👔</p>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="ic-label">Word count</div>
+          <div class="ic-val">120–180 words</div>
+          <div class="ic-sub">Aim for 150–160 as your sweet spot</div>
+        </div>
+        <div class="info-card">
+          <div class="ic-label">Who you write to</div>
+          <div class="ic-val">Employer · School · Landlord · Airline</div>
+          <div class="ic-sub">Someone in a position of authority — always a stranger</div>
+        </div>
+        <div class="info-card">
+          <div class="ic-label">Register (outfit)</div>
+          <div class="ic-val">👔 Full formal — always VOUS</div>
+          <div class="ic-sub">No slang, no contractions, polite tone throughout</div>
+        </div>
+        <div class="info-card">
+          <div class="ic-label">What you typically do</div>
+          <div class="ic-val">Explain · Complain · Request · Justify</div>
+          <div class="ic-sub">Present a situation and ask for something to be done</div>
+        </div>
+      </div>
+
+      <div class="alert alert-purple">
+        <span>💡</span>
+        <div><strong>Simple explanation:</strong> Tâche 2 is like writing a complaint letter or a formal request to a company or institution. You explain the situation clearly, state your position, and ask for something specific. Every sentence should sound like it belongs in a professional document. 📄</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- T2: Structure -->
+  <div class="tache-section" id="t2-structure">
+    <div class="tache-header" style="background: linear-gradient(135deg,#7C3AED,#6D28D9);" data-num="T2">
+      <div class="tache-label">Tâche 2</div>
+      <h2>Structure & Template 🏗️</h2>
+      <p>The 6-room house — always build it in this order</p>
+    </div>
+    <div class="tache-body">
+      <div class="sub-section">
+        <div class="sub-title">The 6-Room Formula</div>
+        <div class="structure-block">
+<span class="s-meta">Moncton, le 14 juin 2026</span>
+
+<span class="s-meta">De : maryjoe@email.com</span>
+<span class="s-meta">À : [recipient@email.com]</span>
+<span class="s-meta">Objet : [Clear subject — one informative sentence]</span>
+
+<span class="s-room">ROOM 1 — Formal opening (ALWAYS this exact phrase)</span>
+<span class="s-phrase">Madame, Monsieur,</span>
+
+<span class="s-room">ROOM 2 — Who you are and WHY you are writing</span>
+<span class="s-phrase">Je me permets de vous contacter au sujet de...</span>
+<span class="s-phrase">J'ai l'honneur de porter à votre attention...</span>
+
+<span class="s-room">ROOM 3 — The situation / context / background</span>
+<span class="s-phrase">En effet, ... / Je souhaite vous informer que...</span>
+<span class="s-phrase">Il me semble indispensable de préciser que...</span>
+
+<span class="s-room">ROOM 4 — Your main point / argument / complaint</span>
+<span class="s-phrase">C'est pourquoi... / Par conséquent... / Dès lors...</span>
+<span class="s-phrase">De plus, ... / Par ailleurs, ... / En outre, ...</span>
+
+<span class="s-room">ROOM 5 — Your formal request</span>
+<span class="s-phrase">Je vous serais reconnaissant(e) de bien vouloir...</span>
+<span class="s-phrase">Je vous prie de bien vouloir...</span>
+<span class="s-phrase">Je reste à votre disposition pour tout renseignement.</span>
+
+<span class="s-room">ROOM 6 — Formal sign-off (ALWAYS this exact phrase — memorise it!)</span>
+<span class="s-phrase">Dans l'attente de votre réponse,</span>
+<span class="s-phrase">je vous adresse mes cordiales salutations.</span>
+
+<span class="s-meta">[Your full name]</span>
+        </div>
+      </div>
+
+      <div class="alert alert-gold">
+        <span>🌟</span>
+        <div><strong>The sign-off is non-negotiable!</strong> "Dans l'attente de votre réponse, je vous adresse mes cordiales salutations." — learn this word for word. Never end a Tâche 2 with "À bientôt !" or "Cordialement," alone. The full phrase is required. 💬 "Awaiting your reply, I send you my warm regards."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- T2: Register -->
+  <div class="tache-section" id="t2-register">
+    <div class="tache-header" style="background: linear-gradient(135deg,#7C3AED,#6D28D9);" data-num="T2">
+      <div class="tache-label">Tâche 2</div>
+      <h2>Register Rules 👔</h2>
+      <p>Everything must be formal — these rules apply to every Tâche 2</p>
+    </div>
+    <div class="tache-body">
+      <div class="alert alert-rose">
+        <span>🚨</span>
+        <div><strong>VOUS always in Tâche 2.</strong> No exceptions. Even if the prompt names a specific person, you still use VOUS. You are writing to a stranger in authority. TU is never appropriate for Tâche 2.</div>
+      </div>
+
+      <div class="sub-section" style="margin-top:18px">
+        <div class="sub-title">What changes between Tâche 1 and Tâche 2</div>
+        <table class="data-table">
+          <thead><tr style="background:var(--t2)"><th>Feature</th><th>Tâche 1 (informal)</th><th>Tâche 2 (formal)</th></tr></thead>
+          <tbody>
+            <tr><td>Opening</td><td>Salut Marie !</td><td>Madame, Monsieur,</td></tr>
+            <tr><td>Introducing yourself</td><td>Je t'écris pour...</td><td>Je me permets de vous contacter au sujet de...</td></tr>
+            <tr><td>Making a request</td><td>Est-ce que tu peux... ?</td><td>Je vous serais reconnaissant(e) de bien vouloir...</td></tr>
+            <tr><td>Adding a point</td><td>Aussi...</td><td>Par ailleurs... / En outre... / De plus...</td></tr>
+            <tr><td>Closing</td><td>À bientôt ! / Bisous,</td><td>Dans l'attente de votre réponse, je vous adresse mes cordiales salutations.</td></tr>
+            <tr><td>Pronoun</td><td>tu / te / ton / ta / tes</td><td>vous / votre / vos — always!</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- T2: Phrases -->
+  <div class="tache-section" id="t2-phrases">
+    <div class="tache-header" style="background: linear-gradient(135deg,#7C3AED,#6D28D9);" data-num="T2">
+      <div class="tache-label">Tâche 2</div>
+      <h2>Key Phrases to Memorise 💬</h2>
+      <p>These phrases are your Tâche 2 weapons — learn them by heart</p>
+    </div>
+    <div class="tache-body">
+      <div class="sub-section">
+        <div class="sub-title">Opening the letter</div>
+        <table class="data-table">
+          <thead><tr style="background:var(--t2)"><th>French phrase</th><th>💬 English</th><th>Level</th></tr></thead>
+          <tbody>
+            <tr><td><em>Je me permets de vous contacter au sujet de...</em></td><td>I take the liberty of contacting you regarding...</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>Je souhaite porter à votre attention...</em></td><td>I wish to bring to your attention...</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>J'ai l'honneur de soumettre à votre attention...</em></td><td>I have the honour of submitting to your attention...</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+            <tr><td><em>Je me vois dans l'obligation de signaler que...</em></td><td>I find myself compelled to report that...</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sub-section">
+        <div class="sub-title">Presenting a problem or situation</div>
+        <table class="data-table">
+          <thead><tr style="background:var(--t2)"><th>French phrase</th><th>💬 English</th><th>Level</th></tr></thead>
+          <tbody>
+            <tr><td><em>Je souhaite vous informer que...</em></td><td>I wish to inform you that...</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>En effet,...</em></td><td>Indeed, / In fact,...</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>Il me semble indispensable de préciser que...</em></td><td>It seems indispensable to me to specify that...</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+            <tr><td><em>Force est de constater que...</em></td><td>One cannot help but notice that...</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sub-section">
+        <div class="sub-title">Making a formal request</div>
+        <table class="data-table">
+          <thead><tr style="background:var(--t2)"><th>French phrase</th><th>💬 English</th><th>Level</th></tr></thead>
+          <tbody>
+            <tr><td><em>Pourriez-vous...</em></td><td>Could you... (conditionnel — very polite)</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>Je vous prie de bien vouloir...</em></td><td>I kindly ask you to please...</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>Je vous serais reconnaissant(e) de bien vouloir...</em></td><td>I would be grateful if you could kindly...</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+            <tr><td><em>Je vous saurais gré de bien vouloir...</em></td><td>I would appreciate it if you would kindly...</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+            <tr><td><em>Je reste à votre disposition pour tout renseignement.</em></td><td>I remain at your disposal for any information.</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- T2: Mistakes -->
+  <div class="tache-section" id="t2-mistakes">
+    <div class="tache-header" style="background: linear-gradient(135deg,#7C3AED,#6D28D9);" data-num="T2">
+      <div class="tache-label">Tâche 2</div>
+      <h2>Common Mistakes 🚨</h2>
+      <p>These are the most frequent errors in formal letters</p>
+    </div>
+    <div class="tache-body">
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ Bonjour Madame,</div>
+        <div class="mistake-right">✅ Madame, Monsieur, — always this exact phrase!</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ À bientôt !</div>
+        <div class="mistake-right">✅ Dans l'attente de votre réponse, je vous adresse mes cordiales salutations.</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ je vous contactez</div>
+        <div class="mistake-right">✅ je vous contacte — JE = subject → -e form!</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ Pouvez-vous me confirmez</div>
+        <div class="mistake-right">✅ Pouvez-vous me confirmer — infinitive after modal!</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ Missing the Objet: line</div>
+        <div class="mistake-right">✅ Always write Objet: [subject in one clear sentence]</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ Missing city and date</div>
+        <div class="mistake-right">✅ Always write: Moncton, le 14 juin 2026</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ Using tu anywhere</div>
+        <div class="mistake-right">✅ VOUS only — every single word — no exceptions!</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ Writing under 120 words</div>
+        <div class="mistake-right">✅ Count your words — aim for 150 minimum!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- T2: Checklist -->
+  <div class="tache-section" id="t2-checklist">
+    <div class="tache-header" style="background: linear-gradient(135deg,#7C3AED,#6D28D9);" data-num="T2">
+      <div class="tache-label">Tâche 2</div>
+      <h2>Your Checklist ✅</h2>
+      <p>Every box must be ticked before you finish writing</p>
+    </div>
+    <div class="tache-body">
+      <ul class="checklist">
+        <li>City and date written at the top (Moncton, le 14 juin 2026)</li>
+        <li>De / À / Objet: lines all filled in</li>
+        <li>Opens with "Madame, Monsieur," — no Bonjour!</li>
+        <li>First paragraph says who you are and why you are writing</li>
+        <li>ALL parts of the prompt addressed — read it 3 times!</li>
+        <li>At least 3 formal connectors used (par ailleurs, en outre, c'est pourquoi, cependant...)</li>
+        <li>VOUS used everywhere — no tu anywhere at all</li>
+        <li>A clear formal request made (what do you want them to DO?)</li>
+        <li>Feminine -e added on adjectives describing ME (reconnaissante, convaincue...)</li>
+        <li>Infinitive used after all modal verbs (Pouvez-vous confirmer — not confirmez!)</li>
+        <li>A1 words replaced with B2/C1 staircase upgrades</li>
+        <li>At least 120 words written — count before submitting!</li>
+        <li>Full formal sign-off — "Dans l'attente de votre réponse, je vous adresse mes cordiales salutations."</li>
+        <li>Your full name signed at the bottom</li>
+      </ul>
+
+      <div class="score-grid">
+        <div class="score-card">
+          <div class="sc-judge">Judge 1 — Task</div>
+          <div class="sc-target" style="color:var(--t2)">4.5</div>
+          <div class="sc-label">out of 5</div>
+        </div>
+        <div class="score-card">
+          <div class="sc-judge">Judge 2 — Grammar</div>
+          <div class="sc-target" style="color:var(--blue)">3.5</div>
+          <div class="sc-label">out of 5</div>
+        </div>
+        <div class="score-card">
+          <div class="sc-judge">Judge 3 — Flow</div>
+          <div class="sc-target" style="color:var(--purple)">4</div>
+          <div class="sc-label">out of 5</div>
+        </div>
+        <div class="score-card">
+          <div class="sc-judge">Judge 4 — Vocab</div>
+          <div class="sc-target" style="color:var(--rose)">4</div>
+          <div class="sc-label">out of 5</div>
+        </div>
+      </div>
+      <p style="text-align:center; font-size:12px; color:var(--mgrey); margin-top:8px;">Target: <strong>16/20 (B2/C1)</strong></p>
+    </div>
+  </div>
+
+  <!-- T2: Topics -->
+  <div class="tache-section" id="t2-topics">
+    <div class="tache-header" style="background: linear-gradient(135deg,#7C3AED,#6D28D9);" data-num="T2">
+      <div class="tache-label">Tâche 2</div>
+      <h2>Topic Bank 📋</h2>
+      <p>Common Tâche 2 scenarios — practise them all!</p>
+    </div>
+    <div class="tache-body">
+      <div class="topic-grid">
+        <div class="topic-card"><span class="tc-icon">🏠</span><span class="tc-name">Housing</span><span class="tc-desc">Complaint to landlord about repairs</span></div>
+        <div class="topic-card"><span class="tc-icon">✈️</span><span class="tc-name">Travel</span><span class="tc-desc">Complaint to airline about luggage</span></div>
+        <div class="topic-card"><span class="tc-icon">🏫</span><span class="tc-name">School</span><span class="tc-desc">Letter about a school policy</span></div>
+        <div class="topic-card"><span class="tc-icon">💼</span><span class="tc-name">Work</span><span class="tc-desc">Request to employer for schedule change</span></div>
+        <div class="topic-card"><span class="tc-icon">📰</span><span class="tc-name">Newspaper</span><span class="tc-desc">Share your opinion on a topic</span></div>
+        <div class="topic-card"><span class="tc-icon">🏥</span><span class="tc-name">Health</span><span class="tc-desc">Letter to a clinic or health service</span></div>
+        <div class="topic-card"><span class="tc-icon">🚌</span><span class="tc-name">Transport</span><span class="tc-desc">Complaint about public transport</span></div>
+        <div class="topic-card"><span class="tc-icon">🛍️</span><span class="tc-name">Consumer</span><span class="tc-desc">Complaint about a product or service</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       TÂCHE 3
+  ═══════════════════════════════════════════════ -->
+
+  <!-- T3: What is it -->
+  <div class="tache-section" id="t3-what">
+    <div class="tache-header" style="background: linear-gradient(135deg,#E11D48,#BE123C);" data-num="T3">
+      <div class="tache-label">Tâche 3</div>
+      <h2>What is Tâche 3?</h2>
+      <p>Synthesis + argumentation essay — 180 to 240 words — most challenging tâche</p>
+    </div>
+    <div class="tache-body">
+      <p style="font-size:13px; color:var(--mgrey); margin-bottom:18px;">Think of Tâche 3 like writing a school essay — but with two sources. You are given 2 short documents (articles, charts, statistics) and must: (1) summarise what each one says, then (2) give your own opinion with arguments. 🎓</p>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="ic-label">Word count</div>
+          <div class="ic-val">180–240 words</div>
+          <div class="ic-sub">Aim for 210–230 as your sweet spot</div>
+        </div>
+        <div class="info-card">
+          <div class="ic-label">Format</div>
+          <div class="ic-val">Essay — no email header needed</div>
+          <div class="ic-sub">You must give it a title — this is mandatory!</div>
+        </div>
+        <div class="info-card">
+          <div class="ic-label">Register (outfit)</div>
+          <div class="ic-val">🎓 Academic — very structured</div>
+          <div class="ic-sub">Like writing for a newspaper or a school report</div>
+        </div>
+        <div class="info-card">
+          <div class="ic-label">What you do</div>
+          <div class="ic-val">Synthesise 2 documents + argue your view</div>
+          <div class="ic-sub">Summarise both sources, then defend your opinion</div>
+        </div>
+      </div>
+
+      <div class="alert alert-rose">
+        <span>💡</span>
+        <div><strong>Simple explanation:</strong> Imagine you read two newspaper articles about the same topic — one says social media is great, the other says it is dangerous. Tâche 3 asks you to summarise BOTH articles (in your own words!) and then say what YOU think — and why. Like a TV debate where you are the host AND a contestant! 📺</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- T3: Structure -->
+  <div class="tache-section" id="t3-structure">
+    <div class="tache-header" style="background: linear-gradient(135deg,#E11D48,#BE123C);" data-num="T3">
+      <div class="tache-label">Tâche 3</div>
+      <h2>Structure & Template 🏗️</h2>
+      <p>The 5-part essay formula — always in this order</p>
+    </div>
+    <div class="tache-body">
+      <div class="sub-section">
+        <div class="sub-title">The 5-Part Essay Formula</div>
+        <div class="structure-block">
+<span class="s-room">PART 1 — Title (MANDATORY — you MUST include this!)</span>
+<span class="s-phrase">Titre : [Meaningful title that captures the debate — one sentence]</span>
+<span class="s-meta">Example: "Les réseaux sociaux : opportunité ou danger pour la société ?"</span>
+
+<span class="s-room">PART 2 — Introduction</span>
+<span class="s-phrase">Ces deux documents soulèvent la question de...</span>
+<span class="s-phrase">La question centrale est de savoir si...</span>
+<span class="s-meta">[Introduce the topic. State the debate/question these documents raise.]</span>
+
+<span class="s-room">PART 3 — Synthesis of Document 1</span>
+<span class="s-phrase">Le premier document met en évidence que...</span>
+<span class="s-phrase">D'après le premier document,...</span>
+<span class="s-meta">[Summarise what document 1 says — in YOUR OWN WORDS, not copy-paste!]</span>
+
+<span class="s-room">PART 4 — Synthesis of Document 2 + comparison</span>
+<span class="s-phrase">Tandis que le second document souligne que...</span>
+<span class="s-phrase">En revanche, le deuxième document affirme que...</span>
+<span class="s-meta">[Summarise document 2. Note if they agree or contrast with document 1.]</span>
+
+<span class="s-room">PART 5 — Your opinion + arguments</span>
+<span class="s-phrase">D'une part, j'estime que...</span>
+<span class="s-phrase">D'autre part, il convient de souligner que...</span>
+<span class="s-phrase">En définitive, il me semble que...</span>
+<span class="s-meta">[Give 2 arguments with reasons. End with your conclusion.]</span>
+        </div>
+      </div>
+
+      <div class="alert alert-rose">
+        <span>🚨</span>
+        <div><strong>The title is NOT optional!</strong> Many students forget the title in Tâche 3 and lose immediate points on Judge 1. The title should capture both what the documents say AND the debate they present. Write it FIRST before anything else!</div>
+      </div>
+
+      <div class="sub-section" style="margin-top:18px">
+        <div class="sub-title">The key rule — paraphrase, never copy!</div>
+        <div class="ex-pair">
+          <div class="ex-wrong"><strong>❌ Copy-paste (wrong!)</strong><p>"Les réseaux sociaux permettent aux utilisateurs de rester connectés avec leurs proches." <em>(exact words from the document)</em></p></div>
+          <div class="ex-right"><strong>✅ Paraphrase (correct!)</strong><p>"Le premier document met en évidence que les plateformes numériques facilitent le maintien des liens sociaux." <em>(same idea, your own words)</em></p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- T3: Register -->
+  <div class="tache-section" id="t3-register">
+    <div class="tache-header" style="background: linear-gradient(135deg,#E11D48,#BE123C);" data-num="T3">
+      <div class="tache-label">Tâche 3</div>
+      <h2>Register Rules 🎓</h2>
+      <p>Academic writing — the most formal register of all three tâches</p>
+    </div>
+    <div class="tache-body">
+      <div class="alert alert-rose">
+        <span>🎓</span>
+        <div><strong>Tâche 3 is the most formal of all three tâches.</strong> Think of it like writing an essay for a newspaper opinion column. No casual language, no slang, no "je pense que" at basic level. Use "j'estime que / j'ai la conviction que / il me semble que" instead.</div>
+      </div>
+
+      <div class="sub-section" style="margin-top:18px">
+        <div class="sub-title">Opinion vocabulary — upgrade from B1 to C1</div>
+        <table class="data-table">
+          <thead><tr style="background:var(--t3)"><th>B1 (basic — avoid)</th><th>B2 (good)</th><th>C1 (impressive ⭐)</th></tr></thead>
+          <tbody>
+            <tr><td>je pense que</td><td>j'estime que</td><td>j'ai la conviction que</td></tr>
+            <tr><td>je crois que</td><td>je considère que</td><td>il me semble que</td></tr>
+            <tr><td>c'est bien</td><td>c'est bénéfique</td><td>cela s'avère particulièrement positif</td></tr>
+            <tr><td>c'est mauvais</td><td>c'est préjudiciable</td><td>cela représente un véritable écueil</td></tr>
+            <tr><td>montrer</td><td>démontrer / souligner</td><td>mettre en évidence / attester de</td></tr>
+            <tr><td>pour finir</td><td>en conclusion</td><td>en définitive / pour clore cette réflexion</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- T3: Phrases -->
+  <div class="tache-section" id="t3-phrases">
+    <div class="tache-header" style="background: linear-gradient(135deg,#E11D48,#BE123C);" data-num="T3">
+      <div class="tache-label">Tâche 3</div>
+      <h2>Key Phrases to Memorise 💬</h2>
+      <p>These phrases build your essay section by section</p>
+    </div>
+    <div class="tache-body">
+      <div class="sub-section">
+        <div class="sub-title">Introduction phrases</div>
+        <table class="data-table">
+          <thead><tr style="background:var(--t3)"><th>French phrase</th><th>💬 English</th><th>Level</th></tr></thead>
+          <tbody>
+            <tr><td><em>Ces deux documents soulèvent la question de...</em></td><td>These two documents raise the question of...</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>La question centrale est de savoir si...</em></td><td>The central question is whether...</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>Ces documents nous invitent à réfléchir sur...</em></td><td>These documents invite us to reflect on...</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sub-section">
+        <div class="sub-title">Referencing the documents</div>
+        <table class="data-table">
+          <thead><tr style="background:var(--t3)"><th>French phrase</th><th>💬 English</th><th>Level</th></tr></thead>
+          <tbody>
+            <tr><td><em>Le premier document met en évidence que...</em></td><td>The first document highlights that...</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+            <tr><td><em>D'après le premier document,...</em></td><td>According to the first document,...</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>Tandis que le second document souligne...</em></td><td>Whereas the second document emphasises...</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+            <tr><td><em>En revanche, le deuxième document affirme que...</em></td><td>On the other hand, the second document states...</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>Ces deux documents s'accordent sur le fait que...</em></td><td>Both documents agree on the fact that...</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sub-section">
+        <div class="sub-title">Argumentation — giving your opinion</div>
+        <table class="data-table">
+          <thead><tr style="background:var(--t3)"><th>French phrase</th><th>💬 English</th><th>Level</th></tr></thead>
+          <tbody>
+            <tr><td><em>D'une part,... D'autre part,...</em></td><td>On one hand,... On the other hand,...</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>Il convient de souligner que...</em></td><td>It is worth emphasising that...</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+            <tr><td><em>Force est de constater que...</em></td><td>One cannot help but notice that...</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+            <tr><td><em>Certes,... néanmoins...</em></td><td>Admittedly,... nevertheless...</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>Il n'en demeure pas moins que...</em></td><td>It remains true nonetheless that...</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sub-section">
+        <div class="sub-title">Concluding phrases</div>
+        <table class="data-table">
+          <thead><tr style="background:var(--t3)"><th>French phrase</th><th>💬 English</th><th>Level</th></tr></thead>
+          <tbody>
+            <tr><td><em>En conclusion, il me semble que...</em></td><td>In conclusion, it seems to me that...</td><td><span class="level-chip lc-b2">B2</span></td></tr>
+            <tr><td><em>En définitive, j'estime que...</em></td><td>Ultimately, I consider that...</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+            <tr><td><em>Pour clore cette réflexion, on peut affirmer que...</em></td><td>To close this reflection, one can affirm that...</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+            <tr><td><em>Aussi peut-on affirmer que...</em></td><td>Thus one can affirm that... (+ inversion)</td><td><span class="level-chip lc-c1">C1</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- T3: Mistakes -->
+  <div class="tache-section" id="t3-mistakes">
+    <div class="tache-header" style="background: linear-gradient(135deg,#E11D48,#BE123C);" data-num="T3">
+      <div class="tache-label">Tâche 3</div>
+      <h2>Common Mistakes 🚨</h2>
+      <p>These errors cost the most points in Tâche 3</p>
+    </div>
+    <div class="tache-body">
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ No title written</div>
+        <div class="mistake-right">✅ Title is MANDATORY — write it first, always!</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ Copying sentences from the documents</div>
+        <div class="mistake-right">✅ Always paraphrase — use your own words!</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ Only summarising — no personal opinion</div>
+        <div class="mistake-right">✅ You MUST give YOUR view with at least 2 arguments</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ Only discussing one document</div>
+        <div class="mistake-right">✅ Both documents must be discussed and compared</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ je pense que (too basic)</div>
+        <div class="mistake-right">✅ j'estime que / il me semble que / j'ai la conviction que</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ No connectors between arguments</div>
+        <div class="mistake-right">✅ D'une part / D'autre part / Certes / Néanmoins / En définitive</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ Writing under 180 words</div>
+        <div class="mistake-right">✅ Count every word — aim for 210+ words!</div>
+      </div>
+      <div class="mistake-item">
+        <div class="mistake-wrong">❌ No conclusion</div>
+        <div class="mistake-right">✅ Always end with "En définitive / En conclusion, il me semble que..."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- T3: Checklist -->
+  <div class="tache-section" id="t3-checklist">
+    <div class="tache-header" style="background: linear-gradient(135deg,#E11D48,#BE123C);" data-num="T3">
+      <div class="tache-label">Tâche 3</div>
+      <h2>Your Checklist ✅</h2>
+      <p>Every box ticked = maximum points on Judge 1</p>
+    </div>
+    <div class="tache-body">
+      <ul class="checklist">
+        <li>TITRE written — meaningful title capturing the debate</li>
+        <li>Introduction — the debate question is clearly stated</li>
+        <li>Document 1 summarised in your own words (not copied!)</li>
+        <li>Document 2 summarised in your own words (not copied!)</li>
+        <li>Noted whether documents agree or contrast</li>
+        <li>YOUR opinion stated clearly (j'estime que / il me semble que)</li>
+        <li>At least 2 arguments given with reasons</li>
+        <li>Other side acknowledged (Certes... néanmoins...)</li>
+        <li>At least 4 connectors used (d'une part, d'autre part, en revanche, en définitive...)</li>
+        <li>C1 phrases used (il convient de souligner / force est de constater...)</li>
+        <li>No A1 words (très, beaucoup, bon, dire, faire...)</li>
+        <li>Conclusion written (En définitive / En conclusion...)</li>
+        <li>At least 180 words — count before submitting!</li>
+        <li>No email header — this is an essay, not an email!</li>
+      </ul>
+
+      <div class="score-grid">
+        <div class="score-card">
+          <div class="sc-judge">Judge 1 — Task</div>
+          <div class="sc-target" style="color:var(--t3)">4.5</div>
+          <div class="sc-label">out of 5</div>
+        </div>
+        <div class="score-card">
+          <div class="sc-judge">Judge 2 — Grammar</div>
+          <div class="sc-target" style="color:var(--blue)">3.5</div>
+          <div class="sc-label">out of 5</div>
+        </div>
+        <div class="score-card">
+          <div class="sc-judge">Judge 3 — Flow</div>
+          <div class="sc-target" style="color:var(--purple)">4</div>
+          <div class="sc-label">out of 5</div>
+        </div>
+        <div class="score-card">
+          <div class="sc-judge">Judge 4 — Vocab</div>
+          <div class="sc-target" style="color:var(--rose)">4</div>
+          <div class="sc-label">out of 5</div>
+        </div>
+      </div>
+      <p style="text-align:center; font-size:12px; color:var(--mgrey); margin-top:8px;">Target: <strong>16/20 (B2/C1)</strong></p>
+    </div>
+  </div>
+
+  <!-- T3: Topics -->
+  <div class="tache-section" id="t3-topics">
+    <div class="tache-header" style="background: linear-gradient(135deg,#E11D48,#BE123C);" data-num="T3">
+      <div class="tache-label">Tâche 3</div>
+      <h2>Topic Bank 📋</h2>
+      <p>Common Tâche 3 debates — practise arguing both sides!</p>
+    </div>
+    <div class="tache-body">
+      <div class="topic-grid">
+        <div class="topic-card"><span class="tc-icon">📱</span><span class="tc-name">Social Media</span><span class="tc-desc">Benefits vs dangers for society</span></div>
+        <div class="topic-card"><span class="tc-icon">🏠</span><span class="tc-name">Remote Work</span><span class="tc-desc">Working from home vs office</span></div>
+        <div class="topic-card"><span class="tc-icon">🌍</span><span class="tc-name">Environment</span><span class="tc-desc">Electric cars / cycling in cities</span></div>
+        <div class="topic-card"><span class="tc-icon">🎓</span><span class="tc-name">Education</span><span class="tc-desc">School uniforms / university fees</span></div>
+        <div class="topic-card"><span class="tc-icon">🇨🇦</span><span class="tc-name">Immigration</span><span class="tc-desc">Benefits vs housing pressure</span></div>
+        <div class="topic-card"><span class="tc-icon">🏥</span><span class="tc-name">Health</span><span class="tc-desc">Technology in healthcare</span></div>
+        <div class="topic-card"><span class="tc-icon">🤖</span><span class="tc-name">Technology</span><span class="tc-desc">AI making us more or less social?</span></div>
+        <div class="topic-card"><span class="tc-icon">💰</span><span class="tc-name">Economy</span><span class="tc-desc">Free university / minimum wage</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       SCORING CRITERIA
+  ═══════════════════════════════════════════════ -->
+  <div class="quickref-section" id="scoring">
+    <h2>📊 Scoring Criteria — How All 3 Tâches Are Marked</h2>
+    <table class="data-table">
+      <thead><tr style="background:var(--navy)">
+        <th>Judge</th><th>Criterion</th><th>What they check</th><th>How to score high</th><th>Points</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>👩‍⚖️ 1</td><td>Réalisation de la tâche</td><td>Did you do EVERYTHING the prompt asked?</td><td>Read prompt 3× — tick every requirement as you include it</td><td>/5</td></tr>
+        <tr><td>👩‍⚖️ 2</td><td>Correction de la langue</td><td>Is your grammar and spelling correct?</td><td>Apply your 4 grammar questions before every sentence</td><td>/5</td></tr>
+        <tr><td>👩‍⚖️ 3</td><td>Cohérence et cohésion</td><td>Do your ideas flow with connectors?</td><td>Use at least 3–4 different connectors. Structure clearly.</td><td>/5</td></tr>
+        <tr><td>👩‍⚖️ 4</td><td>Étendue de la langue</td><td>Are you using rich B2/C1 vocabulary?</td><td>Replace every A1 word with a staircase upgrade</td><td>/5</td></tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:20px">
+      <table class="data-table">
+        <thead><tr style="background:var(--navy)">
+          <th>Score /20</th><th>CEFR Level</th><th>What it means</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>0–3</td><td>A1</td><td>Very basic. Major errors. Short disconnected sentences.</td></tr>
+          <tr><td>4–6</td><td>A2</td><td>Simple sentences. Frequent errors. Limited vocabulary.</td></tr>
+          <tr><td>7–9</td><td>B1</td><td>Getting there! Basic ideas come across. Some errors. Simple connectors.</td></tr>
+          <tr><td style="background:var(--ltgrn); font-weight:700">10–13</td><td style="background:var(--ltgrn); font-weight:700">B2</td><td style="background:var(--ltgrn)">Clear and organised. Few errors. Good vocabulary variety. ✅ Minimum target!</td></tr>
+          <tr><td style="background:var(--ltblue); font-weight:700">14–17</td><td style="background:var(--ltblue); font-weight:700">C1</td><td style="background:var(--ltblue)">Fluent and nuanced. Rare errors. Rich vocabulary. ⭐ Real target!</td></tr>
+          <tr><td>18–20</td><td>C2</td><td>Near-native. Almost no errors. Reads like a native speaker.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       QUICK REFERENCE
+  ═══════════════════════════════════════════════ -->
+  <div class="quickref-section" id="quickref">
+    <h2>⚡ Quick Reference — All 3 Tâches at a Glance</h2>
+    <div class="qr-grid">
+      <div class="qr-card">
+        <div class="qr-head" style="background:var(--t1)">T1 — Opening</div>
+        <div class="qr-body">Salut [Name] ! / Bonjour [Name], / Coucou [Name] !</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-head" style="background:var(--t2)">T2 — Opening</div>
+        <div class="qr-body">Madame, Monsieur, — ALWAYS this. Never Bonjour!</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-head" style="background:var(--t3)">T3 — Opening</div>
+        <div class="qr-body">Titre: [Meaningful title] — MANDATORY. Then introduction.</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-head" style="background:var(--t1)">T1 — Closing</div>
+        <div class="qr-body">À bientôt ! / À très bientôt ! / Bisous, / Cordialement,</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-head" style="background:var(--t2)">T2 — Closing</div>
+        <div class="qr-body">Dans l'attente de votre réponse, je vous adresse mes cordiales salutations.</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-head" style="background:var(--t3)">T3 — Closing</div>
+        <div class="qr-body">En définitive, il me semble que... / Pour clore cette réflexion,...</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-head" style="background:var(--t1)">T1 — Register</div>
+        <div class="qr-body">TU for friends. VOUS for semi-formal. Pick one — never switch!</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-head" style="background:var(--t2)">T2 — Register</div>
+        <div class="qr-body">VOUS always. No exceptions. Even if you know their name!</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-head" style="background:var(--t3)">T3 — Register</div>
+        <div class="qr-body">Academic — no email format. Essay structure only. Very formal.</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-head" style="background:var(--t1)">T1 — Word count</div>
+        <div class="qr-body">60–120 words. Sweet spot: 90–100. Count before submitting!</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-head" style="background:var(--t2)">T2 — Word count</div>
+        <div class="qr-body">120–180 words. Sweet spot: 150–160. Count before submitting!</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-head" style="background:var(--t3)">T3 — Word count</div>
+        <div class="qr-body">180–240 words. Sweet spot: 210–230. Count before submitting!</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-head" style="background:var(--navy)">All Tâches — Grammar Rule 1</div>
+        <div class="qr-body">Je form of -er verbs = -e. Je contacte ✅ NOT je contactez ❌</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-head" style="background:var(--navy)">All Tâches — Grammar Rule 2</div>
+        <div class="qr-body">Maryjoe always wears -e! Je suis convaincue / ravie / satisfaite 👗</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-head" style="background:var(--navy)">All Tâches — Grammar Rule 3</div>
+        <div class="qr-body">Modal verb + infinitive. Pouvez-vous confirmer ✅ NOT confirmez ❌</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-head" style="background:var(--gold); color:var(--navy)">T1 Key phrase ⭐</div>
+        <div class="qr-body">Ce serait formidable si tu pouvais venir ! (conditionnel = instant B2)</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-head" style="background:var(--gold); color:var(--navy)">T2 Key phrase ⭐</div>
+        <div class="qr-body">Je vous serais reconnaissant(e) de bien vouloir... (C1 request)</div>
+      </div>
+      <div class="qr-card">
+        <div class="qr-head" style="background:var(--gold); color:var(--navy)">T3 Key phrase ⭐</div>
+        <div class="qr-body">Il convient de souligner que... / Force est de constater que... (C1)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>🇨🇦 <strong>You are not just learning French.</strong> You are building your future in Canada.</p>
+    <p style="margin-top:6px">Every tâche you practise = one step closer to your PR. <strong>Keep going Maryjoe! 💪🔥</strong></p>
+  </div>
+
+</main>
+
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const el = document.getElementById('progress');
+    const scrolled = window.scrollY;
+    const total = document.body.scrollHeight - window.innerHeight;
+    if (total > 0) el.style.transform = `scaleX(${scrolled/total})`;
+  });
+
+  // Active nav link highlight
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  sections.forEach(s => observer.observe(s));
+
+  // Sidebar search
+  function filterNav() {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    document.querySelectorAll('.nav-link').forEach(l => {
+      l.style.display = l.textContent.toLowerCase().includes(q) ? 'flex' : 'none';
+    });
+    document.querySelectorAll('.nav-section-label').forEach(l => {
+      l.style.display = q ? 'none' : 'block';
+    });
+  }
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TCF Canada — Complete Expression Écrite Guide | Maryjoe</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fira+Mono:wght@400;500&display=swap');
+:root{
+  --navy:#1B2A5E;--blue:#2563EB;--teal:#0D9488;--gold:#F59E0B;
+  --rose:#E11D48;--purple:#7C3AED;--green:#16A34A;
+  --t1:#0D9488;--t2:#7C3AED;--t3:#E11D48;
+  --ltblue:#DBEAFE;--ltrose:#FFE4E6;--ltgrn:#DCFCE7;
+  --ltyell:#FEF9C3;--ltpurp:#EDE9FE;--ltmint:#D1FAE5;
+  --lgrey:#F8FAFC;--dgrey:#1E293B;--mgrey:#64748B;
+  --border:#E2E8F0;--white:#FFFFFF;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#F0F4FF;color:var(--dgrey);line-height:1.65;}
+
+/* SIDEBAR */
+.sidebar{position:fixed;top:0;left:0;width:272px;height:100vh;background:var(--navy);overflow-y:auto;z-index:100;padding-bottom:50px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.15) transparent;}
+.logo{padding:20px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.08);background:rgba(0,0,0,0.18);}
+.logo h2{font-size:13px;font-weight:800;color:var(--gold);}
+.logo p{font-size:10px;color:rgba(255,255,255,0.4);margin-top:2px;}
+.search-wrap{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.search-wrap input{width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:6px;padding:6px 11px;color:#fff;font-size:11px;font-family:'Inter',sans-serif;outline:none;}
+.search-wrap input::placeholder{color:rgba(255,255,255,0.3);}
+.search-wrap input:focus{border-color:var(--gold);}
+.nav-group{padding:8px 0 2px;}
+.nav-group-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding:5px 16px 3px;}
+.nav-item{display:flex;align-items:center;gap:8px;padding:6px 16px;text-decoration:none;font-size:11px;font-weight:500;color:rgba(255,255,255,0.62);border-left:3px solid transparent;transition:all 0.15s;}
+.nav-item:hover,.nav-item.active{background:rgba(255,255,255,0.07);color:#fff;border-left-color:var(--gold);}
+.nav-chip{font-size:9px;font-weight:700;padding:2px 6px;border-radius:8px;margin-left:auto;white-space:nowrap;}
+.chip-t1{background:var(--t1);color:#fff;}
+.chip-t2{background:var(--t2);color:#fff;}
+.chip-t3{background:var(--t3);color:#fff;}
+.chip-ref{background:var(--gold);color:var(--navy);}
+.chip-tip{background:var(--green);color:#fff;}
+
+/* PROGRESS */
+.progress-bar{position:fixed;top:0;left:272px;right:0;height:3px;background:var(--gold);transform-origin:left;transform:scaleX(0);transition:transform 0.1s;z-index:99;}
+
+/* MAIN */
+.main{margin-left:272px;padding:32px 44px 100px;max-width:940px;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#1d3a80 100%);border-radius:18px;padding:44px 40px;margin-bottom:36px;position:relative;overflow:hidden;}
+.hero::before{content:'EE';position:absolute;right:-8px;top:50%;transform:translateY(-50%);font-size:160px;font-weight:900;color:rgba(255,255,255,0.04);letter-spacing:-8px;}
+.hero-eye{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.hero h1{font-size:28px;font-weight:900;color:#fff;line-height:1.18;}
+.hero p{font-size:13px;color:rgba(255,255,255,0.62);margin-top:9px;max-width:500px;}
+.hero-pills{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
+.hpill{padding:7px 16px;border-radius:24px;font-size:11px;font-weight:700;color:#fff;border:1.5px solid rgba(255,255,255,0.2);text-decoration:none;transition:all 0.2s;background:rgba(255,255,255,0.1);}
+.hpill:hover{background:rgba(255,255,255,0.2);}
+.hpill-t1{border-color:var(--t1);background:rgba(13,148,136,0.25);}
+.hpill-t2{border-color:var(--t2);background:rgba(124,58,237,0.25);}
+.hpill-t3{border-color:var(--t3);background:rgba(225,29,72,0.25);}
+
+/* AT A GLANCE */
+.glance{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:36px;}
+.glance-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);border:1.5px solid var(--border);}
+.glance-head{padding:14px 18px;color:#fff;font-weight:800;font-size:14px;}
+.glance-head span{display:block;font-size:10px;font-weight:500;opacity:0.75;margin-top:2px;}
+.glance-body{padding:14px 18px;font-size:12px;}
+.glance-row{display:flex;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);}
+.glance-row:last-child{border:none;}
+.gr-label{font-weight:700;font-size:10px;color:var(--mgrey);min-width:60px;padding-top:1px;}
+.gr-val{font-size:11px;color:var(--dgrey);}
+
+/* SECTION WRAPPERS */
+.tache-wrap{scroll-margin-top:20px;}
+
+/* TACHE HEADER BANNER */
+.tache-banner{border-radius:14px 14px 0 0;padding:26px 30px;position:relative;overflow:hidden;}
+.tache-banner::after{content:attr(data-label);position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:100px;font-weight:900;color:rgba(255,255,255,0.08);letter-spacing:-4px;}
+.tb-eye{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:5px;}
+.tache-banner h2{font-size:20px;font-weight:900;color:#fff;}
+.tache-banner p{font-size:12px;color:rgba(255,255,255,0.65);margin-top:5px;}
+
+/* SECTION CARD */
+.section-card{background:#fff;border-radius:0 0 14px 14px;padding:26px 30px;margin-bottom:6px;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+.section-card+.tache-banner{margin-top:28px;}
+
+/* DIVIDER CARD — new section within same tache */
+.div-card{background:#fff;border-radius:14px;padding:24px 30px;margin-bottom:6px;box-shadow:0 2px 12px rgba(0,0,0,0.06);scroll-margin-top:20px;}
+
+.sub-title{font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--mgrey);display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.sub-title::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* INFO GRID */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.info-card{border-radius:10px;padding:13px 16px;border:1.5px solid var(--border);background:var(--lgrey);}
+.ic-label{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--mgrey);margin-bottom:4px;}
+.ic-val{font-size:13px;font-weight:700;color:var(--dgrey);}
+.ic-sub{font-size:10px;color:var(--mgrey);margin-top:2px;}
+
+/* TABLES */
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:12px 0;border-radius:8px;overflow:hidden;border:1px solid var(--border);}
+.tbl th{padding:9px 12px;text-align:left;font-size:10px;font-weight:700;color:#fff;letter-spacing:0.3px;}
+.tbl td{padding:9px 12px;border-top:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.tbl tr:nth-child(even) td{background:var(--lgrey);}
+.tbl tr:nth-child(odd) td{background:#fff;}
+
+/* LEVEL CHIPS */
+.lc{font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;white-space:nowrap;}
+.lb1{background:var(--mgrey);color:#fff;}
+.lb2{background:var(--teal);color:#fff;}
+.lc1{background:var(--blue);color:#fff;}
+.lc2{background:var(--rose);color:#fff;}
+
+/* STRUCTURE BLOCK */
+.structure{background:var(--navy);border-radius:10px;padding:20px 22px;margin:14px 0;font-family:'Fira Mono',monospace;font-size:11.5px;color:rgba(255,255,255,0.82);line-height:1.9;}
+.s-floor{color:var(--gold);font-weight:700;}
+.s-phrase{color:#86efac;}
+.s-meta{color:rgba(255,255,255,0.38);font-style:italic;}
+.s-example{color:#fde68a;}
+
+/* PAIR */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;}
+.pair-w{background:var(--ltrose);border:1.5px solid var(--rose);border-radius:8px;padding:12px 14px;}
+.pair-r{background:var(--ltgrn);border:1.5px solid var(--green);border-radius:8px;padding:12px 14px;}
+.pair-w strong,.pair-r strong{font-size:9px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;display:block;margin-bottom:4px;}
+.pair-w strong{color:var(--rose);}
+.pair-r strong{color:var(--green);}
+.pair-w p,.pair-r p{font-size:12px;font-family:'Fira Mono',monospace;line-height:1.55;}
+
+/* TIP */
+.tip{display:flex;align-items:flex-start;gap:10px;padding:12px 16px;background:var(--ltyell);border:1.5px solid var(--gold);border-radius:8px;margin-top:12px;font-size:12px;line-height:1.5;}
+.tip-icon{font-size:16px;flex-shrink:0;}
+
+/* ALERT */
+.alert{padding:11px 14px;border-radius:8px;font-size:12px;margin:10px 0;display:flex;align-items:flex-start;gap:10px;line-height:1.5;}
+.a-rose{background:var(--ltrose);border-left:3px solid var(--rose);}
+.a-teal{background:var(--ltmint);border-left:3px solid var(--teal);}
+.a-blue{background:var(--ltblue);border-left:3px solid var(--blue);}
+.a-purple{background:var(--ltpurp);border-left:3px solid var(--purple);}
+.a-gold{background:var(--ltyell);border-left:3px solid var(--gold);}
+.a-green{background:var(--ltgrn);border-left:3px solid var(--green);}
+
+/* CHECKLIST */
+.checklist{list-style:none;margin:12px 0;}
+.checklist li{display:flex;align-items:flex-start;gap:10px;padding:7px 12px;font-size:12px;border-radius:6px;margin-bottom:4px;background:var(--lgrey);border:1px solid var(--border);}
+.checklist li::before{content:'☐';font-size:14px;flex-shrink:0;color:var(--mgrey);}
+
+/* SCORE GRID */
+.score-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:16px 0;}
+.sc{background:#fff;border-radius:10px;padding:14px 10px;text-align:center;border:1.5px solid var(--border);}
+.sc-label{font-size:9px;color:var(--mgrey);font-weight:600;letter-spacing:0.3px;}
+.sc-val{font-size:22px;font-weight:900;margin:3px 0 1px;}
+.sc-sub{font-size:9px;color:var(--mgrey);}
+.sc-total{background:var(--navy);border-radius:10px;padding:14px 10px;text-align:center;}
+.sc-total .sc-label{color:rgba(255,255,255,0.55);}
+.sc-total .sc-val{color:var(--gold);}
+.sc-total .sc-sub{color:rgba(255,255,255,0.5);}
+
+/* TOPIC GRID */
+.topic-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0;}
+.tc{border-radius:8px;padding:12px 10px;text-align:center;border:1.5px solid var(--border);background:var(--lgrey);}
+.tc-icon{font-size:20px;display:block;margin-bottom:5px;}
+.tc-name{font-weight:700;font-size:11px;}
+.tc-desc{font-size:10px;color:var(--mgrey);margin-top:2px;}
+
+/* MISTAKE ROWS */
+.mistake{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:5px;border-radius:8px;overflow:hidden;border:1px solid var(--border);font-size:12px;}
+.mw{padding:9px 14px;background:var(--ltrose);color:var(--rose);font-weight:600;display:flex;align-items:center;gap:6px;}
+.mr{padding:9px 14px;background:var(--ltgrn);color:var(--green);font-weight:600;display:flex;align-items:center;gap:6px;}
+
+/* QUICK REF */
+.qr-section{background:#fff;border-radius:14px;padding:26px 30px;margin-bottom:28px;box-shadow:0 2px 12px rgba(0,0,0,0.06);scroll-margin-top:20px;}
+.qr-section h2{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:18px;}
+.qr-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.qr-card{border-radius:10px;overflow:hidden;border:1.5px solid var(--border);}
+.qr-head{padding:9px 14px;font-size:11px;font-weight:700;color:#fff;}
+.qr-body{padding:10px 14px;font-size:11px;line-height:1.6;background:var(--lgrey);}
+
+/* SIGN-OFF BOX */
+.signoff-box{background:var(--navy);border-radius:10px;padding:16px 20px;margin:14px 0;text-align:center;}
+.signoff-box p{font-family:'Fira Mono',monospace;font-size:13px;color:var(--gold);font-style:italic;line-height:1.7;}
+.signoff-box span{font-size:11px;color:rgba(255,255,255,0.5);display:block;margin-top:5px;}
+
+/* MARYJOE BOX */
+.maryjoe-box{background:linear-gradient(135deg,#FFF0F3,#FFE4E6);border:2px solid var(--rose);border-radius:10px;padding:14px 18px;margin:14px 0;}
+.maryjoe-box h4{font-size:12px;font-weight:800;color:var(--rose);margin-bottom:8px;}
+
+/* FLOOR STEPS */
+.floor-grid{display:grid;gap:8px;margin:14px 0;}
+.floor-item{display:flex;gap:12px;background:var(--lgrey);border-radius:10px;padding:14px 16px;border:1.5px solid var(--border);}
+.floor-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff;flex-shrink:0;}
+.floor-content h4{font-size:12px;font-weight:800;color:var(--dgrey);margin-bottom:4px;}
+.floor-content p{font-size:11px;color:var(--mgrey);line-height:1.5;}
+.floor-content code{font-family:'Fira Mono',monospace;font-size:11px;color:var(--blue);background:var(--ltblue);padding:1px 5px;border-radius:4px;}
+
+/* FOOTER */
+.footer{background:var(--navy);border-radius:14px;padding:26px 30px;margin-top:44px;text-align:center;color:rgba(255,255,255,0.65);font-size:13px;}
+.footer strong{color:var(--gold);}
+
+/* SCROLL TOP */
+.scroll-top{position:fixed;bottom:26px;right:26px;background:var(--navy);color:#fff;border:none;border-radius:50%;width:46px;height:46px;font-size:18px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,0.25);transition:background 0.2s;z-index:200;}
+.scroll-top:hover{background:var(--blue);}
+
+@media(max-width:900px){
+  .sidebar{width:100%;height:auto;position:relative;}
+  .main{margin-left:0;padding:20px;}
+  .glance,.pair,.info-grid,.score-grid,.qr-grid,.topic-grid{grid-template-columns:1fr;}
+  .progress-bar{left:0;}
+}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="logo">
+    <h2>✍️ TCF — Expression Écrite</h2>
+    <p>Complete Guide | Maryjoe Chioma Udochi</p>
+  </div>
+  <div class="search-wrap">
+    <input type="text" id="si" placeholder="Search the guide..." onkeyup="filterNav()">
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Overview</div>
+    <a href="#home"    class="nav-item">🏠 Home & At a Glance</a>
+    <a href="#scoring" class="nav-item">📊 How You Are Scored</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Tâche 1 — Short Message</div>
+    <a href="#t1-what"      class="nav-item">📖 What is Tâche 1? <span class="nav-chip chip-t1">T1</span></a>
+    <a href="#t1-structure" class="nav-item">🏗️ Structure & Template <span class="nav-chip chip-t1">T1</span></a>
+    <a href="#t1-register"  class="nav-item">👕 Register — TU vs VOUS <span class="nav-chip chip-t1">T1</span></a>
+    <a href="#t1-phrases"   class="nav-item">💬 Key Phrases <span class="nav-chip chip-t1">T1</span></a>
+    <a href="#t1-mistakes"  class="nav-item">🚨 Common Mistakes <span class="nav-chip chip-t1">T1</span></a>
+    <a href="#t1-checklist" class="nav-item">✅ Checklist <span class="nav-chip chip-t1">T1</span></a>
+    <a href="#t1-topics"    class="nav-item">📋 Topic Bank <span class="nav-chip chip-t1">T1</span></a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Tâche 2 — Formal Letter</div>
+    <a href="#t2-what"      class="nav-item">📖 What is Tâche 2? <span class="nav-chip chip-t2">T2</span></a>
+    <a href="#t2-structure" class="nav-item">🏗️ Structure & Template <span class="nav-chip chip-t2">T2</span></a>
+    <a href="#t2-register"  class="nav-item">👔 Register — Always Formal <span class="nav-chip chip-t2">T2</span></a>
+    <a href="#t2-phrases"   class="nav-item">💬 Key Phrases <span class="nav-chip chip-t2">T2</span></a>
+    <a href="#t2-mistakes"  class="nav-item">🚨 Common Mistakes <span class="nav-chip chip-t2">T2</span></a>
+    <a href="#t2-checklist" class="nav-item">✅ Checklist <span class="nav-chip chip-t2">T2</span></a>
+    <a href="#t2-topics"    class="nav-item">📋 Topic Bank <span class="nav-chip chip-t2">T2</span></a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Tâche 3 — Essay & Debate</div>
+    <a href="#t3-what"      class="nav-item">📖 What is Tâche 3? <span class="nav-chip chip-t3">T3</span></a>
+    <a href="#t3-structure" class="nav-item">🏗️ The 5-Floor Structure <span class="nav-chip chip-t3">T3</span></a>
+    <a href="#t3-register"  class="nav-item">🎓 Register — Academic <span class="nav-chip chip-t3">T3</span></a>
+    <a href="#t3-paraphrase" class="nav-item">✏️ Paraphrase Rule <span class="nav-chip chip-t3">T3</span></a>
+    <a href="#t3-phrases"   class="nav-item">💬 Key Phrases <span class="nav-chip chip-t3">T3</span></a>
+    <a href="#t3-mistakes"  class="nav-item">🚨 Common Mistakes <span class="nav-chip chip-t3">T3</span></a>
+    <a href="#t3-checklist" class="nav-item">✅ Checklist <span class="nav-chip chip-t3">T3</span></a>
+    <a href="#t3-topics"    class="nav-item">📋 Topic Bank <span class="nav-chip chip-t3">T3</span></a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Reference</div>
+    <a href="#grammar"  class="nav-item">📐 Grammar Rules Reminder <span class="nav-chip chip-ref">REF</span></a>
+    <a href="#quickref" class="nav-item">⚡ Quick Reference All 3 <span class="nav-chip chip-ref">REF</span></a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <div class="hero-eye">TCF Canada · Expression Écrite · Complete Guide</div>
+  <h1>All 3 Tâches —<br>Everything You Need to Know</h1>
+  <p>Structure, templates, key phrases, common mistakes, checklists and topic banks for Tâche 1, 2 and 3. Built from every session together. 🇨🇦</p>
+  <div class="hero-pills">
+    <a href="#t1-what" class="hpill hpill-t1">✍️ Tâche 1 — Short Message</a>
+    <a href="#t2-what" class="hpill hpill-t2">📝 Tâche 2 — Formal Letter</a>
+    <a href="#t3-what" class="hpill hpill-t3">🎓 Tâche 3 — Essay & Debate</a>
+  </div>
+</div>
+
+<!-- AT A GLANCE -->
+<div class="glance">
+  <div class="glance-card">
+    <div class="glance-head" style="background:var(--t1)">Tâche 1 <span>Short message / informal email</span></div>
+    <div class="glance-body">
+      <div class="glance-row"><span class="gr-label">Words</span><span class="gr-val">60–120 · aim for 90–100</span></div>
+      <div class="glance-row"><span class="gr-label">Who to</span><span class="gr-val">Friend / neighbour / colleague</span></div>
+      <div class="glance-row"><span class="gr-label">Outfit</span><span class="gr-val">👕 Casual or semi-formal</span></div>
+      <div class="glance-row"><span class="gr-label">Opens</span><span class="gr-val">Salut ! / Bonjour [Name],</span></div>
+      <div class="glance-row"><span class="gr-label">Closes</span><span class="gr-val">À bientôt ! / Bisous, / Cordialement,</span></div>
+      <div class="glance-row"><span class="gr-label">Task</span><span class="gr-val">Describe · Narrate · Explain · Invite</span></div>
+      <div class="glance-row"><span class="gr-label">Target</span><span class="gr-val">13–15/20 (B2)</span></div>
+    </div>
+  </div>
+  <div class="glance-card">
+    <div class="glance-head" style="background:var(--t2)">Tâche 2 <span>Formal letter or official email</span></div>
+    <div class="glance-body">
+      <div class="glance-row"><span class="gr-label">Words</span><span class="gr-val">120–180 · aim for 150–160</span></div>
+      <div class="glance-row"><span class="gr-label">Who to</span><span class="gr-val">Employer / school / landlord / airline</span></div>
+      <div class="glance-row"><span class="gr-label">Outfit</span><span class="gr-val">👔 Full formal — always VOUS</span></div>
+      <div class="glance-row"><span class="gr-label">Opens</span><span class="gr-val">Madame, Monsieur,</span></div>
+      <div class="glance-row"><span class="gr-label">Closes</span><span class="gr-val">Dans l'attente... cordiales salutations.</span></div>
+      <div class="glance-row"><span class="gr-label">Task</span><span class="gr-val">Explain · Complain · Request · Justify</span></div>
+      <div class="glance-row"><span class="gr-label">Target</span><span class="gr-val">14–16/20 (B2/C1)</span></div>
+    </div>
+  </div>
+  <div class="glance-card">
+    <div class="glance-head" style="background:var(--t3)">Tâche 3 <span>Synthesis + argumentation essay</span></div>
+    <div class="glance-body">
+      <div class="glance-row"><span class="gr-label">Words</span><span class="gr-val">180–240 · aim for 210–230</span></div>
+      <div class="glance-row"><span class="gr-label">Who to</span><span class="gr-val">Nobody — it is an essay!</span></div>
+      <div class="glance-row"><span class="gr-label">Outfit</span><span class="gr-val">🎓 Academic — very structured</span></div>
+      <div class="glance-row"><span class="gr-label">Opens</span><span class="gr-val">TITRE: [Meaningful title] — MANDATORY!</span></div>
+      <div class="glance-row"><span class="gr-label">Closes</span><span class="gr-val">En définitive, / Pour clore...</span></div>
+      <div class="glance-row"><span class="gr-label">Task</span><span class="gr-val">Synthesise 2 docs + argue your view</span></div>
+      <div class="glance-row"><span class="gr-label">Target</span><span class="gr-val">14–16/20 (B2/C1)</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SCORING -->
+<div class="qr-section" id="scoring">
+  <h2>📊 How All 3 Tâches Are Scored — The 4 Judges</h2>
+  <table class="tbl">
+    <thead><tr style="background:var(--navy)"><th>Judge</th><th>Criterion</th><th>What they check</th><th>How to score high</th><th>Points</th></tr></thead>
+    <tbody>
+      <tr><td>👩‍⚖️ 1</td><td><strong>Réalisation de la tâche</strong></td><td>Did you do EVERYTHING the prompt asked?</td><td>Read prompt 3× — tick every requirement before you write</td><td>/5</td></tr>
+      <tr><td>👩‍⚖️ 2</td><td><strong>Correction de la langue</strong></td><td>Is your grammar and spelling correct?</td><td>Apply your 12 grammar rules before every sentence</td><td>/5</td></tr>
+      <tr><td>👩‍⚖️ 3</td><td><strong>Cohérence et cohésion</strong></td><td>Do your ideas flow with connectors?</td><td>Use at least 3–4 different connectors per tâche</td><td>/5</td></tr>
+      <tr><td>👩‍⚖️ 4</td><td><strong>Étendue de la langue</strong></td><td>Are you using rich B2/C1 vocabulary?</td><td>Replace every A1 word with a FRENCH STAIRCASE upgrade</td><td>/5</td></tr>
+    </tbody>
+  </table>
+  <table class="tbl" style="margin-top:14px">
+    <thead><tr style="background:var(--navy)"><th>Score /20</th><th>CEFR Level</th><th>What it means</th></tr></thead>
+    <tbody>
+      <tr><td>0–3</td><td>A1</td><td>Very basic. Major errors. Disconnected sentences.</td></tr>
+      <tr><td>4–6</td><td>A2</td><td>Simple sentences. Frequent errors. Limited vocabulary.</td></tr>
+      <tr><td>7–9</td><td>B1</td><td>Getting there! Basic ideas come across. Simple connectors.</td></tr>
+      <tr><td style="background:var(--ltgrn);font-weight:700">10–13</td><td style="background:var(--ltgrn);font-weight:700">B2</td><td style="background:var(--ltgrn)">Clear and organised. Few errors. Good vocabulary variety. ✅ Minimum target!</td></tr>
+      <tr><td style="background:var(--ltblue);font-weight:700">14–17</td><td style="background:var(--ltblue);font-weight:700">C1</td><td style="background:var(--ltblue)">Fluent and nuanced. Rare errors. Rich vocabulary. ⭐ Real target!</td></tr>
+      <tr><td>18–20</td><td>C2</td><td>Near-native. Almost no errors. Reads like a native speaker.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════ TÂCHE 1 ═══════════ -->
+
+<!-- T1 What -->
+<div class="tache-wrap" id="t1-what">
+  <div class="tache-banner" style="background:linear-gradient(135deg,#0D9488,#059669);" data-label="T1">
+    <div class="tb-eye">Tâche 1</div>
+    <h2>What is Tâche 1?</h2>
+    <p>Short message · 60–120 words · informal or semi-formal register</p>
+  </div>
+  <div class="section-card">
+    <p style="font-size:13px;color:var(--mgrey);margin-bottom:16px">Think of Tâche 1 like sending a WhatsApp message or a friendly email to someone you know. You have something to share or ask — and you write it clearly in French. Not too formal, not too casual. 📱</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">Word count</div><div class="ic-val">60–120 words</div><div class="ic-sub">Sweet spot: 90–100 words</div></div>
+      <div class="info-card"><div class="ic-label">Who you write to</div><div class="ic-val">Friend · Neighbour · Colleague</div><div class="ic-sub">Someone you know or have a casual relationship with</div></div>
+      <div class="info-card"><div class="ic-label">Register (outfit)</div><div class="ic-val">👕 Informal or semi-formal</div><div class="ic-sub">TU with friends · VOUS with neighbours / strangers</div></div>
+      <div class="info-card"><div class="ic-label">What you do</div><div class="ic-val">Describe · Narrate · Explain · Invite</div><div class="ic-sub">Tell a story, share news, make an invitation, ask for something</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- T1 Structure -->
+<div class="div-card" id="t1-structure">
+  <div class="sub-title" style="color:var(--t1)">🏗️ Structure & Template — Tâche 1</div>
+  <p style="font-size:12px;color:var(--mgrey);margin-bottom:12px">Use this 6-part formula every single time. It never changes!</p>
+  <div class="structure">
+<span class="s-meta">De : maryjoe@email.com</span>
+<span class="s-meta">À : [recipient email]</span>
+<span class="s-meta">Objet : [Short clear subject — what is this about?]</span>
+
+<span class="s-floor">PART 1 — Greeting</span>
+<span class="s-phrase">Salut [Name] !  /  Bonjour [Name],  /  Coucou [Name] !</span>
+
+<span class="s-floor">PART 2 — Why you are writing (first sentence!)</span>
+<span class="s-phrase">Je t'écris pour te raconter...  /  Je te contacte au sujet de...</span>
+
+<span class="s-floor">PART 3 — The main information</span>
+<span class="s-meta">[WHO · WHAT · WHEN · WHERE — answer ALL parts of the prompt]</span>
+
+<span class="s-floor">PART 4 — Extra detail or description</span>
+<span class="s-meta">[Use connectors: De plus... / Par ailleurs... / Cependant...]</span>
+
+<span class="s-floor">PART 5 — Request or what you want from them</span>
+<span class="s-phrase">Est-ce que tu peux...  /  N'oublie pas de...  /  Confirme ta présence...</span>
+
+<span class="s-floor">PART 6 — Sign-off</span>
+<span class="s-phrase">À bientôt !  /  À très bientôt !  /  Bisous,  /  Cordialement,</span>
+<span class="s-phrase">[Your name]</span>
+  </div>
+  <div class="sub-title" style="color:var(--t1);margin-top:18px">📝 Real Example — Invitation to a party</div>
+  <div class="structure" style="font-size:11px">
+<span class="s-meta">De : maryjoe@email.com · À : sophie@email.com · Objet : Célébration de fin d'année — vous êtes invités !</span>
+
+Salut Sophie !
+
+<span class="s-phrase">Je t'écris pour te convier</span> à notre célébration de fin d'année.
+La fête <span class="s-phrase">aura lieu</span> le samedi 14 décembre, à partir de 19h.
+<span class="s-phrase">Elle se déroulera</span> chez moi, au centre-ville de Fredericton.
+
+<span class="s-phrase">Au programme :</span> de la musique, des danses joyeuses et un buffet garni.
+<span class="s-phrase">De plus,</span> des activités pour les enfants sont prévues.
+<span class="s-phrase">Cependant,</span> il n'y a pas de code vestimentaire.
+
+<span class="s-phrase">Merci de confirmer ta présence</span> avant le 10 décembre.
+<span class="s-example">Ce serait formidable</span> de te voir là-bas ! <span class="s-meta">← conditionnel = instant B2!</span>
+
+À très bientôt, Maryjoe
+  </div>
+  <div class="tip"><span class="tip-icon">💡</span><span><strong>Golden Rule for Tâche 1:</strong> Read the prompt carefully. Find ALL the things it asks you to include. Write them in a bullet list BEFORE you start writing. Every item you miss = points lost on Judge 1 immediately!</span></div>
+</div>
+
+<!-- T1 Register -->
+<div class="div-card" id="t1-register">
+  <div class="sub-title" style="color:var(--t1)">👕 Register — TU vs VOUS in Tâche 1</div>
+  <table class="tbl">
+    <thead><tr style="background:var(--t1)"><th>Who you write to</th><th>Register</th><th>Opening</th><th>Sign-off</th></tr></thead>
+    <tbody>
+      <tr><td>Friend</td><td>👕 Informal — TU</td><td>Salut [Name] !</td><td>À bientôt ! / Bisous,</td></tr>
+      <tr><td>Family</td><td>👕 Informal — TU</td><td>Coucou [Name] !</td><td>Gros bisous,</td></tr>
+      <tr><td>Neighbour</td><td>👔 Semi-formal — VOUS</td><td>Bonjour [Name],</td><td>Cordialement,</td></tr>
+      <tr><td>Colleague</td><td>👔 Semi-formal — VOUS</td><td>Bonjour [Name],</td><td>Bien cordialement,</td></tr>
+      <tr><td>Stranger (seller)</td><td>👔 Semi-formal — VOUS</td><td>Bonjour,</td><td>Cordialement,</td></tr>
+    </tbody>
+  </table>
+  <div class="alert a-rose" style="margin-top:12px"><span>🚨</span><div><strong>The switch trap!</strong> Once you choose TU or VOUS — it is locked for the ENTIRE email. Every verb, every pronoun, every possessive must match. It is like a light switch — ON or OFF. Never both!</div></div>
+  <table class="tbl" style="margin-top:12px">
+    <thead><tr style="background:var(--navy)"><th>Meaning</th><th>TU 👕</th><th>VOUS 👔</th></tr></thead>
+    <tbody>
+      <tr><td>you are / you have</td><td>tu es / tu as</td><td>vous êtes / vous avez</td></tr>
+      <tr><td>you can / you want</td><td>tu peux / tu veux</td><td>vous pouvez / vous voulez</td></tr>
+      <tr><td>your (thing / things)</td><td>ton / ta / tes</td><td>votre / vos</td></tr>
+      <tr><td>don't forget / confirm</td><td>n'oublie pas / confirme</td><td>n'oubliez pas / confirmez</td></tr>
+      <tr><td>please / contact me</td><td>s'il te plaît / contacte-moi</td><td>s'il vous plaît / contactez-moi</td></tr>
+      <tr><td>tell me / come!</td><td>dis-moi / viens !</td><td>veuillez m'indiquer / venez !</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- T1 Phrases -->
+<div class="div-card" id="t1-phrases">
+  <div class="sub-title" style="color:var(--t1)">💬 Key Phrases — Tâche 1</div>
+  <table class="tbl">
+    <thead><tr style="background:var(--t1)"><th>French phrase</th><th>💬 English</th><th>Level</th><th>Use for</th></tr></thead>
+    <tbody>
+      <tr><td><em>Je t'écris pour te raconter...</em></td><td>I am writing to tell you about...</td><td><span class="lc lb1">B1</span></td><td>Opening — telling a story</td></tr>
+      <tr><td><em>Je t'écris pour te convier à...</em></td><td>I am writing to invite you to...</td><td><span class="lc lb2">B2</span></td><td>Opening — invitation</td></tr>
+      <tr><td><em>Je te contacte au sujet de...</em></td><td>I am contacting you regarding...</td><td><span class="lc lb2">B2</span></td><td>Opening — any topic</td></tr>
+      <tr><td><em>J'ai bien pris connaissance de votre annonce...</em></td><td>I have carefully noted your ad...</td><td><span class="lc lc1">C1</span></td><td>Opening — responding to an ad</td></tr>
+      <tr><td><em>La fête aura lieu le [date]...</em></td><td>The party will take place on [date]...</td><td><span class="lc lb2">B2</span></td><td>Stating when an event is</td></tr>
+      <tr><td><em>Elle se déroulera à...</em></td><td>It will take place at...</td><td><span class="lc lb2">B2</span></td><td>Stating where an event is</td></tr>
+      <tr><td><em>Au programme :...</em></td><td>On the agenda / What's planned:...</td><td><span class="lc lb2">B2</span></td><td>Describing event activities</td></tr>
+      <tr><td><em>À proximité de...</em></td><td>Near / in the vicinity of...</td><td><span class="lc lc1">C1</span></td><td>Describing location</td></tr>
+      <tr><td><em>Ce serait formidable si tu pouvais...</em></td><td>It would be wonderful if you could...</td><td><span class="lc lc1">C1</span></td><td>Polite request (conditionnel!)</td></tr>
+      <tr><td><em>Je reste disponible selon tes disponibilités.</em></td><td>I remain available at your convenience.</td><td><span class="lc lc1">C1</span></td><td>Flexible time offer</td></tr>
+      <tr><td><em>Merci de confirmer ta présence.</em></td><td>Please confirm your attendance.</td><td><span class="lc lb2">B2</span></td><td>RSVP request</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- T1 Mistakes -->
+<div class="div-card" id="t1-mistakes">
+  <div class="sub-title" style="color:var(--t1)">🚨 Common Mistakes — Tâche 1</div>
+  <p style="font-size:12px;color:var(--mgrey);margin-bottom:12px">From your own writing — these errors cost real points every time!</p>
+  <div class="mistake"><div class="mw">❌ en mardi 14 juillet</div><div class="mr">✅ le mardi 14 juillet — day name = LE always!</div></div>
+  <div class="mistake"><div class="mw">❌ une rouge robe</div><div class="mr">✅ une robe rouge — colour ALWAYS after noun!</div></div>
+  <div class="mistake"><div class="mw">❌ Je vous écris pour t'inviter</div><div class="mr">✅ Je vous écris pour vous inviter — pick ONE register!</div></div>
+  <div class="mistake"><div class="mw">❌ Ce m'a fait pleurer</div><div class="mr">✅ Cela m'a fait pleurer — Cela before other verbs!</div></div>
+  <div class="mistake"><div class="mw">❌ je suggère que nous portons</div><div class="mr">✅ je suggère que nous portions — subjonctif trigger!</div></div>
+  <div class="mistake"><div class="mw">❌ à côte de la gare</div><div class="mr">✅ à côté de / à proximité de la gare</div></div>
+  <div class="mistake"><div class="mw">❌ Depuis c'est Noël</div><div class="mr">✅ Étant donné que c'est Noël — Depuis = time only!</div></div>
+  <div class="mistake"><div class="mw">❌ le appartement</div><div class="mr">✅ l'appartement — vowel = l' always!</div></div>
+  <div class="mistake"><div class="mw">❌ il aura beaucoup à manger</div><div class="mr">✅ il y aura beaucoup — never drop the Y!</div></div>
+  <div class="mistake"><div class="mw">❌ Ma famille et moi sont organisé</div><div class="mr">✅ Ma famille et moi avons organisé</div></div>
+  <div class="mistake"><div class="mw">❌ une accueillant personnalité</div><div class="mr">✅ une personnalité accueillante — adjective after + feminine!</div></div>
+  <div class="mistake"><div class="mw">❌ Comment allez-vous ? Dis-moi ta réponse.</div><div class="mr">✅ Comment allez-vous ? Dites-moi votre réponse.</div></div>
+</div>
+
+<!-- T1 Checklist -->
+<div class="div-card" id="t1-checklist">
+  <div class="sub-title" style="color:var(--t1)">✅ Tâche 1 Checklist — Before You Submit</div>
+  <ul class="checklist">
+    <li>Clear Objet: subject line written</li>
+    <li>Correct informal or semi-formal opening used</li>
+    <li>Said WHY you are writing in the first sentence</li>
+    <li>Answered ALL parts of the prompt (read it 3 times!)</li>
+    <li>Included WHEN / WHERE / WHAT if required</li>
+    <li>Used at least 3 connectors (de plus, cependant, par ailleurs, ainsi...)</li>
+    <li>TU or VOUS used consistently — no switching anywhere!</li>
+    <li>Every colour adjective placed AFTER its noun</li>
+    <li>Feminine -e added on all adjectives describing ME (Maryjoe)</li>
+    <li>No naked nouns — every noun has an article</li>
+    <li>At least one A1 word replaced with a B2/C1 staircase upgrade</li>
+    <li>At least 60 words written — count before submitting!</li>
+    <li>Proper warm sign-off used</li>
+    <li>Your name signed at the bottom</li>
+  </ul>
+  <div class="score-grid">
+    <div class="sc"><div class="sc-label">Judge 1 — Task</div><div class="sc-val" style="color:var(--t1)">4.5</div><div class="sc-sub">out of 5</div></div>
+    <div class="sc"><div class="sc-label">Judge 2 — Grammar</div><div class="sc-val" style="color:var(--blue)">3.5</div><div class="sc-sub">out of 5</div></div>
+    <div class="sc"><div class="sc-label">Judge 3 — Flow</div><div class="sc-val" style="color:var(--purple)">4</div><div class="sc-sub">out of 5</div></div>
+    <div class="sc"><div class="sc-label">Judge 4 — Vocab</div><div class="sc-val" style="color:var(--rose)">3.5</div><div class="sc-sub">out of 5</div></div>
+    <div class="sc sc-total"><div class="sc-label">Target</div><div class="sc-val">15.5</div><div class="sc-sub">B2 / C1</div></div>
+  </div>
+</div>
+
+<!-- T1 Topics -->
+<div class="div-card" id="t1-topics">
+  <div class="sub-title" style="color:var(--t1)">📋 Topic Bank — Tâche 1</div>
+  <div class="topic-grid">
+    <div class="tc"><span class="tc-icon">🎉</span><span class="tc-name">Party / Event</span><span class="tc-desc">Invite friends to a celebration</span></div>
+    <div class="tc"><span class="tc-icon">🏠</span><span class="tc-name">New Home</span><span class="tc-desc">Describe your new apartment</span></div>
+    <div class="tc"><span class="tc-icon">🚲</span><span class="tc-name">Selling</span><span class="tc-desc">Respond to a "for sale" ad</span></div>
+    <div class="tc"><span class="tc-icon">💼</span><span class="tc-name">Job Interview</span><span class="tc-desc">Tell a friend how it went</span></div>
+    <div class="tc"><span class="tc-icon">🍽️</span><span class="tc-name">Restaurant</span><span class="tc-desc">Recommend a place you visited</span></div>
+    <div class="tc"><span class="tc-icon">🔇</span><span class="tc-name">Noise Complaint</span><span class="tc-desc">Ask neighbour to lower music</span></div>
+    <div class="tc"><span class="tc-icon">🔧</span><span class="tc-name">Repairs</span><span class="tc-desc">Tell landlord about broken item</span></div>
+    <div class="tc"><span class="tc-icon">✈️</span><span class="tc-name">Travel Story</span><span class="tc-desc">Share your most beautiful trip</span></div>
+  </div>
+</div>
+
+<!-- ═══════════ TÂCHE 2 ═══════════ -->
+
+<!-- T2 What -->
+<div class="tache-wrap" id="t2-what" style="margin-top:36px">
+  <div class="tache-banner" style="background:linear-gradient(135deg,#7C3AED,#6D28D9);" data-label="T2">
+    <div class="tb-eye">Tâche 2</div>
+    <h2>What is Tâche 2?</h2>
+    <p>Formal letter or email · 120–180 words · always very formal register</p>
+  </div>
+  <div class="section-card">
+    <p style="font-size:13px;color:var(--mgrey);margin-bottom:16px">Think of Tâche 2 like writing an official letter to someone in authority. Your language must be polished, structured, and professional. Think job interview suit — every word counts. 👔</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">Word count</div><div class="ic-val">120–180 words</div><div class="ic-sub">Sweet spot: 150–160 words</div></div>
+      <div class="info-card"><div class="ic-label">Who you write to</div><div class="ic-val">Employer · School · Landlord · Airline</div><div class="ic-sub">Someone in authority — always a stranger</div></div>
+      <div class="info-card"><div class="ic-label">Register (outfit)</div><div class="ic-val">👔 Full formal — always VOUS</div><div class="ic-sub">No slang, no contractions, polite throughout</div></div>
+      <div class="info-card"><div class="ic-label">What you do</div><div class="ic-val">Explain · Complain · Request · Justify</div><div class="ic-sub">Present a situation and ask for something</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- T2 Structure -->
+<div class="div-card" id="t2-structure">
+  <div class="sub-title" style="color:var(--t2)">🏗️ Structure — The 6-Room House</div>
+  <p style="font-size:12px;color:var(--mgrey);margin-bottom:12px">Think of Tâche 2 like building a house 🏠 — always the same 6 rooms, always in the same order!</p>
+  <div class="structure">
+<span class="s-meta">Moncton, le 14 juin 2026</span>
+<span class="s-meta">De : maryjoe@email.com · À : recipient@email.com</span>
+<span class="s-meta">Objet : [Clear subject — one informative sentence]</span>
+
+<span class="s-floor">ROOM 1 — Formal opening (ALWAYS this exact phrase!)</span>
+<span class="s-phrase">Madame, Monsieur,</span>
+
+<span class="s-floor">ROOM 2 — Who you are and WHY you are writing</span>
+<span class="s-phrase">Je me permets de vous contacter au sujet de...</span>
+<span class="s-phrase">J'ai l'honneur de porter à votre attention...</span>
+
+<span class="s-floor">ROOM 3 — The situation / context / background</span>
+<span class="s-phrase">En effet,... / Je souhaite vous informer que...</span>
+<span class="s-phrase">Il me semble indispensable de préciser que...</span>
+
+<span class="s-floor">ROOM 4 — Your main point / argument / complaint</span>
+<span class="s-phrase">C'est pourquoi... / Par conséquent... / Dès lors...</span>
+<span class="s-phrase">De plus,... / Par ailleurs,... / En outre,...</span>
+
+<span class="s-floor">ROOM 5 — Your formal request</span>
+<span class="s-phrase">Je vous serais reconnaissant(e) de bien vouloir...</span>
+<span class="s-phrase">Je reste à votre disposition pour tout renseignement.</span>
+
+<span class="s-floor">ROOM 6 — Formal sign-off (MEMORISE THIS WORD FOR WORD!)</span>
+<span class="s-phrase">Dans l'attente de votre réponse,</span>
+<span class="s-phrase">je vous adresse mes cordiales salutations.</span>
+<span class="s-meta">[Your full name]</span>
+  </div>
+  <div class="signoff-box">
+    <p>Dans l'attente de votre réponse,<br>je vous adresse mes cordiales salutations.</p>
+    <span>💬 "Awaiting your reply, I send you my warm regards." — ALWAYS end Tâche 2 with this. Never À bientôt!</span>
+  </div>
+</div>
+
+<!-- T2 Register -->
+<div class="div-card" id="t2-register">
+  <div class="sub-title" style="color:var(--t2)">👔 Register — Always Formal in Tâche 2</div>
+  <div class="alert a-rose"><span>🚨</span><div><strong>VOUS always in Tâche 2. No exceptions.</strong> Even if the prompt names a specific person, you still use VOUS. You are writing to a stranger in authority. TU is NEVER appropriate in Tâche 2.</div></div>
+  <table class="tbl" style="margin-top:12px">
+    <thead><tr style="background:var(--t2)"><th>Feature</th><th>Tâche 1 (informal)</th><th>Tâche 2 (formal)</th></tr></thead>
+    <tbody>
+      <tr><td>Opening</td><td>Salut Marie !</td><td>Madame, Monsieur,</td></tr>
+      <tr><td>Why you are writing</td><td>Je t'écris pour...</td><td>Je me permets de vous contacter au sujet de...</td></tr>
+      <tr><td>Making a request</td><td>Est-ce que tu peux... ?</td><td>Je vous serais reconnaissant(e) de bien vouloir...</td></tr>
+      <tr><td>Adding a point</td><td>Aussi... / Et...</td><td>Par ailleurs... / En outre... / De plus...</td></tr>
+      <tr><td>Closing</td><td>À bientôt ! / Bisous,</td><td>Dans l'attente de votre réponse, je vous adresse mes cordiales salutations.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- T2 Phrases -->
+<div class="div-card" id="t2-phrases">
+  <div class="sub-title" style="color:var(--t2)">💬 Key Phrases — Tâche 2</div>
+  <table class="tbl">
+    <thead><tr style="background:var(--t2)"><th>French phrase</th><th>💬 English</th><th>Level</th><th>Use for</th></tr></thead>
+    <tbody>
+      <tr><td><em>Je me permets de vous contacter au sujet de...</em></td><td>I take the liberty of contacting you regarding...</td><td><span class="lc lb2">B2</span></td><td>Opening every Tâche 2</td></tr>
+      <tr><td><em>J'ai l'honneur de soumettre à votre attention...</em></td><td>I have the honour of submitting to your attention...</td><td><span class="lc lc1">C1</span></td><td>Formal opening</td></tr>
+      <tr><td><em>Je souhaite vous informer que...</em></td><td>I wish to inform you that...</td><td><span class="lc lb2">B2</span></td><td>Presenting a situation</td></tr>
+      <tr><td><em>Je me vois dans l'obligation de signaler que...</em></td><td>I find myself compelled to report that...</td><td><span class="lc lc1">C1</span></td><td>Formal complaint</td></tr>
+      <tr><td><em>Il me semble indispensable de préciser que...</em></td><td>It seems indispensable to me to specify that...</td><td><span class="lc lc1">C1</span></td><td>Adding important detail</td></tr>
+      <tr><td><em>Pourriez-vous...</em></td><td>Could you... (conditionnel — very polite)</td><td><span class="lc lb2">B2</span></td><td>Polite request</td></tr>
+      <tr><td><em>Je vous prie de bien vouloir...</em></td><td>I kindly ask you to please...</td><td><span class="lc lb2">B2</span></td><td>Formal request</td></tr>
+      <tr><td><em>Je vous serais reconnaissant(e) de bien vouloir...</em></td><td>I would be grateful if you could kindly...</td><td><span class="lc lc1">C1</span></td><td>The gold standard request — use always!</td></tr>
+      <tr><td><em>Je reste à votre disposition pour tout renseignement.</em></td><td>I remain at your disposal for any information.</td><td><span class="lc lc1">C1</span></td><td>Before the sign-off</td></tr>
+      <tr><td><em>Dans l'attente de votre réponse, je vous adresse mes cordiales salutations.</em></td><td>Awaiting your reply, I send my kind regards.</td><td><span class="lc lb2">B2</span></td><td>ALWAYS the sign-off — memorise it!</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- T2 Mistakes -->
+<div class="div-card" id="t2-mistakes">
+  <div class="sub-title" style="color:var(--t2)">🚨 Common Mistakes — Tâche 2</div>
+  <div class="mistake"><div class="mw">❌ Bonjour Madame,</div><div class="mr">✅ Madame, Monsieur, — ALWAYS this exact phrase!</div></div>
+  <div class="mistake"><div class="mw">❌ À bientôt !</div><div class="mr">✅ Dans l'attente de votre réponse, je vous adresse mes cordiales salutations.</div></div>
+  <div class="mistake"><div class="mw">❌ je vous contactez</div><div class="mr">✅ je vous contacte — JE = subject → -e form!</div></div>
+  <div class="mistake"><div class="mw">❌ Pouvez-vous me confirmez</div><div class="mr">✅ Pouvez-vous me confirmer — infinitive after modal!</div></div>
+  <div class="mistake"><div class="mw">❌ Missing the Objet: line</div><div class="mr">✅ Always write Objet: [subject in one clear sentence]</div></div>
+  <div class="mistake"><div class="mw">❌ Missing city and date at top</div><div class="mr">✅ Always write: Moncton, le 14 juin 2026</div></div>
+  <div class="mistake"><div class="mw">❌ Using tu anywhere</div><div class="mr">✅ VOUS only — every single word — no exceptions!</div></div>
+  <div class="mistake"><div class="mw">❌ Writing under 120 words</div><div class="mr">✅ Count your words — aim for 150 minimum!</div></div>
+  <div class="mistake"><div class="mw">❌ je suis convaincue que (no que)</div><div class="mr">✅ je suis convaincue QUE — opinion verb + que always!</div></div>
+</div>
+
+<!-- T2 Checklist -->
+<div class="div-card" id="t2-checklist">
+  <div class="sub-title" style="color:var(--t2)">✅ Tâche 2 Checklist — Before You Submit</div>
+  <ul class="checklist">
+    <li>City and date written at the top (Moncton, le 14 juin 2026)</li>
+    <li>De / À / Objet: lines all filled in</li>
+    <li>Opens with "Madame, Monsieur," — never Bonjour!</li>
+    <li>First paragraph says who you are and why you are writing</li>
+    <li>ALL parts of the prompt addressed — read it 3 times!</li>
+    <li>At least 3 formal connectors (par ailleurs, en outre, c'est pourquoi, cependant...)</li>
+    <li>VOUS used everywhere — no tu anywhere at all</li>
+    <li>A clear formal request made — what do you want them to DO?</li>
+    <li>Feminine -e added on adjectives describing ME (reconnaissante, convaincue...)</li>
+    <li>Infinitive used after all modal verbs (confirmer not confirmez!)</li>
+    <li>A1 words replaced with B2/C1 staircase upgrades</li>
+    <li>At least 120 words written — count before submitting!</li>
+    <li>Full formal sign-off written word for word</li>
+    <li>Your full name signed at the bottom</li>
+  </ul>
+  <div class="score-grid">
+    <div class="sc"><div class="sc-label">Judge 1 — Task</div><div class="sc-val" style="color:var(--t2)">4.5</div><div class="sc-sub">out of 5</div></div>
+    <div class="sc"><div class="sc-label">Judge 2 — Grammar</div><div class="sc-val" style="color:var(--blue)">3.5</div><div class="sc-sub">out of 5</div></div>
+    <div class="sc"><div class="sc-label">Judge 3 — Flow</div><div class="sc-val" style="color:var(--purple)">4</div><div class="sc-sub">out of 5</div></div>
+    <div class="sc"><div class="sc-label">Judge 4 — Vocab</div><div class="sc-val" style="color:var(--rose)">4</div><div class="sc-sub">out of 5</div></div>
+    <div class="sc sc-total"><div class="sc-label">Target</div><div class="sc-val">16</div><div class="sc-sub">B2 / C1</div></div>
+  </div>
+</div>
+
+<!-- T2 Topics -->
+<div class="div-card" id="t2-topics">
+  <div class="sub-title" style="color:var(--t2)">📋 Topic Bank — Tâche 2</div>
+  <div class="topic-grid">
+    <div class="tc"><span class="tc-icon">🏠</span><span class="tc-name">Housing</span><span class="tc-desc">Complaint to landlord about repairs</span></div>
+    <div class="tc"><span class="tc-icon">✈️</span><span class="tc-name">Travel</span><span class="tc-desc">Complaint to airline about luggage</span></div>
+    <div class="tc"><span class="tc-icon">🏫</span><span class="tc-name">School</span><span class="tc-desc">Letter about a school policy</span></div>
+    <div class="tc"><span class="tc-icon">💼</span><span class="tc-name">Work</span><span class="tc-desc">Request to employer for change</span></div>
+    <div class="tc"><span class="tc-icon">📰</span><span class="tc-name">Newspaper</span><span class="tc-desc">Share your opinion on a topic</span></div>
+    <div class="tc"><span class="tc-icon">🏥</span><span class="tc-name">Health</span><span class="tc-desc">Letter to a clinic or health org</span></div>
+    <div class="tc"><span class="tc-icon">🚌</span><span class="tc-name">Transport</span><span class="tc-desc">Complaint about public transport</span></div>
+    <div class="tc"><span class="tc-icon">🛍️</span><span class="tc-name">Consumer</span><span class="tc-desc">Complaint about a product</span></div>
+  </div>
+</div>
+
+<!-- ═══════════ TÂCHE 3 ═══════════ -->
+
+<!-- T3 What -->
+<div class="tache-wrap" id="t3-what" style="margin-top:36px">
+  <div class="tache-banner" style="background:linear-gradient(135deg,#E11D48,#BE123C);" data-label="T3">
+    <div class="tb-eye">Tâche 3</div>
+    <h2>What is Tâche 3?</h2>
+    <p>Synthesis + argumentation essay · 180–240 words · the most challenging tâche</p>
+  </div>
+  <div class="section-card">
+    <p style="font-size:13px;color:var(--mgrey);margin-bottom:16px">Think of Tâche 3 like being a TV debate host AND a contestant at the same time! 📺 You are given 2 short documents — two different perspectives on the same topic. Your job is to: (1) summarise what each says, then (2) argue YOUR position.</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">Word count</div><div class="ic-val">180–240 words</div><div class="ic-sub">Sweet spot: 210–230 words</div></div>
+      <div class="info-card"><div class="ic-label">Format</div><div class="ic-val">Essay — NO email header!</div><div class="ic-sub">You must give it a TITLE — this is mandatory!</div></div>
+      <div class="info-card"><div class="ic-label">Register (outfit)</div><div class="ic-val">🎓 Academic — very structured</div><div class="ic-sub">Like writing for a newspaper opinion column</div></div>
+      <div class="info-card"><div class="ic-label">What you do</div><div class="ic-val">Synthesise 2 docs + argue your view</div><div class="ic-sub">Summarise both sources then defend your opinion</div></div>
+    </div>
+    <div class="alert a-rose"><span>💡</span><div><strong>Simple explanation:</strong> Imagine you read two newspaper articles — one says social media is great, one says it is dangerous. Tâche 3 asks you to summarise BOTH (in your own words!) and then say what YOU think — and why. Like a TV debate where you are the host AND a contestant! 📺</div></div>
+  </div>
+</div>
+
+<!-- T3 Structure -->
+<div class="div-card" id="t3-structure">
+  <div class="sub-title" style="color:var(--t3)">🏗️ The 5-Floor Structure — Always in This Order!</div>
+  <div class="floor-grid">
+    <div class="floor-item">
+      <div class="floor-num" style="background:var(--t3)">1</div>
+      <div class="floor-content">
+        <h4>TITRE — Title (MANDATORY — write this FIRST!)</h4>
+        <p>One sentence that captures the debate both documents present. Without a title = automatic points lost on Judge 1!<br><code>Example: "Les réseaux sociaux : opportunité ou danger pour la société ?"</code></p>
+      </div>
+    </div>
+    <div class="floor-item">
+      <div class="floor-num" style="background:var(--rose)">2</div>
+      <div class="floor-content">
+        <h4>Introduction — Introduce the debate question</h4>
+        <p>State what topic the documents are about and what question they raise. Don't give your opinion yet!<br><code>Ces deux documents soulèvent la question de... / La question centrale est de savoir si...</code></p>
+      </div>
+    </div>
+    <div class="floor-item">
+      <div class="floor-num" style="background:var(--purple)">3</div>
+      <div class="floor-content">
+        <h4>Synthesis of Document 1 — In your own words!</h4>
+        <p>Summarise what the first document says. NEVER copy sentences directly — paraphrase everything!<br><code>Le premier document met en évidence que... / D'après le premier document,...</code></p>
+      </div>
+    </div>
+    <div class="floor-item">
+      <div class="floor-num" style="background:var(--blue)">4</div>
+      <div class="floor-content">
+        <h4>Synthesis of Document 2 + Comparison</h4>
+        <p>Summarise document 2. Note if they agree, contrast, or complement each other.<br><code>Tandis que le second document souligne... / En revanche, le deuxième texte affirme...</code></p>
+      </div>
+    </div>
+    <div class="floor-item">
+      <div class="floor-num" style="background:var(--teal)">5</div>
+      <div class="floor-content">
+        <h4>Your Opinion + Arguments + Conclusion</h4>
+        <p>Give YOUR clear view with at least 2 arguments. Acknowledge the other side. End with a conclusion.<br><code>D'une part,... D'autre part,... Certes... néanmoins... En définitive, il me semble que...</code></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-title" style="color:var(--t3);margin-top:18px">📝 Full Structure Template</div>
+  <div class="structure">
+<span class="s-floor">TITRE :</span> <span class="s-example">[Meaningful title that captures the debate — write it FIRST!]</span>
+
+<span class="s-floor">Introduction :</span>
+<span class="s-phrase">Ces deux documents soulèvent la question de...</span>
+<span class="s-phrase">La question centrale est de savoir si...</span>
+<span class="s-meta">[Introduce the topic. State what debate these documents present.]</span>
+
+<span class="s-floor">Synthèse du premier document :</span>
+<span class="s-phrase">Le premier document met en évidence que...</span>
+<span class="s-phrase">D'après le premier document,...</span>
+<span class="s-meta">[Summarise doc 1 in YOUR OWN WORDS — never copy!]</span>
+
+<span class="s-floor">Synthèse du second document :</span>
+<span class="s-phrase">Tandis que le second document souligne que...</span>
+<span class="s-phrase">En revanche, le deuxième texte affirme que...</span>
+<span class="s-meta">[Summarise doc 2. Note if they agree or contrast with doc 1.]</span>
+
+<span class="s-floor">Mon point de vue / Argumentation :</span>
+<span class="s-phrase">D'une part, j'estime que...</span>
+<span class="s-phrase">D'autre part, il convient de souligner que...</span>
+<span class="s-phrase">Certes,... néanmoins...</span>
+
+<span class="s-floor">Conclusion :</span>
+<span class="s-phrase">En définitive, il me semble que...</span>
+<span class="s-phrase">Pour clore cette réflexion, on peut affirmer que...</span>
+  </div>
+</div>
+
+<!-- T3 Register -->
+<div class="div-card" id="t3-register">
+  <div class="sub-title" style="color:var(--t3)">🎓 Register — Academic French</div>
+  <p style="font-size:12px;color:var(--mgrey);margin-bottom:12px">Tâche 3 is the most formal of all three tâches. Think of it like writing for a newspaper opinion column or a school essay. Every word choice matters.</p>
+  <table class="tbl">
+    <thead><tr style="background:var(--t3)"><th>❌ Avoid — too casual (B1)</th><th>✅ Use instead — B2</th><th>⭐ Even better — C1</th></tr></thead>
+    <tbody>
+      <tr><td>je pense que</td><td>j'estime que</td><td>j'ai la conviction que / il me semble que</td></tr>
+      <tr><td>je crois que</td><td>je considère que</td><td>je suis d'avis que</td></tr>
+      <tr><td>c'est bien</td><td>cela s'avère bénéfique</td><td>cela représente un atout considérable</td></tr>
+      <tr><td>c'est mauvais</td><td>cela présente des inconvénients</td><td>cela représente un véritable écueil</td></tr>
+      <tr><td>montrer</td><td>démontrer / souligner</td><td>mettre en évidence / attester de</td></tr>
+      <tr><td>pour finir</td><td>en conclusion</td><td>en définitive / pour clore cette réflexion</td></tr>
+      <tr><td>mais</td><td>cependant / néanmoins</td><td>il n'en demeure pas moins que</td></tr>
+      <tr><td>parce que</td><td>car / en raison de</td><td>dans la mesure où / attendu que</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- T3 Paraphrase -->
+<div class="div-card" id="t3-paraphrase">
+  <div class="sub-title" style="color:var(--t3)">✏️ The #1 Rule — Paraphrase! Never Copy!</div>
+  <p style="font-size:12px;color:var(--mgrey);margin-bottom:12px">This is the most important rule for Tâche 3 and where most students lose easy points. The examiner can immediately see if you copied from the document!</p>
+  <div class="pair">
+    <div class="pair-w"><strong>❌ Copy-paste — WRONG!</strong><p>"Les réseaux sociaux permettent aux utilisateurs de rester connectés avec leurs proches."<br><em>← exact words from the document</em></p></div>
+    <div class="pair-r"><strong>✅ Paraphrase — CORRECT!</strong><p>"Le premier document met en évidence que les plateformes numériques facilitent le maintien des liens sociaux."<br><em>← same idea, your own words</em></p></div>
+  </div>
+  <div class="pair">
+    <div class="pair-w"><strong>❌ Copy-paste — WRONG!</strong><p>"L'usage du téléphone est dangereux pour les enfants."</p></div>
+    <div class="pair-r"><strong>✅ Paraphrase — CORRECT!</strong><p>"L'auteur du second texte souligne les risques que représente l'utilisation des appareils numériques pour les jeunes."</p></div>
+  </div>
+  <div class="tip"><span class="tip-icon">💡</span><span><strong>Simple trick:</strong> Read the document. Close your eyes. Now write what it said in YOUR OWN WORDS without looking at it again. Different words, same meaning — that's paraphrasing! 👁️</span></div>
+</div>
+
+<!-- T3 Phrases -->
+<div class="div-card" id="t3-phrases">
+  <div class="sub-title" style="color:var(--t3)">💬 Key Phrases — Tâche 3</div>
+  <div class="sub-title" style="color:var(--purple);margin-top:14px">Floor 2 — Introduction</div>
+  <table class="tbl">
+    <thead><tr style="background:var(--t3)"><th>French phrase</th><th>💬 English</th><th>Level</th></tr></thead>
+    <tbody>
+      <tr><td><em>Ces deux documents soulèvent la question de...</em></td><td>These two documents raise the question of...</td><td><span class="lc lb2">B2</span></td></tr>
+      <tr><td><em>La question centrale est de savoir si...</em></td><td>The central question is whether...</td><td><span class="lc lb2">B2</span></td></tr>
+      <tr><td><em>Ces documents nous invitent à réfléchir sur...</em></td><td>These documents invite us to reflect on...</td><td><span class="lc lc1">C1</span></td></tr>
+      <tr><td><em>Au cœur de ce débat se trouve la question de...</em></td><td>At the heart of this debate lies the question of...</td><td><span class="lc lc1">C1</span></td></tr>
+    </tbody>
+  </table>
+  <div class="sub-title" style="color:var(--purple);margin-top:14px">Floors 3 & 4 — Referencing the Documents</div>
+  <table class="tbl">
+    <thead><tr style="background:var(--t3)"><th>French phrase</th><th>💬 English</th><th>Level</th></tr></thead>
+    <tbody>
+      <tr><td><em>Le premier document met en évidence que...</em></td><td>The first document highlights that...</td><td><span class="lc lc1">C1</span></td></tr>
+      <tr><td><em>D'après le premier document,...</em></td><td>According to the first document,...</td><td><span class="lc lb2">B2</span></td></tr>
+      <tr><td><em>L'auteur du premier texte souligne que...</em></td><td>The author of the first text emphasises that...</td><td><span class="lc lc1">C1</span></td></tr>
+      <tr><td><em>Tandis que le second document souligne...</em></td><td>Whereas the second document emphasises...</td><td><span class="lc lc1">C1</span></td></tr>
+      <tr><td><em>En revanche, le deuxième texte affirme que...</em></td><td>On the other hand, the second text states that...</td><td><span class="lc lb2">B2</span></td></tr>
+      <tr><td><em>À l'inverse du premier document,...</em></td><td>Unlike the first document,...</td><td><span class="lc lc1">C1</span></td></tr>
+      <tr><td><em>Ces deux documents s'accordent sur le fait que...</em></td><td>Both documents agree that...</td><td><span class="lc lc1">C1</span></td></tr>
+    </tbody>
+  </table>
+  <div class="sub-title" style="color:var(--purple);margin-top:14px">Floor 5 — Opinion & Arguments</div>
+  <table class="tbl">
+    <thead><tr style="background:var(--t3)"><th>French phrase</th><th>💬 English</th><th>Level</th></tr></thead>
+    <tbody>
+      <tr><td><em>D'une part,... D'autre part,...</em></td><td>On one hand,... On the other hand,...</td><td><span class="lc lb2">B2</span></td></tr>
+      <tr><td><em>Certes,... néanmoins...</em></td><td>Admittedly,... nevertheless...</td><td><span class="lc lb2">B2</span></td></tr>
+      <tr><td><em>Il convient de souligner que...</em></td><td>It is worth emphasising that...</td><td><span class="lc lc1">C1</span></td></tr>
+      <tr><td><em>Force est de constater que...</em></td><td>One cannot help but notice that...</td><td><span class="lc lc1">C1</span></td></tr>
+      <tr><td><em>Il n'en demeure pas moins que...</em></td><td>It remains true nonetheless that...</td><td><span class="lc lc1">C1</span></td></tr>
+      <tr><td><em>En définitive, il me semble que...</em></td><td>Ultimately, it seems to me that...</td><td><span class="lc lc1">C1</span></td></tr>
+      <tr><td><em>Pour clore cette réflexion,...</em></td><td>To close this reflection,...</td><td><span class="lc lc1">C1</span></td></tr>
+      <tr><td><em>Aussi peut-on affirmer que...</em></td><td>Thus one can affirm that... (+ inversion!)</td><td><span class="lc lc1">C1</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- T3 Mistakes -->
+<div class="div-card" id="t3-mistakes">
+  <div class="sub-title" style="color:var(--t3)">🚨 Common Mistakes — Tâche 3</div>
+  <div class="mistake"><div class="mw">❌ No title written</div><div class="mr">✅ Title is MANDATORY — write it first, always!</div></div>
+  <div class="mistake"><div class="mw">❌ Copying sentences from documents</div><div class="mr">✅ Always paraphrase — use your own words!</div></div>
+  <div class="mistake"><div class="mw">❌ Only summarising, no opinion</div><div class="mr">✅ You MUST give YOUR view with at least 2 arguments</div></div>
+  <div class="mistake"><div class="mw">❌ Only discussing one document</div><div class="mr">✅ BOTH documents must be discussed and compared</div></div>
+  <div class="mistake"><div class="mw">❌ je pense que (too basic)</div><div class="mr">✅ j'estime que / il me semble que / j'ai la conviction que</div></div>
+  <div class="mistake"><div class="mw">❌ No connectors between arguments</div><div class="mr">✅ D'une part / D'autre part / Certes / En définitive</div></div>
+  <div class="mistake"><div class="mw">❌ Writing under 180 words</div><div class="mr">✅ Count every word — aim for 210+ words!</div></div>
+  <div class="mistake"><div class="mw">❌ No conclusion</div><div class="mr">✅ Always end with En définitive / En conclusion...</div></div>
+  <div class="mistake"><div class="mw">❌ Adding an email header (De/À/Objet)</div><div class="mr">✅ Tâche 3 is an ESSAY — no email format!</div></div>
+  <div class="mistake"><div class="mw">❌ Being too absolute ("c'est parfait")</div><div class="mr">✅ Acknowledge the other side with Certes... néanmoins...</div></div>
+</div>
+
+<!-- T3 Checklist -->
+<div class="div-card" id="t3-checklist">
+  <div class="sub-title" style="color:var(--t3)">✅ Tâche 3 Checklist — Before You Submit</div>
+  <ul class="checklist">
+    <li>TITRE written — meaningful, captures the debate — FIRST thing!</li>
+    <li>Introduction — the debate question is clearly stated</li>
+    <li>Document 1 summarised in YOUR OWN words (not copied!)</li>
+    <li>Document 2 summarised in YOUR OWN words (not copied!)</li>
+    <li>Noted whether documents agree or contrast each other</li>
+    <li>YOUR opinion stated clearly (j'estime que / il me semble que)</li>
+    <li>At least 2 arguments given with reasons</li>
+    <li>Other side acknowledged (Certes... néanmoins...)</li>
+    <li>At least 4 connectors used (d'une part, d'autre part, en revanche, en définitive...)</li>
+    <li>At least 1 C1 phrase used (il convient de souligner / force est de constater...)</li>
+    <li>No A1 words (très, beaucoup, bon, faire, dire, gens...)</li>
+    <li>Conclusion written (En définitive / En conclusion, il me semble que...)</li>
+    <li>At least 180 words — count before submitting!</li>
+    <li>NO email header — this is an essay, not an email!</li>
+  </ul>
+  <div class="score-grid">
+    <div class="sc"><div class="sc-label">Judge 1 — Task</div><div class="sc-val" style="color:var(--t3)">4.5</div><div class="sc-sub">out of 5</div></div>
+    <div class="sc"><div class="sc-label">Judge 2 — Grammar</div><div class="sc-val" style="color:var(--blue)">3.5</div><div class="sc-sub">out of 5</div></div>
+    <div class="sc"><div class="sc-label">Judge 3 — Flow</div><div class="sc-val" style="color:var(--purple)">4</div><div class="sc-sub">out of 5</div></div>
+    <div class="sc"><div class="sc-label">Judge 4 — Vocab</div><div class="sc-val" style="color:var(--rose)">4</div><div class="sc-sub">out of 5</div></div>
+    <div class="sc sc-total"><div class="sc-label">Target</div><div class="sc-val">16</div><div class="sc-sub">B2 / C1</div></div>
+  </div>
+</div>
+
+<!-- T3 Topics -->
+<div class="div-card" id="t3-topics">
+  <div class="sub-title" style="color:var(--t3)">📋 Topic Bank — Tâche 3</div>
+  <div class="topic-grid">
+    <div class="tc"><span class="tc-icon">📱</span><span class="tc-name">Social Media</span><span class="tc-desc">Benefits vs dangers for society</span></div>
+    <div class="tc"><span class="tc-icon">🏠</span><span class="tc-name">Remote Work</span><span class="tc-desc">Home vs office — which is better?</span></div>
+    <div class="tc"><span class="tc-icon">🌍</span><span class="tc-name">Environment</span><span class="tc-desc">Electric cars / cycling in cities</span></div>
+    <div class="tc"><span class="tc-icon">🎓</span><span class="tc-name">Education</span><span class="tc-desc">School uniforms / free university</span></div>
+    <div class="tc"><span class="tc-icon">🇨🇦</span><span class="tc-name">Immigration</span><span class="tc-desc">Economic benefits vs social challenges</span></div>
+    <div class="tc"><span class="tc-icon">🤖</span><span class="tc-name">Technology</span><span class="tc-desc">AI making us more or less social?</span></div>
+    <div class="tc"><span class="tc-icon">💰</span><span class="tc-name">Economy</span><span class="tc-desc">Growth vs inequality</span></div>
+    <div class="tc"><span class="tc-icon">🏥</span><span class="tc-name">Health</span><span class="tc-desc">Prevention vs treatment / screen time</span></div>
+  </div>
+</div>
+
+<!-- ═══════════ REFERENCE ═══════════ -->
+
+<!-- Grammar Reminder -->
+<div class="qr-section" id="grammar" style="margin-top:36px">
+  <h2>📐 Grammar Rules Reminder — Apply Before Every Sentence</h2>
+  <div class="alert a-rose" style="margin-bottom:16px"><span>🎯</span><div><strong>The 4 Questions to ask before EVERY sentence you write:</strong><br>1. Am I using TU or VOUS? · 2. Where does my adjective go? · 3. Does my adjective match the noun? · 4. Does every noun have an article?</div></div>
+  <table class="tbl">
+    <thead><tr style="background:var(--navy)"><th>#</th><th>Rule</th><th>The simple version</th><th>Your example from writing</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>Cela vs Ce</strong></td><td>C'est/c'était before être. Cela before any other verb.</td><td>❌ Ce m'a fait → ✅ Cela m'a fait</td></tr>
+      <tr><td>2</td><td><strong>Le vs En for dates</strong></td><td>LE for specific days. EN for months/years. AU for spring only!</td><td>❌ en mardi → ✅ le mardi</td></tr>
+      <tr><td>3</td><td><strong>Que after opinions</strong></td><td>Penser/estimer/croire que — always! Before vowel → qu'</td><td>❌ je pense il → ✅ je pense qu'il</td></tr>
+      <tr><td>4</td><td><strong>Tu vs Vous</strong></td><td>Pick one. NEVER switch. Je form of -er verbs = -e</td><td>❌ je contactez → ✅ je contacte</td></tr>
+      <tr><td>B</td><td><strong>Infinitive after modals</strong></td><td>Pouvoir/vouloir/devoir + infinitive. Pour + infinitive.</td><td>❌ confirmez → ✅ confirmer</td></tr>
+      <tr><td>B</td><td><strong>Subject vs Object</strong></td><td>Verb matches the SUBJECT not the object!</td><td>❌ je vous contactez → ✅ je vous contacte</td></tr>
+      <tr><td>5</td><td><strong>Adjective position</strong></td><td>BAGS = before. Everything else = after. Colours ALWAYS after!</td><td>❌ une rouge robe → ✅ une robe rouge</td></tr>
+      <tr><td>6</td><td><strong>Feminine agreement</strong></td><td>Feminine = add -e. Plural = add -s. Maryjoe = always -e!</td><td>❌ je suis convaincu → ✅ je suis convaincue</td></tr>
+      <tr><td>7</td><td><strong>Articles</strong></td><td>No naked nouns! à+le=au. de+le=du. Vowel → l'.</td><td>❌ au Moncton → ✅ à Moncton (city = no article!)</td></tr>
+      <tr><td>8</td><td><strong>Subjonctif</strong></td><td>Il faut que / je suggère que / je voudrais que → subjonctif!</td><td>❌ nous portons → ✅ nous portions</td></tr>
+      <tr><td>B</td><td><strong>Noun gender</strong></td><td>-ion/-ité = la. -ment/-age/-eau = le. Sing: la maison/saison!</td><td>❌ le personnalité → ✅ la personnalité</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- QUICK REF -->
+<div class="qr-section" id="quickref">
+  <h2>⚡ Quick Reference — All 3 Tâches Side by Side</h2>
+  <div class="qr-grid">
+    <div class="qr-card"><div class="qr-head" style="background:var(--t1)">T1 — Opening</div><div class="qr-body">Salut [Name] ! / Bonjour [Name], / Coucou [Name] !</div></div>
+    <div class="qr-card"><div class="qr-head" style="background:var(--t2)">T2 — Opening</div><div class="qr-body">Madame, Monsieur, — ALWAYS this. NEVER Bonjour!</div></div>
+    <div class="qr-card"><div class="qr-head" style="background:var(--t3)">T3 — Opening</div><div class="qr-body">TITRE: [Meaningful title] — MANDATORY! Then introduction.</div></div>
+
+    <div class="qr-card"><div class="qr-head" style="background:var(--t1)">T1 — Sign-off</div><div class="qr-body">À bientôt ! / À très bientôt ! / Bisous, / Cordialement,</div></div>
+    <div class="qr-card"><div class="qr-head" style="background:var(--t2)">T2 — Sign-off</div><div class="qr-body">Dans l'attente de votre réponse, je vous adresse mes cordiales salutations.</div></div>
+    <div class="qr-card"><div class="qr-head" style="background:var(--t3)">T3 — Sign-off</div><div class="qr-body">En définitive, il me semble que... / Pour clore cette réflexion,...</div></div>
+
+    <div class="qr-card"><div class="qr-head" style="background:var(--t1)">T1 — Register</div><div class="qr-body">TU for friends. VOUS for semi-formal. Pick one — never switch!</div></div>
+    <div class="qr-card"><div class="qr-head" style="background:var(--t2)">T2 — Register</div><div class="qr-body">VOUS always. No exceptions. No contractions. No slang.</div></div>
+    <div class="qr-card"><div class="qr-head" style="background:var(--t3)">T3 — Register</div><div class="qr-body">Academic essay — no email format. Very formal. Paraphrase!</div></div>
+
+    <div class="qr-card"><div class="qr-head" style="background:var(--t1)">T1 — Words</div><div class="qr-body">60–120 words. Sweet spot: 90–100. Count before submitting!</div></div>
+    <div class="qr-card"><div class="qr-head" style="background:var(--t2)">T2 — Words</div><div class="qr-body">120–180 words. Sweet spot: 150–160. Count before submitting!</div></div>
+    <div class="qr-card"><div class="qr-head" style="background:var(--t3)">T3 — Words</div><div class="qr-body">180–240 words. Sweet spot: 210–230. Count before submitting!</div></div>
+
+    <div class="qr-card"><div class="qr-head" style="background:var(--navy)">All — Grammar Rule 1</div><div class="qr-body">Je form of -er verbs = -e. Je contacte ✅ NOT je contactez ❌</div></div>
+    <div class="qr-card"><div class="qr-head" style="background:var(--navy)">All — Grammar Rule 2</div><div class="qr-body">Maryjoe always wears -e! Je suis convaincue / ravie / satisfaite 👗</div></div>
+    <div class="qr-card"><div class="qr-head" style="background:var(--navy)">All — Grammar Rule 3</div><div class="qr-body">Modal + infinitive. Pouvez-vous confirmer ✅ NOT confirmez ❌</div></div>
+
+    <div class="qr-card"><div class="qr-head" style="background:var(--gold);color:var(--navy)">T1 — Key C1 phrase ⭐</div><div class="qr-body">Ce serait formidable si tu pouvais venir ! (conditionnel = instant B2)</div></div>
+    <div class="qr-card"><div class="qr-head" style="background:var(--gold);color:var(--navy)">T2 — Key C1 phrase ⭐</div><div class="qr-body">Je vous serais reconnaissant(e) de bien vouloir... (the gold standard!)</div></div>
+    <div class="qr-card"><div class="qr-head" style="background:var(--gold);color:var(--navy)">T3 — Key C1 phrase ⭐</div><div class="qr-body">Il convient de souligner que... / Force est de constater que...</div></div>
+  </div>
+
+  <div class="maryjoe-box" style="margin-top:20px">
+    <h4>🚨 Maryjoe's Personal Watch List — Errors That Keep Appearing!</h4>
+    <table class="tbl">
+      <thead><tr style="background:var(--rose)"><th>Error pattern</th><th>How many times</th><th>The fix — memorise this!</th></tr></thead>
+      <tbody>
+        <tr><td>Colour adjective before noun (rouge robe, noir vélo)</td><td>3 sessions</td><td>Colour ALWAYS after. Say it out loud: "colour walks behind!" 🎨</td></tr>
+        <tr><td>C'étais instead of c'était</td><td>2 sessions</td><td>Ce/cette/il/elle → always -AIT not -AIS ✅</td></tr>
+        <tr><td>Tu/vous mixing in same email</td><td>3 sessions</td><td>Write TU or VOUS at the top, circle it, never deviate!</td></tr>
+        <tr><td>English words (trip, garner)</td><td>1 session</td><td>Scan your text before submitting — if it looks English, it probably is!</td></tr>
+        <tr><td>Articles before city names (au Moncton)</td><td>1 session</td><td>Cities = no articles! Just "à Moncton" always. 🏙️</td></tr>
+        <tr><td>Missing "en" in conditions (en état irréprochable)</td><td>1 session</td><td>être EN + condition. Always need the "en" bridge! 🔗</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>🇨🇦 <strong>You are not just learning French.</strong> You are building your future in Canada.</p>
+  <p style="margin-top:6px">Every tâche you practise = one step closer to your PR. <strong>Keep going Maryjoe! 💪🔥</strong></p>
+</div>
+
+</main>
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// Progress bar
+window.addEventListener('scroll',()=>{
+  const el=document.getElementById('progress');
+  const s=window.scrollY,t=document.body.scrollHeight-window.innerHeight;
+  if(t>0) el.style.transform=`scaleX(${s/t})`;
+});
+
+// Active nav
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      document.querySelectorAll('.nav-item').forEach(l=>l.classList.remove('active'));
+      const a=document.querySelector(`.nav-item[href="#${e.target.id}"]`);
+      if(a) a.classList.add('active');
+    }
+  });
+},{threshold:0.25});
+document.querySelectorAll('[id]').forEach(s=>obs.observe(s));
+
+// Search
+function filterNav(){
+  const q=document.getElementById('si').value.toLowerCase();
+  document.querySelectorAll('.nav-item').forEach(l=>{
+    l.style.display=l.textContent.toLowerCase().includes(q)?'flex':'none';
+  });
+  document.querySelectorAll('.nav-group-label').forEach(l=>{
+    l.style.display=q?'none':'block';
+  });
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
+</body>
+</html>

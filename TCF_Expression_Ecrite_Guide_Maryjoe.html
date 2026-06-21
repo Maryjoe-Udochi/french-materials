@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TCF Expression Écrite Guide — Maryjoe</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fira+Mono:wght@400;500&display=swap');
+:root{
+  --navy:#1B2A5E;--blue:#2563EB;--teal:#0D9488;--gold:#F59E0B;
+  --rose:#E11D48;--purple:#7C3AED;--green:#16A34A;
+  --ltblue:#DBEAFE;--ltrose:#FFE4E6;--ltgrn:#DCFCE7;
+  --ltyell:#FEF9C3;--ltpurp:#EDE9FE;--ltmint:#D1FAE5;
+  --lgrey:#F8FAFC;--dgrey:#1E293B;--mgrey:#64748B;
+  --border:#E2E8F0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#F0F4FF;color:var(--dgrey);line-height:1.65;}
+
+/* SIDEBAR */
+.sidebar{position:fixed;top:0;left:0;width:268px;height:100vh;background:var(--navy);overflow-y:auto;z-index:100;padding-bottom:50px;scrollbar-width:thin;}
+.logo{padding:20px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.08);background:rgba(0,0,0,0.18);}
+.logo h2{font-size:13px;font-weight:800;color:var(--gold);}
+.logo p{font-size:10px;color:rgba(255,255,255,0.4);margin-top:2px;}
+.search-wrap{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.search-wrap input{width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:6px;padding:6px 11px;color:#fff;font-size:11px;font-family:'Inter',sans-serif;outline:none;}
+.search-wrap input::placeholder{color:rgba(255,255,255,0.3);}
+.search-wrap input:focus{border-color:var(--gold);}
+.nav-group{padding:7px 0 2px;}
+.nav-group-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding:5px 16px 3px;}
+.nav-item{display:flex;align-items:center;gap:8px;padding:6px 16px;text-decoration:none;font-size:11px;font-weight:500;color:rgba(255,255,255,0.62);border-left:3px solid transparent;transition:all 0.15s;}
+.nav-item:hover,.nav-item.active{background:rgba(255,255,255,0.07);color:#fff;border-left-color:var(--gold);}
+.nav-chip{font-size:9px;font-weight:700;padding:2px 6px;border-radius:8px;margin-left:auto;white-space:nowrap;}
+.chip-s1{background:var(--teal);color:#fff;}
+.chip-s2{background:var(--blue);color:#fff;}
+.chip-s3{background:var(--purple);color:#fff;}
+.chip-t1{background:var(--teal);color:#fff;}
+.chip-t2{background:var(--purple);color:#fff;}
+.chip-t3{background:var(--rose);color:#fff;}
+.chip-a1{background:var(--rose);color:#fff;}
+.chip-std{background:var(--gold);color:var(--navy);}
+
+/* PROGRESS */
+.progress-bar{position:fixed;top:0;left:268px;right:0;height:3px;background:var(--gold);transform-origin:left;transform:scaleX(0);transition:transform 0.1s;z-index:99;}
+
+/* MAIN */
+.main{margin-left:268px;padding:32px 44px 100px;max-width:940px;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#1d3a80 100%);border-radius:18px;padding:44px 40px;margin-bottom:32px;position:relative;overflow:hidden;}
+.hero::before{content:'EE';position:absolute;right:-6px;top:50%;transform:translateY(-50%);font-size:150px;font-weight:900;color:rgba(255,255,255,0.04);letter-spacing:-6px;}
+.hero-eye{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.hero h1{font-size:28px;font-weight:900;color:#fff;line-height:1.18;}
+.hero p{font-size:13px;color:rgba(255,255,255,0.62);margin-top:9px;max-width:520px;}
+.hero-pills{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;}
+.hpill{padding:7px 16px;border-radius:24px;font-size:11px;font-weight:700;color:#fff;border:1.5px solid rgba(255,255,255,0.2);text-decoration:none;transition:all 0.2s;background:rgba(255,255,255,0.1);}
+.hpill:hover{background:rgba(255,255,255,0.2);}
+
+/* SECTION CARD */
+.section-card{background:#fff;border-radius:16px;margin-bottom:28px;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,0.06);scroll-margin-top:20px;}
+.section-head{padding:20px 28px;display:flex;align-items:center;gap:14px;}
+.section-head h2{font-size:17px;font-weight:900;color:#fff;}
+.section-num{font-size:10px;font-weight:800;padding:4px 10px;border-radius:16px;background:rgba(255,255,255,0.2);color:#fff;letter-spacing:0.5px;}
+.section-body{padding:22px 28px;}
+
+/* SUB SECTIONS */
+.sub-section{scroll-margin-top:20px;}
+.sub-title{font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--mgrey);display:flex;align-items:center;gap:8px;margin:18px 0 10px;}
+.sub-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.intro-text{font-size:12px;color:var(--mgrey);padding:12px 16px;background:var(--lgrey);border-radius:8px;border-left:3px solid var(--border);margin-bottom:16px;line-height:1.6;}
+
+/* STAIRCASE TABLES */
+.stair-table{width:100%;border-collapse:collapse;font-size:11.5px;margin-bottom:14px;border-radius:8px;overflow:hidden;border:1px solid var(--border);}
+.stair-table thead tr th{padding:9px 12px;text-align:left;font-size:10px;font-weight:700;color:#fff;}
+.stair-table td{padding:9px 12px;border-top:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.stair-table tr:nth-child(odd) td{background:#fff;}
+.stair-table tr:nth-child(even) td{background:var(--lgrey);}
+.col-b1{background:var(--mgrey)!important;}
+.col-b2{background:var(--teal)!important;}
+.col-c1{background:var(--blue)!important;}
+.col-c2{background:var(--rose)!important;}
+
+/* PHRASE TABLE */
+.phrase-table{width:100%;border-collapse:collapse;font-size:11.5px;margin:10px 0;border-radius:8px;overflow:hidden;border:1px solid var(--border);}
+.phrase-table th{padding:9px 12px;text-align:left;font-size:10px;font-weight:700;color:#fff;}
+.phrase-table td{padding:9px 12px;border-top:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.phrase-table tr:nth-child(odd) td{background:#fff;}
+.phrase-table tr:nth-child(even) td{background:var(--lgrey);}
+.phrase-fr{font-family:'Fira Mono',monospace;font-size:11px;color:var(--navy);font-weight:600;}
+
+/* LEVEL CHIPS */
+.lc{font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;white-space:nowrap;}
+.lb1{background:var(--mgrey);color:#fff;}
+.lb2{background:var(--teal);color:#fff;}
+.lc1{background:var(--blue);color:#fff;}
+.lc2{background:var(--rose);color:#fff;}
+
+/* TIP */
+.tip{display:flex;align-items:flex-start;gap:10px;padding:12px 16px;background:var(--ltyell);border:1.5px solid var(--gold);border-radius:8px;margin-top:14px;font-size:12px;line-height:1.5;}
+.tip-icon{font-size:16px;flex-shrink:0;}
+
+/* ALERT */
+.alert{padding:11px 16px;border-radius:8px;font-size:12px;margin:12px 0;display:flex;align-items:flex-start;gap:10px;line-height:1.5;}
+.a-rose{background:var(--ltrose);border-left:3px solid var(--rose);}
+.a-teal{background:var(--ltmint);border-left:3px solid var(--teal);}
+.a-blue{background:var(--ltblue);border-left:3px solid var(--blue);}
+.a-gold{background:var(--ltyell);border-left:3px solid var(--gold);}
+
+/* STANDARD TABLE */
+.std-table{width:100%;border-collapse:collapse;font-size:11.5px;margin:10px 0;border-radius:8px;overflow:hidden;border:1px solid var(--border);}
+.std-table th{padding:9px 12px;text-align:left;font-size:10px;font-weight:700;color:#fff;}
+.std-table td{padding:9px 12px;border-top:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.std-table tr:nth-child(odd) td{background:#fff;}
+.std-table tr:nth-child(even) td{background:var(--lgrey);}
+
+/* FOOTER */
+.footer{background:var(--navy);border-radius:14px;padding:26px 30px;margin-top:44px;text-align:center;color:rgba(255,255,255,0.65);font-size:13px;}
+.footer strong{color:var(--gold);}
+
+/* SCROLL TOP */
+.scroll-top{position:fixed;bottom:26px;right:26px;background:var(--navy);color:#fff;border:none;border-radius:50%;width:46px;height:46px;font-size:18px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,0.25);transition:background 0.2s;z-index:200;}
+.scroll-top:hover{background:var(--blue);}
+
+@media(max-width:900px){
+  .sidebar{width:100%;height:auto;position:relative;}
+  .main{margin-left:0;padding:20px;}
+  .progress-bar{left:0;}
+}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="logo">
+    <h2>✍️ TCF — Expression Écrite Guide</h2>
+    <p>Maryjoe Chioma Udochi | B2/C1 Target</p>
+  </div>
+  <div class="search-wrap">
+    <input type="text" id="si" placeholder="Search the guide..." onkeyup="filterNav()">
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Overview</div>
+    <a href="#home" class="nav-item">🏠 Home</a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Section 1 — Connectors</div>
+    <a href="#s1-add"     class="nav-item">➕ Adding Ideas <span class="nav-chip chip-s1">S1</span></a>
+    <a href="#s1-contra"  class="nav-item">↔️ Contrasting <span class="nav-chip chip-s1">S1</span></a>
+    <a href="#s1-reason"  class="nav-item">🔍 Giving Reasons <span class="nav-chip chip-s1">S1</span></a>
+    <a href="#s1-conseq"  class="nav-item">⚡ Consequences <span class="nav-chip chip-s1">S1</span></a>
+    <a href="#s1-struct"  class="nav-item">📋 Structuring <span class="nav-chip chip-s1">S1</span></a>
+    <a href="#s1-concede" class="nav-item">🤝 Conceding a Point <span class="nav-chip chip-s1">S1</span></a>
+    <a href="#s1-example" class="nav-item">📌 Giving Examples <span class="nav-chip chip-s1">S1</span></a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Section 2 — Vocabulary</div>
+    <a href="#s2-feelings"  class="nav-item">💬 Feelings & Opinions <span class="nav-chip chip-s2">S2</span></a>
+    <a href="#s2-describe"  class="nav-item">🏙️ Describing Things <span class="nav-chip chip-s2">S2</span></a>
+    <a href="#s2-verbs"     class="nav-item">⚡ Key Verbs <span class="nav-chip chip-s2">S2</span></a>
+    <a href="#s2-nouns"     class="nav-item">📦 Key Nouns <span class="nav-chip chip-s2">S2</span></a>
+    <a href="#s2-adverbs"   class="nav-item">🔊 Adverbs & Fillers <span class="nav-chip chip-s2">S2</span></a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Section 3 — Power Phrases</div>
+    <a href="#s3-power" class="nav-item">⭐ C1/C2 Power Phrases <span class="nav-chip chip-s3">S3</span></a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Tâche Word Lists</div>
+    <a href="#t1-words"  class="nav-item">✍️ Tâche 1 — Short Message <span class="nav-chip chip-t1">T1</span></a>
+    <a href="#t2-words"  class="nav-item">📝 Tâche 2 — Formal Letter <span class="nav-chip chip-t2">T2</span></a>
+    <a href="#t3-words"  class="nav-item">🎓 Tâche 3 — Essay & Debate <span class="nav-chip chip-t3">T3</span></a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Reference</div>
+    <a href="#s7-a1"  class="nav-item">🚨 A1 Words to Never Use <span class="nav-chip chip-a1">A1</span></a>
+    <a href="#s8-std" class="nav-item">🎯 Standard Exam Word List <span class="nav-chip chip-std">STD</span></a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <div class="hero-eye">TCF Canada · Expression Écrite · Level-Up Guide</div>
+  <h1>The Level-Up Staircase<br>B1 → B2 → C1 → C2</h1>
+  <p>Your personal daily reading guide to mastering French writing for Canadian PR. Read one section every morning. 🇨🇦</p>
+  <div class="hero-pills">
+    <a href="#s1-add"    class="hpill">🔗 Connectors</a>
+    <a href="#s2-feelings" class="hpill">📝 Vocabulary</a>
+    <a href="#s3-power"  class="hpill">⭐ Power Phrases</a>
+    <a href="#t1-words"  class="hpill">✍️ Tâche Words</a>
+    <a href="#s7-a1"     class="hpill">🚨 A1 Alert</a>
+    <a href="#s8-std"    class="hpill">🎯 Standard List</a>
+  </div>
+</div>
+
+<!-- ═══ SECTION 1 — CONNECTORS ═══ -->
+<div class="section-card" id="s1-add">
+  <div class="section-head" style="background:var(--teal)">
+    <span class="section-num">SECTION 1</span>
+    <h2>The Level-Up Staircase — Connectors</h2>
+  </div>
+  <div class="section-body">
+    <p class="intro-text">Connectors are the <strong>glue words</strong> that hold your writing together. Without them, your sentences are like beads without a string — ideas everywhere! Using C1/C2 connectors instead of B1 ones is one of the fastest ways to boost your score.</p>
+
+    <div class="sub-section" id="s1-add">
+      <div class="sub-title" style="color:var(--teal)">➕ Adding Ideas</div>
+      <table class="stair-table">
+        <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th><th class="col-c2">C2 — Native 🔥</th></tr></thead>
+        <tbody>
+          <tr><td>et (and)</td><td>de plus (moreover)</td><td>qui plus est (what's more)</td><td>sans compter que (not to mention)</td></tr>
+          <tr><td>aussi (also)</td><td>en outre (furthermore)</td><td>de surcroît (on top of that)</td><td>il convient d'ajouter que (worth adding)</td></tr>
+          <tr><td>encore (also)</td><td>par ailleurs (besides)</td><td>à cela s'ajoute (add to this)</td><td>force est de constater que (one must notice)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-section" id="s1-contra">
+      <div class="sub-title" style="color:var(--rose)">↔️ Contrasting</div>
+      <table class="stair-table">
+        <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th><th class="col-c2">C2 — Native 🔥</th></tr></thead>
+        <tbody>
+          <tr><td>mais (but)</td><td>cependant (however)</td><td>néanmoins (nevertheless)</td><td>il n'en demeure pas moins que (it remains true that)</td></tr>
+          <tr><td>par contre (on the other hand)</td><td>en revanche (on the other hand)</td><td>à l'inverse (conversely)</td><td>loin de là (far from it)</td></tr>
+          <tr><td>pourtant (yet)</td><td>toutefois (however)</td><td>or, (yet — formal pivot)</td><td>quand bien même (even if — conditionnel)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-section" id="s1-reason">
+      <div class="sub-title" style="color:var(--purple)">🔍 Giving Reasons</div>
+      <table class="stair-table">
+        <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th><th class="col-c2">C2 — Native 🔥</th></tr></thead>
+        <tbody>
+          <tr><td>parce que (because)</td><td>car (because — written)</td><td>dans la mesure où (insofar as)</td><td>attendu que (considering — formal)</td></tr>
+          <tr><td>à cause de (because of)</td><td>en raison de (due to)</td><td>compte tenu de (taking into account)</td><td>eu égard à (in view of)</td></tr>
+          <tr><td>vu que (seeing that)</td><td>étant donné que (given that)</td><td>au vu de (in light of)</td><td>en vertu de (by virtue of)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-section" id="s1-conseq">
+      <div class="sub-title" style="color:var(--gold)">⚡ Consequences</div>
+      <table class="stair-table">
+        <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th><th class="col-c2">C2 — Native 🔥</th></tr></thead>
+        <tbody>
+          <tr><td>donc (so)</td><td>ainsi (thus)</td><td>dès lors (therefore)</td><td>il s'ensuit que (it follows that)</td></tr>
+          <tr><td>alors (then)</td><td>par conséquent (consequently)</td><td>de ce fait (as a result)</td><td>aussi peut-on affirmer que (thus one can affirm)</td></tr>
+          <tr><td>c'est pour ça que</td><td>c'est pourquoi (that is why)</td><td>voilà pourquoi (that is precisely why)</td><td>c'est en ce sens que (it is in this sense)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-section" id="s1-struct">
+      <div class="sub-title" style="color:var(--blue)">📋 Structuring Your Essay</div>
+      <table class="stair-table">
+        <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th><th class="col-c2">C2 — Native 🔥</th></tr></thead>
+        <tbody>
+          <tr><td>d'abord (first)</td><td>tout d'abord (first of all)</td><td>en premier lieu (in the first place)</td><td>liminairement (at the outset)</td></tr>
+          <tr><td>après / ensuite (then)</td><td>dans un second temps (in a second stage)</td><td>par la suite (subsequently)</td><td>subséquemment (subsequently — formal)</td></tr>
+          <tr><td>pour finir (to finish)</td><td>enfin (finally)</td><td>en dernier lieu (lastly)</td><td>pour clore cette réflexion (to close this reflection)</td></tr>
+          <tr><td>pour conclure (to conclude)</td><td>en somme (all in all)</td><td>en guise de conclusion (by way of conclusion)</td><td>in fine (ultimately — formal)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-section" id="s1-concede">
+      <div class="sub-title" style="color:var(--navy)">🤝 Conceding a Point</div>
+      <table class="stair-table">
+        <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th><th class="col-c2">C2 — Native 🔥</th></tr></thead>
+        <tbody>
+          <tr><td>mais (but)</td><td>certes... mais (admittedly... but)</td><td>il est indéniable que (it is undeniable)</td><td>on ne saurait nier que (one cannot deny)</td></tr>
+          <tr><td>même si (even if)</td><td>bien que + subjonctif (although)</td><td>quoique + subjonctif (even though — formal)</td><td>quand bien même (even if — conditionnel)</td></tr>
+          <tr><td>malgré (despite)</td><td>en dépit de (in spite of)</td><td>nonobstant (notwithstanding)</td><td>abstraction faite de (setting aside)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-section" id="s1-example">
+      <div class="sub-title" style="color:var(--green)">📌 Giving Examples</div>
+      <table class="stair-table">
+        <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th><th class="col-c2">C2 — Native 🔥</th></tr></thead>
+        <tbody>
+          <tr><td>par exemple (for example)</td><td>notamment (notably)</td><td>c'est-à-dire (that is to say)</td><td>à titre d'exemple (as an example — formal)</td></tr>
+          <tr><td>comme (like / such as)</td><td>tel que (such as)</td><td>à l'instar de (following the example of)</td><td>à titre illustratif (for illustrative purposes)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 2 — VOCABULARY ═══ -->
+<div class="section-card" id="s2-feelings">
+  <div class="section-head" style="background:var(--blue)">
+    <span class="section-num">SECTION 2</span>
+    <h2>The Level-Up Staircase — Vocabulary</h2>
+  </div>
+  <div class="section-body">
+    <p class="intro-text">These are the words the TCF examiner notices. Swap your B1 words for C1/C2 versions and watch your <strong>Judge 4 (Étendue de la langue)</strong> score climb immediately.</p>
+
+    <div class="sub-section" id="s2-feelings">
+      <div class="sub-title" style="color:var(--blue)">💬 Feelings & Opinions</div>
+      <table class="stair-table">
+        <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th><th class="col-c2">C2 — Native 🔥</th></tr></thead>
+        <tbody>
+          <tr><td>je pense que (I think)</td><td>j'estime que (I consider)</td><td>je suis d'avis que (I am of the opinion)</td><td>j'ai la conviction que (I am firmly convinced)</td></tr>
+          <tr><td>je crois que (I believe)</td><td>je considère que (I consider)</td><td>il me semble que (it seems to me)</td><td>être enclin à croire que (inclined to believe)</td></tr>
+          <tr><td>je suis content(e) (I am happy)</td><td>je suis ravi(e) (I am delighted)</td><td>je me réjouis de (I rejoice at)</td><td>j'éprouve une profonde satisfaction</td></tr>
+          <tr><td>je veux (I want)</td><td>je souhaite (I wish)</td><td>j'aspire à (I aspire to)</td><td>je nourris l'ambition de (I harbour the ambition)</td></tr>
+          <tr><td>je n'aime pas (I don't like)</td><td>je désapprouve (I disapprove)</td><td>je réprouve (I condemn)</td><td>je m'insurge contre (I rise up against)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-section" id="s2-describe">
+      <div class="sub-title" style="color:var(--teal)">🏙️ Describing Things & Places</div>
+      <table class="stair-table">
+        <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th><th class="col-c2">C2 — Native 🔥</th></tr></thead>
+        <tbody>
+          <tr><td>grand(e) (big)</td><td>spacieux/spacieuse (spacious)</td><td>vaste (vast)</td><td>colossal / immense</td></tr>
+          <tr><td>petit(e) (small)</td><td>modeste (modest)</td><td>restreint(e) (restricted)</td><td>exigu / exiguë (cramped / tiny)</td></tr>
+          <tr><td>beau/belle (beautiful)</td><td>magnifique (magnificent)</td><td>splendide (splendid)</td><td>somptueux/somptueuse (sumptuous)</td></tr>
+          <tr><td>sympa (nice)</td><td>agréable (pleasant)</td><td>propice (favourable)</td><td>idyllique (idyllic)</td></tr>
+          <tr><td>animé(e) (lively)</td><td>dynamique (dynamic)</td><td>effervescent(e) (buzzing)</td><td>foisonnant(e) (teeming with life)</td></tr>
+          <tr><td>difficile (difficult)</td><td>complexe (complex)</td><td>ardu(e) (arduous)</td><td>épineux/épineuse (thorny)</td></tr>
+          <tr><td>important(e) (important)</td><td>considérable (considerable)</td><td>prépondérant(e) (preponderant)</td><td>capital(e) / primordial(e)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-section" id="s2-verbs">
+      <div class="sub-title" style="color:var(--purple)">⚡ Key Verbs</div>
+      <table class="stair-table">
+        <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th><th class="col-c2">C2 — Native 🔥</th></tr></thead>
+        <tbody>
+          <tr><td>dire (to say)</td><td>affirmer (to affirm)</td><td>soutenir (to argue)</td><td>préconiser (to advocate)</td></tr>
+          <tr><td>montrer (to show)</td><td>démontrer (to demonstrate)</td><td>mettre en évidence (to highlight)</td><td>attester de (to attest to)</td></tr>
+          <tr><td>expliquer (to explain)</td><td>clarifier (to clarify)</td><td>élucider (to elucidate)</td><td>expliciter (to make explicit)</td></tr>
+          <tr><td>commencer (to start)</td><td>débuter (to begin)</td><td>entreprendre (to undertake)</td><td>amorcer (to initiate)</td></tr>
+          <tr><td>changer (to change)</td><td>modifier (to modify)</td><td>transformer (to transform)</td><td>bouleverser (to upend)</td></tr>
+          <tr><td>utiliser (to use)</td><td>employer (to employ)</td><td>recourir à (to resort to)</td><td>avoir recours à (to have recourse to)</td></tr>
+          <tr><td>penser à (to think about)</td><td>réfléchir à (to reflect on)</td><td>s'interroger sur (to question)</td><td>se pencher sur (to examine carefully)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-section" id="s2-nouns">
+      <div class="sub-title" style="color:var(--rose)">📦 Key Nouns</div>
+      <table class="stair-table">
+        <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th><th class="col-c2">C2 — Native 🔥</th></tr></thead>
+        <tbody>
+          <tr><td>problème (problem)</td><td>difficulté (difficulty)</td><td>enjeu (issue / stake)</td><td>problématique (core issue)</td></tr>
+          <tr><td>idée (idea)</td><td>notion (notion)</td><td>concept (concept)</td><td>paradigme (paradigm)</td></tr>
+          <tr><td>différence (difference)</td><td>distinction (distinction)</td><td>nuance (nuance)</td><td>dichotomie (dichotomy)</td></tr>
+          <tr><td>avantage (advantage)</td><td>bénéfice (benefit)</td><td>atout (asset)</td><td>plus-value (added value)</td></tr>
+          <tr><td>inconvénient (disadvantage)</td><td>désavantage (disadvantage)</td><td>écueil (pitfall)</td><td>revers (downside)</td></tr>
+          <tr><td>raison (reason)</td><td>cause (cause)</td><td>fondement (foundation)</td><td>substrat (underlying basis)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-section" id="s2-adverbs">
+      <div class="sub-title" style="color:var(--gold)">🔊 Adverbs & Fillers</div>
+      <table class="stair-table">
+        <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th><th class="col-c2">C2 — Native 🔥</th></tr></thead>
+        <tbody>
+          <tr><td>très (very)</td><td>particulièrement (particularly)</td><td>remarquablement (remarkably)</td><td>singulièrement (singularly)</td></tr>
+          <tr><td>beaucoup (a lot)</td><td>considérablement (considerably)</td><td>abondamment (abundantly)</td><td>démesurément (excessively)</td></tr>
+          <tr><td>vraiment (really)</td><td>véritablement (truly)</td><td>réellement (genuinely)</td><td>indubitablement (undoubtedly)</td></tr>
+          <tr><td>maintenant (now)</td><td>actuellement (currently)</td><td>à présent (at present)</td><td>à l'heure actuelle (at the present time)</td></tr>
+          <tr><td>peut-être (maybe)</td><td>éventuellement (possibly)</td><td>il est possible que (it is possible)</td><td>il n'est pas exclu que (it cannot be ruled out)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 3 — POWER PHRASES ═══ -->
+<div class="section-card" id="s3-power">
+  <div class="section-head" style="background:var(--purple)">
+    <span class="section-num">SECTION 3</span>
+    <h2>C1/C2 Power Phrases</h2>
+  </div>
+  <div class="section-body">
+    <p class="intro-text">Drop <strong>one power phrase</strong> into every tâche. These signal C1/C2 to the examiner immediately. You don't need to use them all — pick 2–3 favourites and master them first.</p>
+    <table class="phrase-table">
+      <thead><tr style="background:var(--purple)"><th>French Phrase</th><th>💬 English</th><th>Level</th><th>When to use</th></tr></thead>
+      <tbody>
+        <tr><td class="phrase-fr">Il va sans dire que...</td><td>It goes without saying that...</td><td><span class="lc lc1">C1</span></td><td>Stating something obvious — elegantly</td></tr>
+        <tr><td class="phrase-fr">Il convient de souligner que...</td><td>It is worth emphasising that...</td><td><span class="lc lc1">C1</span></td><td>Highlighting a key point</td></tr>
+        <tr><td class="phrase-fr">Dans cette optique,...</td><td>With this in mind / From this perspective,</td><td><span class="lc lc1">C1</span></td><td>Linking your argument to a goal</td></tr>
+        <tr><td class="phrase-fr">À bien y réfléchir,...</td><td>On reflection...</td><td><span class="lc lc1">C1</span></td><td>Introducing a nuanced thought</td></tr>
+        <tr><td class="phrase-fr">Force est d'admettre que...</td><td>One must admit that...</td><td><span class="lc lc1">C1</span></td><td>Honest, elegant concession</td></tr>
+        <tr><td class="phrase-fr">Il est à noter que...</td><td>It should be noted that...</td><td><span class="lc lc1">C1</span></td><td>Adding a formal detail</td></tr>
+        <tr><td class="phrase-fr">On ne saurait sous-estimer...</td><td>One cannot underestimate...</td><td><span class="lc lc1">C1</span></td><td>Stressing importance</td></tr>
+        <tr><td class="phrase-fr">Tel est le cas de...</td><td>Such is the case with...</td><td><span class="lc lc1">C1</span></td><td>Giving a specific example</td></tr>
+        <tr><td class="phrase-fr">Dans la mesure où...</td><td>To the extent that / Insofar as...</td><td><span class="lc lc1">C1</span></td><td>Giving a nuanced reason — very powerful</td></tr>
+        <tr><td class="phrase-fr">Qu'on le veuille ou non,...</td><td>Whether one likes it or not,...</td><td><span class="lc lc2">C2</span></td><td>Stating an unavoidable truth</td></tr>
+        <tr><td class="phrase-fr">Au même titre que...</td><td>Just as... / In the same way as...</td><td><span class="lc lc2">C2</span></td><td>Drawing a parallel</td></tr>
+        <tr><td class="phrase-fr">À plus forte raison,...</td><td>All the more reason...</td><td><span class="lc lc2">C2</span></td><td>Strengthening an argument</td></tr>
+        <tr><td class="phrase-fr">Force est de constater que...</td><td>One cannot help but notice that...</td><td><span class="lc lc2">C2</span></td><td>Making an undeniable observation</td></tr>
+        <tr><td class="phrase-fr">Il n'en demeure pas moins que...</td><td>It remains true nonetheless that...</td><td><span class="lc lc2">C2</span></td><td>The ultimate contrast connector</td></tr>
+        <tr><td class="phrase-fr">Aussi peut-on affirmer que...</td><td>Thus one can affirm that... (+ inversion)</td><td><span class="lc lc2">C2</span></td><td>Consequence — literary, impressive</td></tr>
+        <tr><td class="phrase-fr">On ne saurait nier que...</td><td>One cannot deny that...</td><td><span class="lc lc2">C2</span></td><td>Elegant concession</td></tr>
+      </tbody>
+    </table>
+    <div class="tip"><span class="tip-icon">💡</span><span><strong>Tip:</strong> Pick your TOP 3 favourites from this list and use one in every tâche until it feels natural. Then add a 4th. Build slowly — consistency beats quantity!</span></div>
+  </div>
+</div>
+
+<!-- ═══ TÂCHE 1 WORDS ═══ -->
+<div class="section-card" id="t1-words">
+  <div class="section-head" style="background:var(--teal)">
+    <span class="section-num">SECTION 4</span>
+    <h2>Tâche 1 — Your Go-To Words (Short Message)</h2>
+  </div>
+  <div class="section-body">
+    <div class="alert a-teal"><span>📋</span><div><strong>What is it?</strong> A short informal or semi-formal message — email, note, text. You write to a friend, neighbour, colleague, or stranger about an everyday situation.<br><strong>Register:</strong> Informal (friend/family) → Salut ! / À bientôt ! | Semi-formal (stranger) → Bonjour / Cordialement<br><strong>Must include:</strong> Address ALL parts of the prompt · Clear subject line · Proper greeting & sign-off · All requested info (date, place, price, etc.)</div></div>
+
+    <div class="sub-title" style="color:var(--teal);margin-top:16px">📚 Your Go-To Words for Tâche 1</div>
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-b2">B2 ✅</th><th class="col-c1">C1 ⭐</th><th class="col-c2">C2 🔥</th><th style="background:var(--navy);color:#fff">When to use</th></tr></thead>
+      <tbody>
+        <tr><td>avoir (to have)</td><td>disposer de</td><td>bénéficier de (to benefit from)</td><td>jouir de (to enjoy)</td><td>Describing what your item has</td></tr>
+        <tr><td>dire (to say)</td><td>informer (to inform)</td><td>faire savoir que</td><td>porter à votre connaissance</td><td>Telling someone something</td></tr>
+        <tr><td>venir (to come)</td><td>se rendre (to go to)</td><td>passer (to come by)</td><td>daigner se présenter</td><td>Inviting someone to come</td></tr>
+        <tr><td>essayer (to try)</td><td>tester (to test)</td><td>procéder à un essai</td><td>effectuer un essai en conditions réelles</td><td>Suggesting someone tests something</td></tr>
+        <tr><td>bon état (good condition)</td><td>excellent état</td><td>état irréprochable (flawless)</td><td>en parfait état de marche</td><td>Describing condition of an item</td></tr>
+        <tr><td>pas cher (cheap)</td><td>à prix abordable</td><td>à tarif compétitif</td><td>à un prix des plus raisonnables</td><td>Describing price</td></tr>
+        <tr><td>si tu veux (if you want)</td><td>si cela vous convient</td><td>selon vos disponibilités</td><td>à l'heure qui vous siéra</td><td>Setting a time / being flexible</td></tr>
+        <tr><td>contacter (to contact)</td><td>me joindre (to reach me)</td><td>prendre contact</td><td>ne pas hésiter à me solliciter</td><td>Telling them how to contact you</td></tr>
+        <tr><td>je vends (I sell)</td><td>je propose à la vente</td><td>je mets en vente</td><td>j'ai l'honneur de vous proposer</td><td>Presenting an item for sale</td></tr>
+        <tr><td>content(e) (happy)</td><td>ravi(e) (delighted)</td><td>enchanté(e) (charmed)</td><td>j'éprouve une vive satisfaction</td><td>Expressing happiness / excitement</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title" style="color:var(--teal)">📌 Tâche 1 Standard Phrases — Memorise These!</div>
+    <table class="phrase-table">
+      <thead><tr style="background:var(--teal)"><th>French Phrase</th><th>💬 English</th><th>Level</th><th>When to use</th></tr></thead>
+      <tbody>
+        <tr><td class="phrase-fr">J'ai bien pris connaissance de votre annonce.</td><td>I have taken note of your advertisement.</td><td><span class="lc lc1">C1</span></td><td>Opening when responding to an ad</td></tr>
+        <tr><td class="phrase-fr">Je vous contacte au sujet de...</td><td>I am contacting you regarding...</td><td><span class="lc lb2">B2</span></td><td>Opening any semi-formal email</td></tr>
+        <tr><td class="phrase-fr">Je reste disponible selon vos disponibilités.</td><td>I remain available according to your schedule.</td><td><span class="lc lc1">C1</span></td><td>Closing — flexible time offer</td></tr>
+        <tr><td class="phrase-fr">N'hésitez pas à me contacter pour tout renseignement.</td><td>Do not hesitate to contact me for any information.</td><td><span class="lc lb2">B2</span></td><td>Standard closing line</td></tr>
+        <tr><td class="phrase-fr">Dans l'attente de votre réponse,</td><td>Awaiting your reply,</td><td><span class="lc lb2">B2</span></td><td>Formal closing before sign-off</td></tr>
+        <tr><td class="phrase-fr">Ce serait formidable si vous pouviez...</td><td>It would be wonderful if you could...</td><td><span class="lc lc1">C1</span></td><td>Polite request using conditionnel</td></tr>
+        <tr><td class="phrase-fr">Il vous serait possible de...</td><td>It would be possible for you to...</td><td><span class="lc lc1">C1</span></td><td>Suggesting something politely</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ TÂCHE 2 WORDS ═══ -->
+<div class="section-card" id="t2-words">
+  <div class="section-head" style="background:var(--purple)">
+    <span class="section-num">SECTION 5</span>
+    <h2>Tâche 2 — Your Go-To Words (Formal Letter)</h2>
+  </div>
+  <div class="section-body">
+    <div class="alert a-blue"><span>📋</span><div><strong>What is it?</strong> A formal or semi-formal letter to someone in authority — employer, school, landlord, newspaper, airline, administration.<br><strong>Register:</strong> FORMAL — like wearing a suit. Use vous, no contractions, no slang.<br><strong>Opening:</strong> Madame, Monsieur, &nbsp;&nbsp;<strong>Closing:</strong> ...mes cordiales salutations.<br><strong>Must include:</strong> City + date · Clear Objet: line · Formal opening · Context paragraph · Details paragraph · Request paragraph · Formal sign-off</div></div>
+
+    <div class="sub-title" style="color:var(--purple);margin-top:16px">📚 Your Go-To Words for Tâche 2</div>
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-b2">B2 ✅</th><th class="col-c1">C1 ⭐</th><th class="col-c2">C2 🔥</th><th style="background:var(--navy);color:#fff">When to use</th></tr></thead>
+      <tbody>
+        <tr><td>je vous écris (I write to you)</td><td>je me permets de vous contacter</td><td>je souhaite porter à votre attention</td><td>j'ai l'honneur de soumettre à votre attention</td><td>Opening the letter</td></tr>
+        <tr><td>il y a un problème</td><td>je souhaite vous informer</td><td>je me vois dans l'obligation de</td><td>force m'est de constater que</td><td>Raising an issue formally</td></tr>
+        <tr><td>je veux (I want)</td><td>je sollicite (I request)</td><td>je vous serais reconnaissant(e) de</td><td>je vous saurais gré de bien vouloir</td><td>Making a formal request</td></tr>
+        <tr><td>je pense que (I think)</td><td>j'estime que (I consider)</td><td>il me semble que (it seems to me)</td><td>j'ai la conviction que</td><td>Giving your opinion formally</td></tr>
+        <tr><td>à cause de (because of)</td><td>en raison de (due to)</td><td>compte tenu de (in view of)</td><td>eu égard à (having regard to)</td><td>Giving formal reasons</td></tr>
+        <tr><td>bientôt (soon)</td><td>dans les meilleurs délais</td><td>dans un délai raisonnable</td><td>dans les plus brefs délais</td><td>Requesting timely action</td></tr>
+        <tr><td>s'il vous plaît (please)</td><td>je vous prie de</td><td>je vous saurais gré de</td><td>je vous prierais de bien vouloir</td><td>Making a polite formal request</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title" style="color:var(--purple)">📌 Tâche 2 Standard Phrases — Memorise These!</div>
+    <table class="phrase-table">
+      <thead><tr style="background:var(--purple)"><th>French Phrase</th><th>💬 English</th><th>Level</th><th>When to use</th></tr></thead>
+      <tbody>
+        <tr><td class="phrase-fr">Je me permets de vous contacter au sujet de...</td><td>I take the liberty of contacting you regarding...</td><td><span class="lc lb2">B2</span></td><td>Standard formal opening</td></tr>
+        <tr><td class="phrase-fr">Madame, Monsieur,</td><td>Dear Sir/Madam,</td><td><span class="lc lb2">B2</span></td><td>Always use this — never 'Cher Monsieur'</td></tr>
+        <tr><td class="phrase-fr">Je souhaite vous informer que...</td><td>I wish to inform you that...</td><td><span class="lc lb2">B2</span></td><td>Raising a situation formally</td></tr>
+        <tr><td class="phrase-fr">Je vous serais reconnaissant(e) de bien vouloir...</td><td>I would be grateful if you could kindly...</td><td><span class="lc lc1">C1</span></td><td>The gold standard request phrase — use always!</td></tr>
+        <tr><td class="phrase-fr">Dans l'attente de votre réponse, je vous adresse mes cordiales salutations.</td><td>Awaiting your reply, I send my kind regards.</td><td><span class="lc lb2">B2</span></td><td>THE formal French sign-off — memorise it!</td></tr>
+        <tr><td class="phrase-fr">Je reste à votre disposition pour tout renseignement complémentaire.</td><td>I remain at your disposal for any further information.</td><td><span class="lc lc1">C1</span></td><td>Elegant closing before sign-off</td></tr>
+        <tr><td class="phrase-fr">Il m'apparaît indispensable de...</td><td>It appears indispensable to me to...</td><td><span class="lc lc2">C2</span></td><td>Strongly stating a necessity</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ TÂCHE 3 WORDS ═══ -->
+<div class="section-card" id="t3-words">
+  <div class="section-head" style="background:var(--rose)">
+    <span class="section-num">SECTION 6</span>
+    <h2>Tâche 3 — Your Go-To Words (Essay & Debate)</h2>
+  </div>
+  <div class="section-body">
+    <div class="alert a-rose"><span>📋</span><div><strong>What is it?</strong> You read 2 short documents and write: (1) a synthesis of both, (2) your opinion with arguments. You must give it a title.<br><strong>Register:</strong> VERY FORMAL — like an academic essay. Structured, serious, no slang.<br><strong>Structure:</strong> Introduction → Synthesis → Arguments → Conclusion<br><strong>Must include:</strong> A meaningful TITLE · Introduction (the debate question) · Synthesis of both documents · Your opinion with 2+ arguments · Conclusion</div></div>
+
+    <div class="sub-title" style="color:var(--rose);margin-top:16px">📚 Your Go-To Words for Tâche 3</div>
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-b2">B2 ✅</th><th class="col-c1">C1 ⭐</th><th class="col-c2">C2 🔥</th><th style="background:var(--navy);color:#fff">When to use</th></tr></thead>
+      <tbody>
+        <tr><td>parler de (to talk about)</td><td>aborder (to address)</td><td>traiter de (to deal with)</td><td>s'atteler à (to tackle)</td><td>Introducing the essay topic</td></tr>
+        <tr><td>montrer (to show)</td><td>démontrer (to demonstrate)</td><td>mettre en évidence (to highlight)</td><td>attester de (to attest to)</td><td>Referencing what docs show</td></tr>
+        <tr><td>je pense que (I think)</td><td>j'estime que (I consider)</td><td>je suis d'avis que (I am of the opinion)</td><td>j'ai la conviction que</td><td>Stating your opinion</td></tr>
+        <tr><td>mais (but)</td><td>cependant (however)</td><td>néanmoins (nevertheless)</td><td>il n'en demeure pas moins que</td><td>Contrasting arguments</td></tr>
+        <tr><td>parce que (because)</td><td>car / en raison de</td><td>dans la mesure où (insofar as)</td><td>attendu que (considering that)</td><td>Supporting your argument</td></tr>
+        <tr><td>pour finir (to finish)</td><td>enfin (finally)</td><td>en dernier lieu (lastly)</td><td>pour clore cette réflexion</td><td>Concluding the essay</td></tr>
+        <tr><td>différence (difference)</td><td>distinction (distinction)</td><td>nuance (nuance)</td><td>dichotomie (dichotomy)</td><td>Comparing the two documents</td></tr>
+        <tr><td>avantage (advantage)</td><td>bénéfice (benefit)</td><td>atout (asset)</td><td>plus-value (added value)</td><td>Discussing positives</td></tr>
+        <tr><td>inconvénient (disadvantage)</td><td>désavantage (disadvantage)</td><td>écueil (pitfall)</td><td>revers (downside)</td><td>Discussing negatives</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title" style="color:var(--rose)">📌 Tâche 3 Standard Phrases — Memorise These!</div>
+    <table class="phrase-table">
+      <thead><tr style="background:var(--rose)"><th>French Phrase</th><th>💬 English</th><th>Level</th><th>When to use</th></tr></thead>
+      <tbody>
+        <tr><td class="phrase-fr">Ces deux documents soulèvent la question de...</td><td>These two documents raise the question of...</td><td><span class="lc lb2">B2</span></td><td>Opening the synthesis</td></tr>
+        <tr><td class="phrase-fr">D'une part,... D'autre part,...</td><td>On one hand,... On the other hand,...</td><td><span class="lc lb2">B2</span></td><td>Comparing two documents or ideas</td></tr>
+        <tr><td class="phrase-fr">Le premier document met en évidence que...</td><td>The first document highlights that...</td><td><span class="lc lc1">C1</span></td><td>Referencing document 1</td></tr>
+        <tr><td class="phrase-fr">Tandis que le second document souligne...</td><td>Whereas the second document emphasises...</td><td><span class="lc lc1">C1</span></td><td>Contrasting with document 2</td></tr>
+        <tr><td class="phrase-fr">Force est de constater que...</td><td>One cannot help but notice that...</td><td><span class="lc lc2">C2</span></td><td>Making a powerful observation</td></tr>
+        <tr><td class="phrase-fr">En définitive, il me semble que...</td><td>Ultimately, it seems to me that...</td><td><span class="lc lc1">C1</span></td><td>Concluding your argument</td></tr>
+        <tr><td class="phrase-fr">Aussi peut-on affirmer que...</td><td>Thus one can affirm that... (+ inversion)</td><td><span class="lc lc2">C2</span></td><td>Literary conclusion — very impressive</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ SECTION 7 — A1 ALERT ═══ -->
+<div class="section-card" id="s7-a1">
+  <div class="section-head" style="background:var(--rose)">
+    <span class="section-num">SECTION 7</span>
+    <h2>A1 Words to NEVER Use Again 🚨</h2>
+  </div>
+  <div class="section-body">
+    <p class="intro-text">These are Day-1 French words. They work — but they cost you points on <strong>Judge 4</strong>. Every time you catch yourself writing one, STOP and pick an upgrade from the right column.</p>
+
+    <div class="sub-title" style="color:var(--rose)">🔴 Verbs — Upgrade These Immediately</div>
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic (NEVER use)</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th><th class="col-c2">C2 — Native 🔥</th></tr></thead>
+      <tbody>
+        <tr><td>faire (to do/make)</td><td>effectuer / réaliser</td><td>accomplir</td><td>mener à bien</td></tr>
+        <tr><td>dire (to say)</td><td>affirmer</td><td>soutenir</td><td>préconiser</td></tr>
+        <tr><td>avoir (to have)</td><td>disposer de</td><td>bénéficier de</td><td>jouir de</td></tr>
+        <tr><td>voir (to see)</td><td>observer</td><td>constater</td><td>percevoir</td></tr>
+        <tr><td>mettre (to put)</td><td>placer / poser</td><td>insérer</td><td>intégrer</td></tr>
+        <tr><td>vouloir (to want)</td><td>souhaiter</td><td>aspirer à</td><td>nourrir l'ambition de</td></tr>
+        <tr><td>pouvoir (to be able)</td><td>être en mesure de</td><td>avoir la capacité de</td><td>être à même de</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title" style="color:var(--rose)">🔴 Adjectives — Upgrade These Immediately</div>
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic (NEVER use)</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th><th class="col-c2">C2 — Native 🔥</th></tr></thead>
+      <tbody>
+        <tr><td>bon/bonne (good)</td><td>excellent / efficace</td><td>bénéfique</td><td>salutaire</td></tr>
+        <tr><td>mauvais(e) (bad)</td><td>négatif / défavorable</td><td>préjudiciable</td><td>délétère</td></tr>
+        <tr><td>intéressant(e) (interesting)</td><td>captivant(e)</td><td>fascinant(e)</td><td>saisissant(e)</td></tr>
+        <tr><td>content(e) (happy)</td><td>ravi(e)</td><td>enchanté(e)</td><td>comblé(e)</td></tr>
+        <tr><td>triste (sad)</td><td>désolé(e)</td><td>affligé(e)</td><td>accablé(e)</td></tr>
+        <tr><td>facile (easy)</td><td>accessible</td><td>aisé(e)</td><td>à la portée de tous</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title" style="color:var(--rose)">🔴 Nouns — Upgrade These Immediately</div>
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic (NEVER use)</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th><th class="col-c2">C2 — Native 🔥</th></tr></thead>
+      <tbody>
+        <tr><td>chose (thing)</td><td>élément / aspect</td><td>notion</td><td>entité</td></tr>
+        <tr><td>gens (people)</td><td>personnes / individus</td><td>habitants</td><td>citoyens / acteurs</td></tr>
+        <tr><td>problème (problem)</td><td>difficulté</td><td>enjeu</td><td>problématique</td></tr>
+        <tr><td>idée (idea)</td><td>notion</td><td>concept</td><td>paradigme</td></tr>
+        <tr><td>façon (way)</td><td>manière</td><td>approche</td><td>modalité</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title" style="color:var(--rose)">🔴 Adverbs & Fillers — Upgrade These Immediately</div>
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic (NEVER use)</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th><th class="col-c2">C2 — Native 🔥</th></tr></thead>
+      <tbody>
+        <tr><td>très (very)</td><td>particulièrement</td><td>remarquablement</td><td>singulièrement</td></tr>
+        <tr><td>beaucoup (a lot)</td><td>considérablement</td><td>abondamment</td><td>démesurément</td></tr>
+        <tr><td>vraiment (really)</td><td>véritablement</td><td>réellement</td><td>indubitablement</td></tr>
+        <tr><td>maintenant (now)</td><td>actuellement</td><td>à présent</td><td>à l'heure actuelle</td></tr>
+        <tr><td>peut-être (maybe)</td><td>éventuellement</td><td>il est possible que</td><td>il n'est pas exclu que</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ SECTION 8 — STANDARD LIST ═══ -->
+<div class="section-card" id="s8-std">
+  <div class="section-head" style="background:var(--navy)">
+    <span class="section-num">SECTION 8</span>
+    <h2>Your Standard TCF Exam Word List 🎯</h2>
+  </div>
+  <div class="section-body">
+    <p class="intro-text">These are the words to <strong>use as your standard from today</strong>. Not all the words in this guide — just these. Learn these first, use them in every tâche, until they feel as natural as breathing. Then add more. 🌱</p>
+
+    <div class="sub-title" style="color:var(--navy)">🔗 Your Standard Connectors</div>
+    <table class="std-table">
+      <thead><tr style="background:var(--navy)"><th>Instead of...</th><th>Always use this instead</th><th>Level</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>et (overused)</td><td><strong>de plus / en outre</strong></td><td><span class="lc lb2">B2</span></td><td>moreover / furthermore</td></tr>
+        <tr><td>mais (overused)</td><td><strong>cependant / toutefois</strong></td><td><span class="lc lb2">B2</span></td><td>however</td></tr>
+        <tr><td>parce que</td><td><strong>car / dans la mesure où</strong></td><td><span class="lc lb2">B2</span> / <span class="lc lc1">C1</span></td><td>because / insofar as</td></tr>
+        <tr><td>donc</td><td><strong>ainsi / par conséquent</strong></td><td><span class="lc lb2">B2</span></td><td>thus / consequently</td></tr>
+        <tr><td>d'abord... puis... enfin</td><td><strong>tout d'abord... ensuite... en dernier lieu</strong></td><td><span class="lc lb2">B2</span> / <span class="lc lc1">C1</span></td><td>first... then... finally</td></tr>
+        <tr><td>pour conclure</td><td><strong>en guise de conclusion</strong></td><td><span class="lc lc1">C1</span></td><td>by way of conclusion</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title" style="color:var(--navy)">📝 Your Standard Vocabulary</div>
+    <table class="std-table">
+      <thead><tr style="background:var(--navy)"><th>Instead of...</th><th>Always use this instead</th><th>Level</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>je pense que</td><td><strong>j'estime que / il me semble que</strong></td><td><span class="lc lb2">B2</span> / <span class="lc lc1">C1</span></td><td>I consider / it seems to me</td></tr>
+        <tr><td>très / beaucoup</td><td><strong>considérablement / particulièrement</strong></td><td><span class="lc lb2">B2</span></td><td>considerably / particularly</td></tr>
+        <tr><td>important(e)</td><td><strong>considérable / prépondérant(e)</strong></td><td><span class="lc lb2">B2</span> / <span class="lc lc1">C1</span></td><td>considerable / preponderant</td></tr>
+        <tr><td>difficile</td><td><strong>complexe / ardu(e)</strong></td><td><span class="lc lb2">B2</span> / <span class="lc lc1">C1</span></td><td>complex / arduous</td></tr>
+        <tr><td>montrer</td><td><strong>démontrer / mettre en évidence</strong></td><td><span class="lc lb2">B2</span> / <span class="lc lc1">C1</span></td><td>demonstrate / highlight</td></tr>
+        <tr><td>utiliser</td><td><strong>employer / recourir à</strong></td><td><span class="lc lb2">B2</span> / <span class="lc lc1">C1</span></td><td>employ / resort to</td></tr>
+        <tr><td>problème</td><td><strong>enjeu / problématique</strong></td><td><span class="lc lc1">C1</span></td><td>issue / core issue</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title" style="color:var(--navy)">⭐ Your Standard Power Phrases — 1 per tâche</div>
+    <table class="std-table">
+      <thead><tr style="background:var(--navy)"><th>Power phrase</th><th>💬 English</th><th>Level</th><th>Use it for</th></tr></thead>
+      <tbody>
+        <tr><td><span class="phrase-fr">Il convient de souligner que...</span></td><td>It is worth emphasising that...</td><td><span class="lc lc1">C1</span></td><td>Any tâche — highlight a key point</td></tr>
+        <tr><td><span class="phrase-fr">Dans cette optique,...</span></td><td>With this in mind,...</td><td><span class="lc lc1">C1</span></td><td>Any tâche — link to your goal</td></tr>
+        <tr><td><span class="phrase-fr">Force est d'admettre que...</span></td><td>One must admit that...</td><td><span class="lc lc1">C1</span></td><td>Conceding a point elegantly</td></tr>
+        <tr><td><span class="phrase-fr">Il n'en demeure pas moins que...</span></td><td>It remains true nonetheless that...</td><td><span class="lc lc2">C2</span></td><td>The ultimate contrast — Tâche 3</td></tr>
+        <tr><td><span class="phrase-fr">Il me semble que...</span></td><td>It seems to me that...</td><td><span class="lc lc1">C1</span></td><td>Expressing opinion — any tâche</td></tr>
+      </tbody>
+    </table>
+
+    <div class="tip"><span class="tip-icon">💡</span><span><strong>Your daily routine:</strong> Read one section of this guide every morning. Try to use 1 standard connector + 1 standard vocab word + 1 power phrase in every tâche you write. Small steps every day = C1/C2 on exam day. You've got this, Maryjoe! 🇨🇦🔥</span></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>🇨🇦 <strong>You are not just learning French.</strong> You are building your future in Canada.</p>
+  <p style="margin-top:6px">Every section you read = one more tool in your writing toolkit. <strong>Keep going Maryjoe! 💪🔥</strong></p>
+</div>
+
+</main>
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const el=document.getElementById('progress');
+  const s=window.scrollY,t=document.body.scrollHeight-window.innerHeight;
+  if(t>0) el.style.transform=`scaleX(${s/t})`;
+});
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      document.querySelectorAll('.nav-item').forEach(l=>l.classList.remove('active'));
+      const a=document.querySelector(`.nav-item[href="#${e.target.id}"]`);
+      if(a) a.classList.add('active');
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('[id]').forEach(s=>obs.observe(s));
+function filterNav(){
+  const q=document.getElementById('si').value.toLowerCase();
+  document.querySelectorAll('.nav-item').forEach(l=>{l.style.display=l.textContent.toLowerCase().includes(q)?'flex':'none';});
+  document.querySelectorAll('.nav-group-label').forEach(l=>{l.style.display=q?'none':'block';});
+}
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
+</body>
+</html>

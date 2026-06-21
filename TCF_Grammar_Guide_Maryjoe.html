@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TCF Grammar Rules Guide — Maryjoe</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Mono:wght@400;500&display=swap');
+
+  :root {
+    --navy:   #1B2A5E;
+    --blue:   #2563EB;
+    --teal:   #0D9488;
+    --gold:   #F59E0B;
+    --rose:   #E11D48;
+    --purple: #7C3AED;
+    --green:  #16A34A;
+    --ltblue: #DBEAFE;
+    --ltrose: #FFE4E6;
+    --ltgrn:  #DCFCE7;
+    --ltyell: #FEF9C3;
+    --ltpurp: #EDE9FE;
+    --ltmint: #D1FAE5;
+    --lgrey:  #F8FAFC;
+    --dgrey:  #1E293B;
+    --mgrey:  #64748B;
+    --border: #E2E8F0;
+    --white:  #FFFFFF;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #F0F4FF;
+    color: var(--dgrey);
+    line-height: 1.6;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 260px;
+    height: 100vh;
+    background: var(--navy);
+    overflow-y: auto;
+    z-index: 100;
+    padding-bottom: 40px;
+  }
+
+  .sidebar-logo {
+    padding: 20px 16px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .sidebar-logo h2 {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+
+  .sidebar-logo p {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 2px;
+  }
+
+  .nav-section {
+    padding: 10px 0 4px;
+  }
+
+  .nav-section-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    padding: 0 16px 6px;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+  }
+
+  .nav-link:hover, .nav-link.active {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    border-left-color: var(--gold);
+  }
+
+  .nav-link .badge {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: auto;
+  }
+
+  .badge-rule  { background: var(--blue);   color: #fff; }
+  .badge-bonus { background: var(--green);  color: #fff; }
+  .badge-star  { background: var(--gold);   color: #fff; }
+
+  /* ── MAIN ── */
+  .main {
+    margin-left: 260px;
+    padding: 32px 40px 80px;
+    max-width: 900px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, #2B4DB0 100%);
+    border-radius: 16px;
+    padding: 40px 36px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '🇫🇷';
+    position: absolute;
+    right: 36px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 72px;
+    opacity: 0.15;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 8px;
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  .hero-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  /* ── THE 4 QUESTIONS BOX ── */
+  .four-q {
+    background: var(--ltrose);
+    border: 2px solid var(--rose);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+  }
+
+  .four-q h3 {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--rose);
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+
+  .four-q-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .four-q-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px 12px;
+    border-left: 3px solid var(--rose);
+  }
+
+  .four-q-num {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--rose);
+    min-width: 20px;
+  }
+
+  .four-q-item strong {
+    font-size: 12px;
+    color: var(--dgrey);
+    display: block;
+  }
+
+  .four-q-item span {
+    font-size: 11px;
+    color: var(--mgrey);
+  }
+
+  /* ── RULE SECTION ── */
+  .rule-section {
+    background: #fff;
+    border-radius: 14px;
+    margin-bottom: 28px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    scroll-margin-top: 20px;
+  }
+
+  .rule-header {
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .rule-number {
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.25);
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+
+  .rule-header h2 {
+    font-size: 17px;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  .rule-body {
+    padding: 20px 24px;
+  }
+
+  .rule-intro {
+    font-size: 13px;
+    color: var(--mgrey);
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: var(--lgrey);
+    border-radius: 8px;
+    border-left: 3px solid var(--border);
+  }
+
+  /* ── SUB HEADING ── */
+  .sub-head {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin: 18px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sub-head::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── TABLES ── */
+  .rule-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .rule-table th {
+    padding: 9px 12px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.3px;
+  }
+
+  .rule-table td {
+    padding: 9px 12px;
+    border-top: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .rule-table tr:nth-child(even) td { background: var(--lgrey); }
+  .rule-table tr:nth-child(odd)  td { background: #fff; }
+
+  .wrong { color: var(--rose); font-weight: 600; }
+  .right { color: var(--green); font-weight: 600; }
+  .level-b2   { background: var(--teal);   color:#fff; font-size:10px; font-weight:700; padding:2px 7px; border-radius:10px; white-space:nowrap; }
+  .level-c1   { background: var(--blue);   color:#fff; font-size:10px; font-weight:700; padding:2px 7px; border-radius:10px; white-space:nowrap; }
+  .level-c2   { background: var(--rose);   color:#fff; font-size:10px; font-weight:700; padding:2px 7px; border-radius:10px; white-space:nowrap; }
+  .level-b1   { background: var(--mgrey);  color:#fff; font-size:10px; font-weight:700; padding:2px 7px; border-radius:10px; white-space:nowrap; }
+
+  /* ── TIP BOX ── */
+  .tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 16px;
+    background: var(--ltyell);
+    border: 1.5px solid var(--gold);
+    border-radius: 8px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--dgrey);
+  }
+
+  .tip-icon { font-size: 16px; flex-shrink: 0; }
+
+  /* ── EXAMPLE PAIR ── */
+  .example-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 12px 0;
+  }
+
+  .example-wrong {
+    background: var(--ltrose);
+    border: 1.5px solid var(--rose);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  .example-right {
+    background: var(--ltgrn);
+    border: 1.5px solid var(--green);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  .example-wrong strong, .example-right strong {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .example-wrong strong { color: var(--rose); }
+  .example-right strong { color: var(--green); }
+
+  .example-wrong p, .example-right p {
+    font-family: 'Fira Mono', monospace;
+    font-size: 12px;
+  }
+
+  /* ── SPECIAL BOXES ── */
+  .alert-box {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    margin: 12px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .alert-rose   { background: var(--ltrose); border-left: 3px solid var(--rose); }
+  .alert-blue   { background: var(--ltblue); border-left: 3px solid var(--blue); }
+  .alert-green  { background: var(--ltgrn);  border-left: 3px solid var(--green); }
+  .alert-purple { background: var(--ltpurp); border-left: 3px solid var(--purple); }
+  .alert-teal   { background: var(--ltmint); border-left: 3px solid var(--teal); }
+
+  /* ── QUICK REF ── */
+  .quick-ref-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .quick-ref-card {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .quick-ref-card-head {
+    padding: 8px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .quick-ref-card-body {
+    padding: 10px 12px;
+    font-size: 11px;
+    background: #fff;
+    color: var(--dgrey);
+    line-height: 1.6;
+  }
+
+  /* ── MARYJOE SPECIAL ── */
+  .maryjoe-box {
+    background: linear-gradient(135deg, #FFF0F3, #FFE4E6);
+    border: 2px solid var(--rose);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+
+  .maryjoe-box h4 {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--rose);
+    margin-bottom: 8px;
+  }
+
+  /* ── SING BOX ── */
+  .sing-box {
+    background: var(--ltmint);
+    border: 2px solid var(--teal);
+    border-radius: 10px;
+    padding: 16px 20px;
+    text-align: center;
+    margin: 14px 0;
+  }
+
+  .sing-box p {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--teal);
+    font-style: italic;
+  }
+
+  .sing-box span {
+    font-size: 11px;
+    color: var(--mgrey);
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--navy);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-top: 40px;
+    text-align: center;
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+  }
+
+  .footer strong { color: var(--gold); }
+
+  /* ── SCROLL TO TOP ── */
+  .scroll-top {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: background 0.2s;
+    z-index: 200;
+  }
+
+  .scroll-top:hover { background: var(--blue); }
+
+  /* ── SEARCH BAR ── */
+  .search-bar {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .search-bar input {
+    width: 100%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    padding: 7px 12px;
+    color: #fff;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+  }
+
+  .search-bar input::placeholder { color: rgba(255,255,255,0.4); }
+  .search-bar input:focus { border-color: var(--gold); }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 260px;
+    right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.1s;
+    z-index: 99;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .sidebar { width: 100%; height: auto; position: relative; }
+    .main { margin-left: 0; padding: 20px; }
+    .four-q-grid { grid-template-columns: 1fr; }
+    .example-pair { grid-template-columns: 1fr; }
+    .quick-ref-grid { grid-template-columns: 1fr; }
+    .progress-bar { left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <h2>🇫🇷 TCF Grammar Guide</h2>
+    <p>Maryjoe Chioma Udochi</p>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search rules..." onkeyup="searchRules()">
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Start Here</div>
+    <a href="#top" class="nav-link">🏠 Overview & 4 Questions</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Core Rules</div>
+    <a href="#rule1" class="nav-link">Rule 1 — Cela vs Ce <span class="badge badge-rule">R1</span></a>
+    <a href="#rule2" class="nav-link">Rule 2 — Dates <span class="badge badge-rule">R2</span></a>
+    <a href="#rule3" class="nav-link">Rule 3 — Que <span class="badge badge-rule">R3</span></a>
+    <a href="#rule4" class="nav-link">Rule 4 — Tu vs Vous <span class="badge badge-rule">R4</span></a>
+    <a href="#rule5" class="nav-link">Rule 5 — Adjectives 🎒 <span class="badge badge-rule">R5</span></a>
+    <a href="#rule6" class="nav-link">Rule 6 — Feminine 👗 <span class="badge badge-rule">R6</span></a>
+    <a href="#rule7" class="nav-link">Rule 7 — Articles 🏷️ <span class="badge badge-rule">R7</span></a>
+    <a href="#rule8" class="nav-link">Rule 8 — Subjonctif ✨ <span class="badge badge-rule">R8</span></a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Bonus Rules</div>
+    <a href="#bonus-modal" class="nav-link">Infinitive after Modals <span class="badge badge-bonus">B</span></a>
+    <a href="#bonus-pronouns" class="nav-link">Subject vs Object <span class="badge badge-bonus">B</span></a>
+    <a href="#bonus-reflexive" class="nav-link">Reflexive Verbs 🪃 <span class="badge badge-bonus">B</span></a>
+    <a href="#bonus-gender" class="nav-link">Noun Gender Endings <span class="badge badge-bonus">B</span></a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Reference</div>
+    <a href="#quickref" class="nav-link">⚡ Quick Reference</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main" id="top">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>TCF Canada<br>Grammar Rules Guide</h1>
+    <p>All 12 rules from your practice sessions — with examples, memory tricks, and shortcuts.</p>
+    <div class="hero-badges">
+      <span class="hero-badge">8 Core Rules</span>
+      <span class="hero-badge">4 Bonus Rules</span>
+      <span class="hero-badge">Target: B2 / C1</span>
+      <span class="hero-badge">🇨🇦 Express Entry PR</span>
+    </div>
+  </div>
+
+  <!-- 4 QUESTIONS -->
+  <div class="four-q">
+    <h3>🎯 THE 4 QUESTIONS — Ask before every sentence you write!</h3>
+    <div class="four-q-grid">
+      <div class="four-q-item">
+        <span class="four-q-num">1</span>
+        <div>
+          <strong>Am I using TU or VOUS?</strong>
+          <span>Friend = TU. Stranger = VOUS. Pick one — NEVER switch!</span>
+        </div>
+      </div>
+      <div class="four-q-item">
+        <span class="four-q-num">2</span>
+        <div>
+          <strong>Where does my adjective go?</strong>
+          <span>BAGS = before. Everything else = after. Colour = ALWAYS after! 🎨</span>
+        </div>
+      </div>
+      <div class="four-q-item">
+        <span class="four-q-num">3</span>
+        <div>
+          <strong>Does my adjective match the noun?</strong>
+          <span>Feminine = add -e. Plural = add -s. Me (Maryjoe) = always -e! 👗</span>
+        </div>
+      </div>
+      <div class="four-q-item">
+        <span class="four-q-num">4</span>
+        <div>
+          <strong>Does every noun have an article?</strong>
+          <span>le / la / l' / un / une / des — No naked nouns! à+le=au, de+le=du 🙈</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RULE 1 -->
+  <div class="rule-section" id="rule1">
+    <div class="rule-header" style="background: var(--blue);">
+      <span class="rule-number">RULE 1</span>
+      <h2>Cela vs Ce</h2>
+    </div>
+    <div class="rule-body">
+      <p class="rule-intro">Think of Ce and Cela like two cousins — related but with different jobs!</p>
+
+      <div class="sub-head" style="color:var(--blue)">The Rule</div>
+      <table class="rule-table">
+        <thead><tr style="background:var(--blue)">
+          <th>Use</th><th>When</th><th>Example</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><strong>C'EST / C'ÉTAIT</strong></td><td>Before the verb ÊTRE (is/was)</td><td>C'est une bonne idée. / C'était difficile.</td></tr>
+          <tr><td><strong>CE QUE / CE QUI</strong></td><td>Before que, qui, dont</td><td>Ce que tu dis est vrai.</td></tr>
+          <tr><td><strong>CELA</strong></td><td>Before ANY OTHER verb</td><td>Cela m'a rendu triste. / Cela s'est bien passé.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-head" style="color:var(--blue)">Examples from your writing</div>
+      <div class="example-pair">
+        <div class="example-wrong"><strong>❌ Wrong</strong><p>Ce m'a fait pleurer.</p></div>
+        <div class="example-right"><strong>✅ Correct</strong><p>Cela m'a fait pleurer.<br><em>next verb = faire (not être)</em></p></div>
+      </div>
+      <div class="example-pair">
+        <div class="example-wrong"><strong>❌ Wrong</strong><p>Ce était difficile.</p></div>
+        <div class="example-right"><strong>✅ Correct</strong><p>C'était difficile.<br><em>next word = était → être → C'</em></p></div>
+      </div>
+      <div class="example-pair">
+        <div class="example-wrong"><strong>❌ Wrong</strong><p>Ce s'est bien passé.</p></div>
+        <div class="example-right"><strong>✅ Correct</strong><p>Cela s'est bien passé.<br><em>next verb = passer (not être)</em></p></div>
+      </div>
+
+      <div class="tip"><span class="tip-icon">💡</span><span><strong>Memory trick:</strong> Next word is est/était/sera → use <strong>C'</strong>. Next word is any OTHER verb → use <strong>Cela</strong>. Before que/qui → use <strong>Ce que / Ce qui</strong>.</span></div>
+    </div>
+  </div>
+
+  <!-- RULE 2 -->
+  <div class="rule-section" id="rule2">
+    <div class="rule-header" style="background: var(--teal);">
+      <span class="rule-number">RULE 2</span>
+      <h2>Le vs En for Dates</h2>
+    </div>
+    <div class="rule-body">
+      <p class="rule-intro">The MORE specific the date → the MORE you need LE! Can you circle it on a calendar? → LE!</p>
+
+      <div class="sub-head" style="color:var(--teal)">The Rule</div>
+      <table class="rule-table">
+        <thead><tr style="background:var(--teal)">
+          <th>Use</th><th>When</th><th>Examples</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><strong>LE</strong></td><td>Specific day or date</td><td>le lundi / le 12 juin / le mardi 14 juillet</td></tr>
+          <tr><td><strong>EN</strong></td><td>Month alone / Year alone</td><td>en juin / en 2026</td></tr>
+          <tr><td><strong>EN</strong></td><td>Seasons (except spring!)</td><td>en été / en automne / en hiver</td></tr>
+          <tr><td><strong>AU 🌸</strong></td><td>Spring ONLY — the rebel!</td><td>au printemps</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-head" style="color:var(--purple)">Why AU Printemps? The vowel rule!</div>
+      <div class="alert-box alert-purple">
+        <span>🌸</span>
+        <div>
+          <strong>EN</strong> is used before seasons that start with a <strong>vowel sound</strong> (été, automne, hiver).<br>
+          <strong>AU</strong> is used before seasons that start with a <strong>consonant</strong> — spring (printemps) starts with P → EN cannot slide in → AU steps in instead!
+        </div>
+      </div>
+
+      <table class="rule-table" style="margin-top:12px">
+        <thead><tr style="background:var(--purple)">
+          <th>Season</th><th>Starts with</th><th>Use</th><th>Example</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>été (summer)</td><td>É — vowel</td><td>EN</td><td>en été ✅</td></tr>
+          <tr><td>automne (autumn)</td><td>A — vowel</td><td>EN</td><td>en automne ✅</td></tr>
+          <tr><td>hiver (winter)</td><td>H — silent = vowel</td><td>EN</td><td>en hiver ✅</td></tr>
+          <tr><td>printemps (spring) 🌸</td><td>P — consonant</td><td>AU</td><td>au printemps ✅</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-head" style="color:var(--teal)">Examples from your writing</div>
+      <div class="example-pair">
+        <div class="example-wrong"><strong>❌ Wrong</strong><p>en mardi 14 juillet</p></div>
+        <div class="example-right"><strong>✅ Correct</strong><p>le mardi 14 juillet<br><em>specific day → LE</em></p></div>
+      </div>
+      <div class="example-pair">
+        <div class="example-wrong"><strong>❌ Wrong</strong><p>en printemps</p></div>
+        <div class="example-right"><strong>✅ Correct</strong><p>au printemps 🌸<br><em>spring = the rebel → always AU!</em></p></div>
+      </div>
+
+      <div class="tip"><span class="tip-icon">💡</span><span><strong>Memory trick:</strong> Day name present? → <strong>LE</strong> wins always 👑. Month or year alone? → <strong>EN</strong>. Spring? → <strong>AU</strong> always! Other seasons? → <strong>EN</strong> (they start with vowels).</span></div>
+    </div>
+  </div>
+
+  <!-- RULE 3 -->
+  <div class="rule-section" id="rule3">
+    <div class="rule-header" style="background: var(--purple);">
+      <span class="rule-number">RULE 3</span>
+      <h2>Que after Opinion Verbs</h2>
+    </div>
+    <div class="rule-body">
+      <p class="rule-intro">Think of "que" as a BRIDGE 🌉 — the opinion verb is one side, your idea is the other. "Que" connects them. Without it, the bridge collapses!</p>
+
+      <div class="sub-head" style="color:var(--purple)">Common Opinion Verbs — always followed by QUE</div>
+      <table class="rule-table">
+        <thead><tr style="background:var(--purple)">
+          <th>Verb</th><th>English</th><th>Level</th><th>Example</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>penser que</td><td>to think that</td><td><span class="level-b1">B1</span></td><td>Je pense qu'il a raison.</td></tr>
+          <tr><td>croire que</td><td>to believe that</td><td><span class="level-b1">B1</span></td><td>Je crois qu'elle viendra.</td></tr>
+          <tr><td>estimer que</td><td>to consider that</td><td><span class="level-b2">B2</span></td><td>J'estime qu'il est trop tard.</td></tr>
+          <tr><td>affirmer que</td><td>to affirm that</td><td><span class="level-b2">B2</span></td><td>Elle affirme que c'est vrai.</td></tr>
+          <tr><td>être convaincu(e) que</td><td>to be convinced that</td><td><span class="level-c1">C1</span></td><td>Je suis convaincue qu'elle réussira.</td></tr>
+          <tr><td>être persuadé(e) que</td><td>to be persuaded that</td><td><span class="level-c1">C1</span></td><td>Je suis persuadée qu'il a tort.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-head" style="color:var(--purple)">QUE vs QU' — The Contraction Rule</div>
+      <table class="rule-table">
+        <thead><tr style="background:var(--blue)">
+          <th>Situation</th><th>Use</th><th>Example</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Next word starts with consonant</td><td><strong>que</strong></td><td>Je pense <strong>que</strong> tu as raison.</td></tr>
+          <tr><td>Next word starts with vowel</td><td><strong>qu'</strong></td><td>Je pense <strong>qu'</strong>il a raison.</td></tr>
+          <tr><td>Negative verb</td><td><strong>que stays!</strong></td><td>Il ne pense pas <strong>que</strong> j'aie raison.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-head" style="color:var(--purple)">Examples from your writing</div>
+      <div class="example-pair">
+        <div class="example-wrong"><strong>❌ Wrong</strong><p>Je pense il viendra.</p></div>
+        <div class="example-right"><strong>✅ Correct</strong><p>Je pense qu'il viendra.</p></div>
+      </div>
+      <div class="example-pair">
+        <div class="example-wrong"><strong>❌ Wrong</strong><p>Il estimait je n'avais pas les qualifications.</p></div>
+        <div class="example-right"><strong>✅ Correct</strong><p>Il estimait que je n'avais pas les qualifications.</p></div>
+      </div>
+
+      <div class="tip"><span class="tip-icon">💡</span><span><strong>Memory trick:</strong> Opinion verb + QUE = married couple 💍. They NEVER separate! Negative or positive — QUE always stays. Before vowel → QU' (they hug and shorten!)</span></div>
+    </div>
+  </div>
+
+  <!-- RULE 4 -->
+  <div class="rule-section" id="rule4">
+    <div class="rule-header" style="background: var(--rose);">
+      <span class="rule-number">RULE 4</span>
+      <h2>Tu vs Vous Consistency</h2>
+    </div>
+    <div class="rule-body">
+      <p class="rule-intro">Tu and Vous are like TWO PHONES 📱. Once you pick one up — use it for the WHOLE conversation. Never switch phones mid-call!</p>
+
+      <div class="sub-head" style="color:var(--rose)">Which to use?</div>
+      <table class="rule-table">
+        <thead><tr style="background:var(--rose)">
+          <th>Form</th><th>Use for</th><th>Opening</th><th>Sign-off</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><strong>TU 👕</strong></td><td>Friends, family, children, peers</td><td>Salut ! Comment vas-tu ?</td><td>À bientôt ! / Bisous,</td></tr>
+          <tr><td><strong>VOUS 👔</strong></td><td>Strangers, bosses, older people</td><td>Bonjour ! Comment allez-vous ?</td><td>Cordialement,</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-head" style="color:var(--rose)">The Full TU vs VOUS Verb Pairs</div>
+      <table class="rule-table">
+        <thead><tr style="background:var(--rose)">
+          <th>Meaning</th><th>TU form 👕</th><th>VOUS form 👔</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>you are</td><td>tu es</td><td>vous êtes</td></tr>
+          <tr><td>you have</td><td>tu as</td><td>vous avez</td></tr>
+          <tr><td>you can</td><td>tu peux</td><td>vous pouvez</td></tr>
+          <tr><td>how are you?</td><td>comment vas-tu ?</td><td>comment allez-vous ?</td></tr>
+          <tr><td>your (one thing)</td><td>ton / ta / tes</td><td>votre / vos</td></tr>
+          <tr><td>tell me</td><td>dis-moi</td><td>dites-moi / veuillez m'indiquer</td></tr>
+          <tr><td>don't forget</td><td>n'oublie pas</td><td>n'oubliez pas</td></tr>
+          <tr><td>confirm</td><td>confirme</td><td>confirmez</td></tr>
+          <tr><td>please</td><td>s'il te plaît</td><td>s'il vous plaît</td></tr>
+          <tr><td>contact me</td><td>contacte-moi</td><td>contactez-moi</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-head" style="color:var(--rose)">Examples from your writing</div>
+      <div class="example-pair">
+        <div class="example-wrong"><strong>❌ Wrong (mixed!)</strong><p>Je vous écris pour t'inviter.</p></div>
+        <div class="example-right"><strong>✅ Correct (consistent!)</strong><p>Je vous écris pour vous inviter.</p></div>
+      </div>
+      <div class="example-pair">
+        <div class="example-wrong"><strong>❌ Wrong (mixed!)</strong><p>Comment allez-vous ? Dis-moi ta réponse.</p></div>
+        <div class="example-right"><strong>✅ Correct</strong><p>Comment allez-vous ? Dites-moi votre réponse.</p></div>
+      </div>
+
+      <div class="tip"><span class="tip-icon">💡</span><span><strong>Memory trick:</strong> Write TU or VOUS at the top of your email before you start. Circle it. Every verb and pronoun must match. No exceptions! 🎯 JE form of -er verbs ends in <strong>-e</strong> (contacte NOT contactez — JE is not VOUS!).</span></div>
+    </div>
+  </div>
+
+  <!-- BONUS — MODAL -->
+  <div class="rule-section" id="bonus-modal">
+    <div class="rule-header" style="background: var(--purple);">
+      <span class="rule-number">BONUS</span>
+      <h2>Infinitive after Modal Verbs</h2>
+    </div>
+    <div class="rule-body">
+      <p class="rule-intro">Modal verbs are TEAM LEADERS 👑 — they do all the conjugation work. The verb after them always relaxes in its base (infinitive) form. TWO conjugated verbs in a row = NEVER in French! 🚫</p>
+
+      <table class="rule-table">
+        <thead><tr style="background:var(--purple)">
+          <th>Modal verb</th><th>✅ Correct (infinitive after)</th><th>❌ Wrong</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>pouvoir (can)</td><td>Pouvez-vous me <strong>contacter</strong> ?</td><td>Pouvez-vous me contactez ? ❌</td></tr>
+          <tr><td>vouloir (want)</td><td>Je voudrais vous <strong>informer</strong>.</td><td>Je voudrais vous informez. ❌</td></tr>
+          <tr><td>devoir (must)</td><td>Elle doit <strong>soumettre</strong> son dossier.</td><td>Elle doit soumet son dossier. ❌</td></tr>
+          <tr><td>pour (in order to)</td><td>Je vous écris pour vous <strong>informer</strong>.</td><td>Je vous écris pour vous informez. ❌</td></tr>
+          <tr><td>je souhaite</td><td>Je souhaite vous <strong>informer</strong>.</td><td>Je souhaite vous informez. ❌</td></tr>
+        </tbody>
+      </table>
+
+      <div class="tip"><span class="tip-icon">💡</span><span><strong>Memory trick:</strong> Modal verb = boss who already worked hard conjugating. The verb after gets to relax in base form (infinitive). Two conjugated verbs next to each other = impossible in French! 🚫</span></div>
+    </div>
+  </div>
+
+  <!-- BONUS — PRONOUNS -->
+  <div class="rule-section" id="bonus-pronouns">
+    <div class="rule-header" style="background: var(--green);">
+      <span class="rule-number">BONUS</span>
+      <h2>Subject vs Object Pronouns</h2>
+    </div>
+    <div class="rule-body">
+      <p class="rule-intro">The verb ALWAYS conjugates to match the SUBJECT — not the object! Think tennis 🎾 — the SERVER controls the shot. The RECEIVER just receives it.</p>
+
+      <table class="rule-table">
+        <thead><tr style="background:var(--green)">
+          <th>Type</th><th>What it does</th><th>Example</th><th>Controls verb?</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><strong>SUBJECT</strong></td><td>The one DOING the action</td><td>Je contacte</td><td>✅ YES</td></tr>
+          <tr><td><strong>OBJECT</strong></td><td>The one RECEIVING the action</td><td>Je vous contacte</td><td>❌ NO</td></tr>
+        </tbody>
+      </table>
+
+      <div class="example-pair" style="margin-top:14px">
+        <div class="example-wrong"><strong>❌ Wrong</strong><p>Je vous contactez.<br><em>JE = subject → must use -e form!</em></p></div>
+        <div class="example-right"><strong>✅ Correct</strong><p>Je vous contacte.<br><em>JE = subject → je form = contacte</em></p></div>
+      </div>
+
+      <div class="alert-box alert-green" style="margin-top:14px">
+        <span>🚗</span>
+        <div><strong>TU vs TE:</strong> TU = subject — the DRIVER doing the action. TE = object — the PASSENGER receiving the action. You can NEVER put the passenger in the driver's seat! <br><em>Tu peux venir ✅ (tu drives) / Je te contacte ✅ (te rides)</em></div>
+      </div>
+
+      <div class="tip"><span class="tip-icon">💡</span><span><strong>Memory trick:</strong> JE vous contacte — JE is the boss here, not vous! JE controls the verb. JE form of -er verbs = always ends in <strong>-e</strong>. TU drives 🚗. TE rides 🧍.</span></div>
+    </div>
+  </div>
+
+  <!-- BONUS — REFLEXIVE -->
+  <div class="rule-section" id="bonus-reflexive">
+    <div class="rule-header" style="background: var(--teal);">
+      <span class="rule-number">BONUS</span>
+      <h2>Reflexive Verbs 🪃</h2>
+    </div>
+    <div class="rule-body">
+      <p class="rule-intro">A reflexive verb throws the action back at YOURSELF — like a boomerang! The subject and pronoun are ALWAYS the same person. Je me / Tu te / Il se / Nous nous / Vous vous / Ils se</p>
+
+      <table class="rule-table">
+        <thead><tr style="background:var(--teal)">
+          <th>Verb</th><th>English</th><th>Example</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>se lever</td><td>to get up</td><td>Je me lève à 7h.</td></tr>
+          <tr><td>s'appeler</td><td>to be called</td><td>Je m'appelle Maryjoe.</td></tr>
+          <tr><td>se sentir</td><td>to feel</td><td>Je me sens confiante.</td></tr>
+          <tr><td>se dérouler</td><td>to take place</td><td>L'entretien s'est bien déroulé.</td></tr>
+          <tr><td>se retrouver</td><td>to meet up</td><td>Nous nous retrouvons au café.</td></tr>
+          <tr><td>s'améliorer</td><td>to improve</td><td>Mon français s'améliore !</td></tr>
+          <tr><td>se préparer</td><td>to prepare</td><td>Je me prépare pour l'examen.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="tip"><span class="tip-icon">💡</span><span><strong>Memory trick:</strong> Reflexive = boomerang 🪃 — the action comes back to YOU. Subject and pronoun = same person always! Je <strong>me</strong>... Tu <strong>te</strong>... Il <strong>se</strong>... Nous <strong>nous</strong>... Vous <strong>vous</strong>... Ils <strong>se</strong>...</span></div>
+    </div>
+  </div>
+
+  <!-- RULE 5 -->
+  <div class="rule-section" id="rule5">
+    <div class="rule-header" style="background: var(--navy);">
+      <span class="rule-number">RULE 5</span>
+      <h2>Adjective Position — The BAGS Rule 🎒</h2>
+    </div>
+    <div class="rule-body">
+      <p class="rule-intro">In French most adjectives go AFTER the noun — the opposite of English! A small group goes BEFORE. We remember them with BAGS.</p>
+
+      <div class="sub-head" style="color:var(--navy)">BAGS — These go BEFORE the noun</div>
+      <table class="rule-table">
+        <thead><tr style="background:var(--navy)">
+          <th>Letter</th><th>Category</th><th>Adjectives</th><th>Example</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><strong>B</strong></td><td>Beauty</td><td>beau/belle, joli/jolie</td><td>une <strong>belle</strong> maison</td></tr>
+          <tr><td><strong>A</strong></td><td>Age</td><td>vieux/vieille, jeune, nouveau/nouvelle</td><td>un <strong>vieux</strong> quartier</td></tr>
+          <tr><td><strong>G</strong></td><td>Goodness</td><td>bon/bonne, mauvais/mauvaise</td><td>un <strong>bon</strong> repas</td></tr>
+          <tr><td><strong>S</strong></td><td>Size</td><td>grand, petit, gros, long</td><td>un <strong>grand</strong> appartement</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-head" style="color:var(--blue)">Everything Else — Goes AFTER the noun</div>
+      <div class="alert-box alert-rose">
+        <span>🎨</span>
+        <div><strong>COLOURS — ALWAYS after. NO exceptions. EVER.</strong><br>
+        une robe <strong>rouge</strong> ✅ / un vélo <strong>noir</strong> ✅ / une voiture <strong>bleue</strong> ✅<br>
+        une <span class="wrong">rouge</span> robe ❌ / un <span class="wrong">noir</span> vélo ❌</div>
+      </div>
+
+      <div class="sub-head" style="color:var(--purple)">Special Case — Beau before vowels</div>
+      <table class="rule-table">
+        <thead><tr style="background:var(--purple)">
+          <th>Before consonant</th><th>Before vowel</th><th>Why</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>un <strong>beau</strong> vélo</td><td>un <strong>bel</strong> appartement</td><td>beau → bel before vowel</td></tr>
+          <tr><td>un <strong>beau</strong> quartier</td><td>un <strong>bel</strong> entretien</td><td>beau → bel before vowel</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-head" style="color:var(--navy)">Examples from your writing</div>
+      <div class="example-pair">
+        <div class="example-wrong"><strong>❌ Wrong</strong><p>un noir vélo</p></div>
+        <div class="example-right"><strong>✅ Correct</strong><p>un vélo noir<br><em>colour → ALWAYS after!</em></p></div>
+      </div>
+      <div class="example-pair">
+        <div class="example-wrong"><strong>❌ Wrong</strong><p>une accueillant personnalité</p></div>
+        <div class="example-right"><strong>✅ Correct</strong><p>une personnalité accueillante<br><em>not BAGS + feminine -e</em></p></div>
+      </div>
+      <div class="example-pair">
+        <div class="example-wrong"><strong>❌ Wrong</strong><p>une rouge robe</p></div>
+        <div class="example-right"><strong>✅ Correct</strong><p>une robe rouge<br><em>colour → ALWAYS after!</em></p></div>
+      </div>
+
+      <div class="tip"><span class="tip-icon">💡</span><span><strong>Memory trick:</strong> Is it BAGS? YES → before. NO → after. Is it a colour? → ALWAYS after, no exceptions EVER! 🎨 Say it out loud: <em>"Colour comes after — ALWAYS after!"</em></span></div>
+    </div>
+  </div>
+
+  <!-- RULE 6 -->
+  <div class="rule-section" id="rule6">
+    <div class="rule-header" style="background: var(--rose);">
+      <span class="rule-number">RULE 6</span>
+      <h2>Feminine Agreement 👗</h2>
+    </div>
+    <div class="rule-body">
+      <p class="rule-intro">Every noun in French is masculine or feminine. The adjective must MATCH — like a dress code! The noun decides the code and the adjective must wear the right outfit.</p>
+
+      <div class="sub-head" style="color:var(--rose)">The Basic System</div>
+      <table class="rule-table">
+        <thead><tr style="background:var(--rose)">
+          <th>Noun gender</th><th>What to do</th><th>Example</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>Masculine singular</td><td>Base form — no change</td><td>un directeur attentif</td></tr>
+          <tr><td>Feminine singular</td><td>Add <strong>-E</strong></td><td>une personnalité accueillante</td></tr>
+          <tr><td>Masculine plural</td><td>Add <strong>-S</strong></td><td>des directeurs attentifs</td></tr>
+          <tr><td>Feminine plural</td><td>Add <strong>-ES</strong></td><td>des personnalités accueillantes</td></tr>
+        </tbody>
+      </table>
+
+      <div class="maryjoe-box">
+        <h4>🚨 SPECIAL RULE FOR MARYJOE — Je = You = Woman! 👗</h4>
+        <p style="font-size:12px; margin-bottom:10px">When JE is the subject describing YOU — you are a woman! Any adjective describing you MUST be feminine!</p>
+        <table class="rule-table">
+          <thead><tr style="background:var(--purple)">
+            <th>❌ Masculine (wrong for you)</th><th>✅ Feminine (always!)</th><th>English</th>
+          </tr></thead>
+          <tbody>
+            <tr><td>je suis intéressé</td><td>je suis intéressé<strong>e</strong></td><td>I am interested</td></tr>
+            <tr><td>je suis convaincu</td><td>je suis convaincu<strong>e</strong></td><td>I am convinced</td></tr>
+            <tr><td>je suis ravi</td><td>je suis ravi<strong>e</strong></td><td>I am delighted</td></tr>
+            <tr><td>je suis prêt</td><td>je suis prêt<strong>e</strong></td><td>I am ready</td></tr>
+            <tr><td>je suis satisfait</td><td>je suis satisfait<strong>e</strong></td><td>I am satisfied</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sub-head" style="color:var(--rose)">Irregular Feminine Forms — Memorise!</div>
+      <table class="rule-table">
+        <thead><tr style="background:var(--rose)">
+          <th>Masculine</th><th>Feminine</th><th>Pattern</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>beau</td><td>belle</td><td>-eau → -elle</td></tr>
+          <tr><td>nouveau</td><td>nouvelle</td><td>-eau → -elle</td></tr>
+          <tr><td>vieux</td><td>vieille</td><td>irregular!</td></tr>
+          <tr><td>bon</td><td>bonne</td><td>double -n</td></tr>
+          <tr><td>actif</td><td>active</td><td>-if → -ive</td></tr>
+          <tr><td>sérieux</td><td>sérieuse</td><td>-eux → -euse</td></tr>
+          <tr><td>formel</td><td>formelle</td><td>-el → -elle</td></tr>
+        </tbody>
+      </table>
+
+      <div class="alert-box alert-purple" style="margin-top:14px">
+        <span>💡</span>
+        <div><strong>KEY INSIGHT:</strong> The adjective matches the NOUN — not the pronoun! IL (masculine pronoun) can have UNE personnalité (feminine noun). They don't affect each other! The article and adjective follow the NOUN, not the person.</div>
+      </div>
+
+      <div class="tip"><span class="tip-icon">💡</span><span><strong>Memory trick:</strong> Maryjoe always wears the <strong>-e</strong>! 👗 Every time you write "je suis + adjective" — add -e automatically. It is YOUR outfit. The adjective copies the noun — masculine stays simple, feminine adds letters.</span></div>
+    </div>
+  </div>
+
+  <!-- RULE 7 -->
+  <div class="rule-section" id="rule7">
+    <div class="rule-header" style="background: #B45309;">
+      <span class="rule-number">RULE 7</span>
+      <h2>Articles — No Naked Nouns! 🙈</h2>
+    </div>
+    <div class="rule-body">
+      <p class="rule-intro">In French, nouns are NEVER left alone! Every noun needs a little article in front of it — like a name tag 🏷️. Without it the sentence sounds wrong!</p>
+
+      <div class="sub-head" style="color:#B45309">The Three Article Groups</div>
+      <table class="rule-table">
+        <thead><tr style="background:#B45309">
+          <th>Type</th><th>Articles</th><th>When to use</th><th>Example</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><strong>THE (specific)</strong></td><td>le / la / l' / les</td><td>Something specific both people know</td><td>Le directeur est sympa.</td></tr>
+          <tr><td><strong>A / AN / SOME (general)</strong></td><td>un / une / des</td><td>One of many — general / introducing</td><td>J'ai un vélo.</td></tr>
+          <tr><td><strong>SOME (uncountable)</strong></td><td>du / de la / de l'</td><td>Things you cannot count individually</td><td>Je bois du café.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-head" style="color:var(--rose)">The Fusion Rules — When Articles Merge! 🤝</div>
+      <table class="rule-table">
+        <thead><tr style="background:var(--rose)">
+          <th>Preposition + article</th><th>Becomes</th><th>Example</th><th>⚠️ Never say</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>à + le</td><td><strong>au</strong></td><td>Je vais <strong>au</strong> café.</td><td>à le ❌</td></tr>
+          <tr><td>à + les</td><td><strong>aux</strong></td><td>Je parle <strong>aux</strong> enfants.</td><td>à les ❌</td></tr>
+          <tr><td>à + la</td><td><strong>à la</strong></td><td>Je vais <strong>à la</strong> fête.</td><td>stays separate</td></tr>
+          <tr><td>à + l'</td><td><strong>à l'</strong></td><td>Je vais <strong>à l'</strong>université.</td><td>stays separate</td></tr>
+          <tr><td>de + le</td><td><strong>du</strong></td><td>Je viens <strong>du</strong> bureau.</td><td>de le ❌</td></tr>
+          <tr><td>de + les</td><td><strong>des</strong></td><td>Je parle <strong>des</strong> avantages.</td><td>de les ❌</td></tr>
+          <tr><td>de + la</td><td><strong>de la</strong></td><td>Je viens <strong>de la</strong> gare.</td><td>stays separate</td></tr>
+          <tr><td>de + l'</td><td><strong>de l'</strong></td><td>Je viens <strong>de l'</strong>université.</td><td>stays separate</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-head" style="color:#B45309">UN vs UNE vs LE/LA/L'</div>
+      <div class="example-pair">
+        <div class="example-wrong"><strong>First mention → UN/UNE</strong><p>J'ai passé <strong>un</strong> entretien hier.<br><em>(introducing it for first time)</em></p></div>
+        <div class="example-right"><strong>Already known → LE/LA/L'</strong><p><strong>L'</strong>entretien était difficile.<br><em>(we already know which one)</em></p></div>
+      </div>
+
+      <div class="alert-box alert-teal" style="margin-top:10px">
+        <span>👗</span>
+        <div><strong>Words ending in -ité = ALWAYS feminine = ALWAYS une!</strong><br>
+        une personnal<strong>ité</strong> / une qual<strong>ité</strong> / une univers<strong>ité</strong> / une opportun<strong>ité</strong></div>
+      </div>
+
+      <div class="tip"><span class="tip-icon">💡</span><span><strong>Memory trick:</strong> à + le = AU 🤝 (magnets — always snap!). de + le = DU 🤝. Vowel at start? → l'. First mention = un/une. Already known = le/la/l'. à = TO 🏃→. de = FROM →🏃. -ité ending = always UNE! 👗</span></div>
+    </div>
+  </div>
+
+  <!-- RULE 8 -->
+  <div class="rule-section" id="rule8">
+    <div class="rule-header" style="background: var(--purple);">
+      <span class="rule-number">RULE 8</span>
+      <h2>Subjonctif Triggers ✨</h2>
+    </div>
+    <div class="rule-body">
+      <p class="rule-intro">The subjonctif is the CROSSING FINGERS tense 🤞 — used when expressing wishes, doubts, emotions, necessity, or suggestions. When the outcome is NOT certain!</p>
+
+      <div class="sub-head" style="color:var(--purple)">Trigger Phrases — These always trigger subjonctif!</div>
+      <table class="rule-table">
+        <thead><tr style="background:var(--purple)">
+          <th>Category</th><th>Trigger phrases</th><th>Example</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><strong>Wishes</strong></td><td>je veux que / je souhaite que / je voudrais que</td><td>Je voudrais que tu viennes.</td></tr>
+          <tr><td><strong>Necessity</strong></td><td>il faut que / il est primordial que ⭐ / il est nécessaire que</td><td>Il faut que nous partions.</td></tr>
+          <tr><td><strong>Suggestions</strong></td><td>je suggère que / je propose que / je préfère que</td><td>Je suggère que nous portions.</td></tr>
+          <tr><td><strong>Emotions</strong></td><td>je suis ravie que / je suis désolée que / j'ai peur que</td><td>Je suis ravie qu'elle soit là.</td></tr>
+          <tr><td><strong>Conjunctions</strong></td><td>bien que / pour que / avant que / à moins que ⭐</td><td>Bien qu'il fasse froid, nous sortons.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="alert-box alert-rose" style="margin-top:14px">
+        <span>🚨</span>
+        <div><strong>EXCEPTION — J'espère que does NOT trigger subjonctif!</strong><br>
+        ❌ J'espère que tu viennes. → ✅ J'espère que tu <strong>viendras</strong>. (future tense!)<br>
+        Also: je pense que / je crois que / je sais que = NO subjonctif!</div>
+      </div>
+
+      <div class="sub-head" style="color:var(--purple)">How to Form the Subjonctif — Regular verbs</div>
+      <p style="font-size:12px; margin-bottom:8px; color:var(--mgrey)">Take the ils/elles present form → remove -ent → add these endings:</p>
+      <table class="rule-table">
+        <thead><tr style="background:var(--teal)">
+          <th>Subject</th><th>Ending</th><th>parler</th><th>finir</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>que je</td><td>-e</td><td>que je parl<strong>e</strong></td><td>que je finiss<strong>e</strong></td></tr>
+          <tr><td>que tu</td><td>-es</td><td>que tu parl<strong>es</strong></td><td>que tu finiss<strong>es</strong></td></tr>
+          <tr><td>qu'il/elle</td><td>-e</td><td>qu'il parl<strong>e</strong></td><td>qu'il finiss<strong>e</strong></td></tr>
+          <tr><td>que nous</td><td>-ions</td><td>que nous parl<strong>ions</strong></td><td>que nous finiss<strong>ions</strong></td></tr>
+          <tr><td>que vous</td><td>-iez</td><td>que vous parl<strong>iez</strong></td><td>que vous finiss<strong>iez</strong></td></tr>
+          <tr><td>qu'ils/elles</td><td>-ent</td><td>qu'ils parl<strong>ent</strong></td><td>qu'ils finiss<strong>ent</strong></td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-head" style="color:var(--purple)">Irregular Subjonctif — Memorise these!</div>
+      <table class="rule-table">
+        <thead><tr style="background:var(--navy)">
+          <th>Verb</th><th>que je</th><th>que tu</th><th>qu'il/elle</th><th>que nous</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><strong>être</strong></td><td>sois</td><td>sois</td><td>soit</td><td>soyons</td></tr>
+          <tr><td><strong>avoir</strong></td><td>aie</td><td>aies</td><td>ait</td><td>ayons</td></tr>
+          <tr><td><strong>aller</strong></td><td>aille</td><td>ailles</td><td>aille</td><td>allions</td></tr>
+          <tr><td><strong>faire</strong></td><td>fasse</td><td>fasses</td><td>fasse</td><td>fassions</td></tr>
+          <tr><td><strong>pouvoir</strong></td><td>puisse</td><td>puisses</td><td>puisse</td><td>puissions</td></tr>
+          <tr><td><strong>venir</strong></td><td>vienne</td><td>viennes</td><td>vienne</td><td>venions</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-head" style="color:var(--purple)">Examples from your writing</div>
+      <div class="example-pair">
+        <div class="example-wrong"><strong>❌ Wrong</strong><p>je suggère que nous portons</p></div>
+        <div class="example-right"><strong>✅ Correct</strong><p>je suggère que nous portions<br><em>suggère que → subjonctif!</em></p></div>
+      </div>
+      <div class="example-pair">
+        <div class="example-wrong"><strong>❌ Wrong</strong><p>il est primordial que nous prévoyons</p></div>
+        <div class="example-right"><strong>✅ Correct</strong><p>il est primordial que nous prévoyions<br><em>primordial que → subjonctif!</em></p></div>
+      </div>
+
+      <div class="tip"><span class="tip-icon">💡</span><span><strong>Memory trick:</strong> Je suggère que / il faut que / je voudrais que = MAGIC WANDS 🪄 — they transform the verb after them. J'espère que / je pense que = NOT magic wands → normal tense. If you're crossing your fingers → subjonctif! 🤞</span></div>
+    </div>
+  </div>
+
+  <!-- BONUS GENDER -->
+  <div class="rule-section" id="bonus-gender">
+    <div class="rule-header" style="background: var(--green);">
+      <span class="rule-number">BONUS</span>
+      <h2>Masculine & Feminine Noun Endings</h2>
+    </div>
+    <div class="rule-body">
+      <p class="rule-intro">Instead of memorising every noun — learn the PATTERNS! These endings tell you the gender automatically!</p>
+
+      <div class="sub-head" style="color:var(--rose)">👗 Feminine Endings — Almost always feminine</div>
+      <table class="rule-table">
+        <thead><tr style="background:var(--rose)">
+          <th>Ending</th><th>Examples</th><th>Rule</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><strong>-ion / -tion / -sion</strong></td><td>la décision, la question, la solution, la passion</td><td>ALWAYS feminine! ⭐</td></tr>
+          <tr><td><strong>-ité / -té</strong></td><td>la qualité, la liberté, la personnalité, la santé</td><td>ALWAYS feminine! ⭐</td></tr>
+          <tr><td><strong>-ure</strong></td><td>la voiture, la nature, la culture, la nourriture</td><td>Almost always feminine</td></tr>
+          <tr><td><strong>-ence / -ance</strong></td><td>la différence, la chance, la expérience</td><td>Almost always feminine</td></tr>
+          <tr><td><strong>-ie</strong></td><td>la pharmacie, la énergie, la démocratie</td><td>Almost always feminine</td></tr>
+          <tr><td><strong>-oire</strong></td><td>la victoire, la histoire, la mémoire</td><td>Almost always feminine</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-head" style="color:var(--blue)">🎩 Masculine Endings — Almost always masculine</div>
+      <table class="rule-table">
+        <thead><tr style="background:var(--blue)">
+          <th>Ending</th><th>Examples</th><th>Rule</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><strong>-ment</strong></td><td>le appartement, le gouvernement, le document</td><td>ALWAYS masculine! ⭐</td></tr>
+          <tr><td><strong>-age</strong></td><td>le voyage, le mariage, le village, le fromage</td><td>Almost always masculine</td></tr>
+          <tr><td><strong>-eau</strong></td><td>le gâteau, le bureau, le chapeau, le bateau</td><td>Almost always masculine</td></tr>
+          <tr><td><strong>-eur</strong></td><td>le directeur, le professeur, le docteur</td><td>Almost always masculine</td></tr>
+          <tr><td><strong>-al</strong></td><td>le journal, le festival, le signal</td><td>Almost always masculine</td></tr>
+          <tr><td><strong>-in</strong></td><td>le matin, le jardin, le voisin</td><td>Almost always masculine</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sub-head" style="color:var(--purple)">⚠️ Tricky Exceptions — Learn by heart!</div>
+      <table class="rule-table">
+        <thead><tr style="background:var(--purple)">
+          <th>Word</th><th>English</th><th>Why tricky</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><strong>la maison</strong></td><td>house</td><td>Ends in -on but FEMININE!</td></tr>
+          <tr><td><strong>la saison</strong></td><td>season</td><td>Ends in -on but FEMININE!</td></tr>
+          <tr><td><strong>la façon</strong></td><td>way/manner</td><td>Ends in -on but FEMININE!</td></tr>
+          <tr><td><strong>la leçon</strong></td><td>lesson</td><td>Ends in -on but FEMININE!</td></tr>
+          <tr><td><strong>la main</strong></td><td>hand</td><td>Ends in -in but FEMININE!</td></tr>
+          <tr><td><strong>le problème</strong></td><td>problem</td><td>Ends in -e but MASCULINE!</td></tr>
+          <tr><td><strong>le musée</strong></td><td>museum</td><td>Ends in -ée but MASCULINE!</td></tr>
+        </tbody>
+      </table>
+
+      <div class="sing-box">
+        <p>🎵 "La maison, la saison, la façon, la leçon — toutes féminines !"</p>
+        <span>Sing this to remember the four -ON exceptions! They all rhyme!</span>
+      </div>
+
+      <div class="tip"><span class="tip-icon">💡</span><span><strong>Your top 3 patterns:</strong> -ION = always <strong>la</strong> 👗. -MENT = always <strong>le</strong> 🎩. -ITÉ = always <strong>la</strong> 👗. These three cover MOST nouns in your TCF tâches! Sing the four -on exceptions: maison / saison / façon / leçon!</span></div>
+    </div>
+  </div>
+
+  <!-- QUICK REFERENCE -->
+  <div class="rule-section" id="quickref">
+    <div class="rule-header" style="background: var(--navy);">
+      <span class="rule-number">⚡</span>
+      <h2>Quick Reference — All Rules at a Glance</h2>
+    </div>
+    <div class="rule-body">
+      <div class="quick-ref-grid">
+        <div class="quick-ref-card">
+          <div class="quick-ref-card-head" style="background:var(--blue)">Rule 1 — Cela vs Ce</div>
+          <div class="quick-ref-card-body">C'est/C'était before ÊTRE. Ce que/qui before que/qui. CELA before any other verb.</div>
+        </div>
+        <div class="quick-ref-card">
+          <div class="quick-ref-card-head" style="background:var(--teal)">Rule 2 — Dates</div>
+          <div class="quick-ref-card-body">LE for specific days/dates. EN for months/years. EN for summer/autumn/winter. AU for spring only! 🌸</div>
+        </div>
+        <div class="quick-ref-card">
+          <div class="quick-ref-card-head" style="background:var(--purple)">Rule 3 — Que</div>
+          <div class="quick-ref-card-body">Penser/estimer/croire + QUE always! Before vowel → QU'. Negative → que still stays! Married couple 💍</div>
+        </div>
+        <div class="quick-ref-card">
+          <div class="quick-ref-card-head" style="background:var(--rose)">Rule 4 — Tu vs Vous</div>
+          <div class="quick-ref-card-body">Friend=TU. Stranger=VOUS. Pick one. NEVER switch. Je form ends in -e (contacte not contactez!).</div>
+        </div>
+        <div class="quick-ref-card">
+          <div class="quick-ref-card-head" style="background:var(--purple)">Bonus — Modals</div>
+          <div class="quick-ref-card-body">Pouvoir/vouloir/devoir + INFINITIVE. Pour + INFINITIVE. Two conjugated verbs = NEVER! 🚫</div>
+        </div>
+        <div class="quick-ref-card">
+          <div class="quick-ref-card-head" style="background:var(--green)">Bonus — Pronouns</div>
+          <div class="quick-ref-card-body">Verb matches SUBJECT not object. Je vous contacte ✅ (Je=subject → -e). TU drives 🚗. TE rides.</div>
+        </div>
+        <div class="quick-ref-card">
+          <div class="quick-ref-card-head" style="background:var(--teal)">Bonus — Reflexive</div>
+          <div class="quick-ref-card-body">Subject and pronoun = SAME person 🪃. Je me / Tu te / Il se / Nous nous / Vous vous / Ils se.</div>
+        </div>
+        <div class="quick-ref-card">
+          <div class="quick-ref-card-head" style="background:var(--navy)">Rule 5 — Adjectives 🎒</div>
+          <div class="quick-ref-card-body">BAGS = before. Everything else = after. Colours = ALWAYS after! 🎨 Beau + vowel = bel.</div>
+        </div>
+        <div class="quick-ref-card">
+          <div class="quick-ref-card-head" style="background:var(--rose)">Rule 6 — Feminine 👗</div>
+          <div class="quick-ref-card-body">Feminine noun → add -e. Plural → add -s. Maryjoe = always -e! The adjective matches the NOUN — not the pronoun!</div>
+        </div>
+        <div class="quick-ref-card">
+          <div class="quick-ref-card-head" style="background:#B45309">Rule 7 — Articles 🏷️</div>
+          <div class="quick-ref-card-body">No naked nouns! à+le=AU. de+le=DU. Vowel → L'. First mention=un/une. Known=le/la/l'. -ité=une!</div>
+        </div>
+        <div class="quick-ref-card">
+          <div class="quick-ref-card-head" style="background:var(--purple)">Rule 8 — Subjonctif ✨</div>
+          <div class="quick-ref-card-body">Il faut que / je suggère que / je voudrais que → subjonctif 🪄. J'espère que / je pense que → normal tense!</div>
+        </div>
+        <div class="quick-ref-card">
+          <div class="quick-ref-card-head" style="background:var(--green)">Bonus — Noun Gender</div>
+          <div class="quick-ref-card-body">-ion/-ité = la 👗. -ment/-age/-eau = le 🎩. Sing it: la maison, la saison, la façon, la leçon! 🎵</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>🇨🇦 <strong>You are not just learning French.</strong> You are building your future in Canada.</p>
+    <p style="margin-top:6px">Every rule you master = one step closer to your PR. <strong>Keep going Maryjoe! 💪🔥</strong></p>
+  </div>
+
+</main>
+
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const el = document.getElementById('progress');
+    const scrolled = window.scrollY;
+    const total = document.body.scrollHeight - window.innerHeight;
+    el.style.transform = `scaleX(${scrolled/total})`;
+  });
+
+  // Active nav link
+  const sections = document.querySelectorAll('.rule-section, #top');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navLinks.forEach(l => {
+      l.classList.remove('active');
+      if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+    });
+  });
+
+  // Search
+  function searchRules() {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    const links = document.querySelectorAll('.nav-link');
+    links.forEach(l => {
+      l.style.display = l.textContent.toLowerCase().includes(q) ? 'flex' : 'none';
+    });
+  }
+
+  // Smooth scroll for all anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) t.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+</script>
+</body>
+</html>
