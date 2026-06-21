@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>French Learning Reference</title>
+<style>
+body{font-family:Arial,sans-serif;margin:20px}
+input{width:100%;padding:10px;margin-bottom:10px}
+table{border-collapse:collapse;width:100%}
+th,td{border:1px solid #ccc;padding:6px;text-align:left}
+th{position:sticky;top:0;background:#f0f0f0}
+.section{margin-top:30px}
+</style>
+<script>
+function searchTable(){
+ let q=document.getElementById('search').value.toLowerCase();
+ let rows=document.querySelectorAll('#verbs tbody tr');
+ rows.forEach(r=>{
+   r.style.display=r.innerText.toLowerCase().includes(q)?'':'none';
+ });
+}
+</script>
+</head>
+<body>
+<h1>French Learning Reference</h1>
+
+<h2>How to Use Tenses</h2>
+<ul>
+<li><b>Présent</b>: actions happening now.</li>
+<li><b>Passé composé</b>: completed past actions.</li>
+<li><b>Imparfait</b>: descriptions, habits in the past.</li>
+<li><b>Subjonctif</b>: doubt, emotion, necessity, desire.</li>
+<li><b>Conditionnel présent</b>: would/could situations.</li>
+<li><b>Futur simple</b>: future actions.</li>
+<li><b>Futur proche</b>: going to do something.</li>
+<li><b>Plus-que-parfait</b>: action completed before another past action.</li>
+</ul>
+
+<input id="search" onkeyup="searchTable()" placeholder="Search in English or French">
+
+<table id="verbs">
+<thead>
+<tr>
+<th>Group</th><th>Infinitive</th><th>English</th><th>Subjunctive (je)</th>
+<th>Présent</th><th>Passé composé</th><th>Imparfait</th>
+<th>Conditionnel</th><th>Futur simple</th><th>Futur proche</th><th>Plus-que-parfait</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>parler</td><td>to speak</td><td>que je parle</td><td>je parle</td><td>j'ai parlé</td><td>je parlais</td><td>je parlerais</td><td>je parlerai</td><td>je vais parler</td><td>j'avais parlé</td></tr>
+<tr><td>1</td><td>aimer</td><td>to love</td><td>que j'aime</td><td>j'aime</td><td>j'ai aimé</td><td>j'aimais</td><td>j'aimerais</td><td>j'aimerai</td><td>je vais aimer</td><td>j'avais aimé</td></tr>
+<tr><td>1</td><td>manger</td><td>to eat</td><td>que je mange</td><td>je mange</td><td>j'ai mangé</td><td>je mangeais</td><td>je mangerais</td><td>je mangerai</td><td>je vais manger</td><td>j'avais mangé</td></tr>
+<tr><td>2</td><td>finir</td><td>to finish</td><td>que je finisse</td><td>je finis</td><td>j'ai fini</td><td>je finissais</td><td>je finirais</td><td>je finirai</td><td>je vais finir</td><td>j'avais fini</td></tr>
+<tr><td>2</td><td>choisir</td><td>to choose</td><td>que je choisisse</td><td>je choisis</td><td>j'ai choisi</td><td>je choisissais</td><td>je choisirais</td><td>je choisirai</td><td>je vais choisir</td><td>j'avais choisi</td></tr>
+<tr><td>3</td><td>être</td><td>to be</td><td>que je sois</td><td>je suis</td><td>j'ai été</td><td>j'étais</td><td>je serais</td><td>je serai</td><td>je vais être</td><td>j'avais été</td></tr>
+<tr><td>3</td><td>avoir</td><td>to have</td><td>que j'aie</td><td>j'ai</td><td>j'ai eu</td><td>j'avais</td><td>j'aurais</td><td>j'aurai</td><td>je vais avoir</td><td>j'avais eu</td></tr>
+<tr><td>3</td><td>aller</td><td>to go</td><td>que j'aille</td><td>je vais</td><td>je suis allé(e)</td><td>j'allais</td><td>j'irais</td><td>j'irai</td><td>je vais aller</td><td>j'étais allé(e)</td></tr>
+<tr><td>3</td><td>faire</td><td>to do/make</td><td>que je fasse</td><td>je fais</td><td>j'ai fait</td><td>je faisais</td><td>je ferais</td><td>je ferai</td><td>je vais faire</td><td>j'avais fait</td></tr>
+<tr><td>3</td><td>venir</td><td>to come</td><td>que je vienne</td><td>je viens</td><td>je suis venu(e)</td><td>je venais</td><td>je viendrais</td><td>je viendrai</td><td>je vais venir</td><td>j'étais venu(e)</td></tr>
+</tbody>
+</table>
+
+<div class="section">
+<h2>French Articles</h2>
+<ul>
+<li><b>Le</b> = masculine singular</li>
+<li><b>La</b> = feminine singular</li>
+<li><b>L'</b> = before vowel or silent h</li>
+<li><b>Les</b> = plural</li>
+<li><b>Un</b> = a/an masculine</li>
+<li><b>Une</b> = a/an feminine</li>
+<li><b>Des</b> = some</li>
+</ul>
+
+<h3>Common Gender Clues</h3>
+<ul>
+<li>Words ending in -tion, -sion, -té are often feminine.</li>
+<li>Words ending in -age, -isme, -ment are often masculine.</li>
+</ul>
+
+<table>
+<tr><th>Article</th><th>Word</th><th>English</th></tr>
+<tr><td>Le</td><td>livre</td><td>book</td></tr>
+<tr><td>La</td><td>maison</td><td>house</td></tr>
+<tr><td>L'</td><td>école</td><td>school</td></tr>
+<tr><td>Les</td><td>enfants</td><td>children</td></tr>
+<tr><td>Un</td><td>chien</td><td>dog</td></tr>
+<tr><td>Une</td><td>voiture</td><td>car</td></tr>
+</table>
+</div>
+</body>
+</html>
