@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TCF — Topic Vocabulary Staircase | Maryjoe</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fira+Mono:wght@400;500&display=swap');
+:root{
+  --navy:#1B2A5E;--blue:#2563EB;--teal:#0D9488;--gold:#F59E0B;
+  --rose:#E11D48;--purple:#7C3AED;--green:#16A34A;
+  --ltblue:#DBEAFE;--ltrose:#FFE4E6;--ltgrn:#DCFCE7;
+  --ltyell:#FEF9C3;--ltpurp:#EDE9FE;--ltmint:#D1FAE5;
+  --lgrey:#F8FAFC;--dgrey:#1E293B;--mgrey:#64748B;
+  --border:#E2E8F0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#F0F4FF;color:var(--dgrey);line-height:1.65;}
+
+/* SIDEBAR */
+.sidebar{position:fixed;top:0;left:0;width:272px;height:100vh;background:var(--navy);overflow-y:auto;z-index:100;padding-bottom:50px;scrollbar-width:thin;}
+.logo{padding:20px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.08);background:rgba(0,0,0,0.18);}
+.logo h2{font-size:13px;font-weight:800;color:var(--gold);}
+.logo p{font-size:10px;color:rgba(255,255,255,0.4);margin-top:2px;}
+.search-wrap{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.search-wrap input{width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:6px;padding:6px 11px;color:#fff;font-size:11px;font-family:'Inter',sans-serif;outline:none;}
+.search-wrap input::placeholder{color:rgba(255,255,255,0.3);}
+.search-wrap input:focus{border-color:var(--gold);}
+.nav-group{padding:7px 0 2px;}
+.nav-group-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.28);padding:5px 16px 3px;}
+.nav-item{display:flex;align-items:center;gap:8px;padding:6px 16px;text-decoration:none;font-size:11px;font-weight:500;color:rgba(255,255,255,0.62);border-left:3px solid transparent;transition:all 0.15s;}
+.nav-item:hover,.nav-item.active{background:rgba(255,255,255,0.07);color:#fff;border-left-color:var(--gold);}
+.nav-chip{font-size:9px;font-weight:700;padding:2px 6px;border-radius:8px;margin-left:auto;white-space:nowrap;}
+
+/* PROGRESS */
+.progress-bar{position:fixed;top:0;left:272px;right:0;height:3px;background:var(--gold);transform-origin:left;transform:scaleX(0);transition:transform 0.1s;z-index:99;}
+
+/* MAIN */
+.main{margin-left:272px;padding:32px 44px 100px;max-width:940px;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#1d3a80 100%);border-radius:18px;padding:44px 40px;margin-bottom:32px;position:relative;overflow:hidden;}
+.hero::before{content:'📚';position:absolute;right:30px;top:50%;transform:translateY(-50%);font-size:100px;opacity:0.1;}
+.hero-eye{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.hero h1{font-size:28px;font-weight:900;color:#fff;line-height:1.18;}
+.hero p{font-size:13px;color:rgba(255,255,255,0.62);margin-top:9px;max-width:520px;}
+.hero-pills{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap;}
+.hpill{padding:6px 14px;border-radius:24px;font-size:11px;font-weight:700;color:#fff;border:1.5px solid rgba(255,255,255,0.2);text-decoration:none;transition:all 0.2s;background:rgba(255,255,255,0.1);}
+.hpill:hover{background:rgba(255,255,255,0.2);}
+
+/* A1 ALERT SECTION */
+.a1-section{background:#fff;border-radius:16px;margin-bottom:28px;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,0.06);scroll-margin-top:20px;}
+.a1-head{padding:18px 26px;background:linear-gradient(135deg,var(--rose),#be123c);display:flex;align-items:center;gap:12px;}
+.a1-head h2{font-size:17px;font-weight:900;color:#fff;}
+.a1-body{padding:20px 26px;}
+
+/* TOPIC SECTION */
+.topic-section{background:#fff;border-radius:16px;margin-bottom:28px;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,0.06);scroll-margin-top:20px;}
+.topic-head{padding:20px 26px;position:relative;overflow:hidden;}
+.topic-head::after{content:attr(data-emoji);position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:60px;opacity:0.15;}
+.topic-eye{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:4px;}
+.topic-head h2{font-size:18px;font-weight:900;color:#fff;}
+.topic-head p{font-size:11px;color:rgba(255,255,255,0.65);margin-top:4px;}
+.topic-body{padding:20px 26px;}
+
+/* TABLES */
+.stair-table{width:100%;border-collapse:collapse;font-size:11.5px;margin:10px 0 16px;border-radius:8px;overflow:hidden;border:1px solid var(--border);}
+.stair-table thead tr th{padding:9px 12px;text-align:left;font-size:10px;font-weight:700;color:#fff;}
+.stair-table td{padding:9px 12px;border-top:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.stair-table tr:nth-child(odd) td{background:#fff;}
+.stair-table tr:nth-child(even) td{background:var(--lgrey);}
+.col-b1{background:var(--mgrey)!important;}
+.col-b2{background:var(--teal)!important;}
+.col-c1{background:var(--blue)!important;}
+.col-c2{background:var(--rose)!important;}
+.col-en{background:var(--navy)!important;}
+
+/* A1 TABLE */
+.a1-table{width:100%;border-collapse:collapse;font-size:11.5px;margin:10px 0;border-radius:8px;overflow:hidden;border:1px solid var(--border);}
+.a1-table th{padding:9px 12px;text-align:left;font-size:10px;font-weight:700;color:#fff;}
+.a1-table td{padding:9px 12px;border-top:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.a1-table tr:nth-child(odd) td{background:#fff;}
+.a1-table tr:nth-child(even) td{background:var(--lgrey);}
+.a1-word{color:var(--rose);font-weight:700;font-family:'Fira Mono',monospace;font-size:11px;}
+.b2-word{color:var(--teal);font-weight:600;}
+.c1-word{color:var(--blue);font-weight:600;}
+
+/* SUB TITLE */
+.sub-title{font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--mgrey);display:flex;align-items:center;gap:8px;margin:16px 0 10px;}
+.sub-title::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* TIP */
+.tip{display:flex;align-items:flex-start;gap:10px;padding:12px 16px;background:var(--ltyell);border:1.5px solid var(--gold);border-radius:8px;margin-top:12px;font-size:12px;line-height:1.5;}
+.tip-icon{font-size:16px;flex-shrink:0;}
+
+/* PHRASE BOX */
+.phrase-box{background:var(--lgrey);border-radius:8px;padding:12px 16px;margin:8px 0;font-size:12px;border-left:3px solid var(--border);}
+.phrase-box .pfr{font-family:'Fira Mono',monospace;font-size:11.5px;color:var(--navy);font-weight:600;}
+.phrase-box .pen{font-size:11px;color:var(--mgrey);margin-top:3px;}
+
+/* LEVEL CHIPS */
+.lc{font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;white-space:nowrap;}
+.lb1{background:var(--mgrey);color:#fff;}
+.lb2{background:var(--teal);color:#fff;}
+.lc1{background:var(--blue);color:#fff;}
+.lc2{background:var(--rose);color:#fff;}
+
+/* POWER PHRASE GRID */
+.power-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0;}
+.power-card{border-radius:8px;padding:10px 14px;border:1.5px solid var(--border);background:var(--lgrey);}
+.power-card .pc-fr{font-family:'Fira Mono',monospace;font-size:11px;color:var(--navy);font-weight:600;}
+.power-card .pc-en{font-size:10px;color:var(--mgrey);margin-top:3px;}
+.power-card .pc-level{margin-top:5px;}
+
+/* FOOTER */
+.footer{background:var(--navy);border-radius:14px;padding:26px 30px;margin-top:44px;text-align:center;color:rgba(255,255,255,0.65);font-size:13px;}
+.footer strong{color:var(--gold);}
+
+/* SCROLL TOP */
+.scroll-top{position:fixed;bottom:26px;right:26px;background:var(--navy);color:#fff;border:none;border-radius:50%;width:46px;height:46px;font-size:18px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,0.25);transition:background 0.2s;z-index:200;}
+.scroll-top:hover{background:var(--blue);}
+
+@media(max-width:900px){
+  .sidebar{width:100%;height:auto;position:relative;}
+  .main{margin-left:0;padding:20px;}
+  .progress-bar{left:0;}
+  .power-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="logo">
+    <h2>🪜 Topic Vocabulary Staircase</h2>
+    <p>Maryjoe Chioma Udochi | B2/C1 Target</p>
+  </div>
+  <div class="search-wrap">
+    <input type="text" id="si" placeholder="Search topics..." onkeyup="filterNav()">
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Start Here</div>
+    <a href="#home" class="nav-item">🏠 Overview</a>
+    <a href="#a1-alert" class="nav-item">🚨 A1 Words — Never Use Again <span class="nav-chip" style="background:var(--rose);color:#fff">A1</span></a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Tâche 1 Topics</div>
+    <a href="#sport" class="nav-item">🏆 Sport & Competition <span class="nav-chip" style="background:var(--teal);color:#fff">T1</span></a>
+    <a href="#voyage" class="nav-item">✈️ Travel & Holidays <span class="nav-chip" style="background:var(--teal);color:#fff">T1</span></a>
+    <a href="#logement" class="nav-item">🏠 Housing & Neighbourhood <span class="nav-chip" style="background:var(--teal);color:#fff">T1</span></a>
+    <a href="#invitation" class="nav-item">🎉 Events & Invitations <span class="nav-chip" style="background:var(--teal);color:#fff">T1</span></a>
+    <a href="#travail" class="nav-item">💼 Work & Job Interview <span class="nav-chip" style="background:var(--teal);color:#fff">T1</span></a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Tâche 2 Topics</div>
+    <a href="#colocation" class="nav-item">🏡 Colocation / Shared Living <span class="nav-chip" style="background:var(--purple);color:#fff">T2</span></a>
+    <a href="#plainte" class="nav-item">📢 Complaint / Problem <span class="nav-chip" style="background:var(--purple);color:#fff">T2</span></a>
+    <a href="#demande" class="nav-item">📋 Formal Request <span class="nav-chip" style="background:var(--purple);color:#fff">T2</span></a>
+    <a href="#transport" class="nav-item">🚌 Transport & Services <span class="nav-chip" style="background:var(--purple);color:#fff">T2</span></a>
+    <a href="#sante" class="nav-item">🏥 Health & Wellbeing <span class="nav-chip" style="background:var(--purple);color:#fff">T2</span></a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Tâche 3 Topics</div>
+    <a href="#education" class="nav-item">🎓 Education & Schools <span class="nav-chip" style="background:var(--rose);color:#fff">T3</span></a>
+    <a href="#technologie" class="nav-item">📱 Technology & Social Media <span class="nav-chip" style="background:var(--rose);color:#fff">T3</span></a>
+    <a href="#environnement" class="nav-item">🌍 Environment & Ecology <span class="nav-chip" style="background:var(--rose);color:#fff">T3</span></a>
+    <a href="#teletravail" class="nav-item">🏠 Remote Work <span class="nav-chip" style="background:var(--rose);color:#fff">T3</span></a>
+    <a href="#immigration" class="nav-item">🇨🇦 Immigration & Society <span class="nav-chip" style="background:var(--rose);color:#fff">T3</span></a>
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-label">Reference</div>
+    <a href="#power-phrases" class="nav-item">⭐ C1/C2 Power Phrases <span class="nav-chip" style="background:var(--gold);color:var(--navy)">C1</span></a>
+    <a href="#connectors" class="nav-item">🔗 Universal Connectors <span class="nav-chip" style="background:var(--gold);color:var(--navy)">ALL</span></a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <div class="hero-eye">TCF Canada · Topic Vocabulary · B1 → B2 → C1 → C2</div>
+  <h1>Topic Vocabulary Staircase<br>Every Topic. Every Word. Ready!</h1>
+  <p>Before every tâche — find your topic, grab your staircase words, and go in prepared! Built from every session together. 🇨🇦</p>
+  <div class="hero-pills">
+    <a href="#a1-alert" class="hpill">🚨 A1 Alert</a>
+    <a href="#sport" class="hpill">🏆 Sport</a>
+    <a href="#voyage" class="hpill">✈️ Travel</a>
+    <a href="#colocation" class="hpill">🏡 Colocation</a>
+    <a href="#education" class="hpill">🎓 Education</a>
+    <a href="#technologie" class="hpill">📱 Technology</a>
+    <a href="#power-phrases" class="hpill">⭐ Power Phrases</a>
+  </div>
+</div>
+
+<!-- A1 ALERT -->
+<div class="a1-section" id="a1-alert">
+  <div class="a1-head">
+    <h2>🚨 A1 Words to NEVER Use Again</h2>
+  </div>
+  <div class="a1-body">
+    <p style="font-size:12px;color:var(--mgrey);margin-bottom:14px">Every time you catch yourself writing one of these — STOP. Pick the B2 or C1 upgrade instead. These are the words that cost you Judge 4 points every single session!</p>
+
+    <div class="sub-title" style="color:var(--rose)">🔴 Verbs</div>
+    <table class="a1-table">
+      <thead><tr style="background:var(--rose)"><th>⚠️ A1 — Never use</th><th>💬 English</th><th>✅ B2 upgrade</th><th>⭐ C1 upgrade</th></tr></thead>
+      <tbody>
+        <tr><td class="a1-word">faire</td><td>to do / make</td><td class="b2-word">effectuer / réaliser</td><td class="c1-word">accomplir / mener à bien</td></tr>
+        <tr><td class="a1-word">dire</td><td>to say</td><td class="b2-word">affirmer / informer</td><td class="c1-word">soutenir / préconiser</td></tr>
+        <tr><td class="a1-word">avoir</td><td>to have</td><td class="b2-word">disposer de</td><td class="c1-word">bénéficier de / jouir de</td></tr>
+        <tr><td class="a1-word">voir</td><td>to see</td><td class="b2-word">observer / constater</td><td class="c1-word">percevoir / discerner</td></tr>
+        <tr><td class="a1-word">vouloir</td><td>to want</td><td class="b2-word">souhaiter</td><td class="c1-word">aspirer à / nourrir l'ambition de</td></tr>
+        <tr><td class="a1-word">pouvoir</td><td>to be able</td><td class="b2-word">être en mesure de</td><td class="c1-word">avoir la capacité de / être à même de</td></tr>
+        <tr><td class="a1-word">aller</td><td>to go</td><td class="b2-word">se rendre à</td><td class="c1-word">rejoindre / gagner</td></tr>
+        <tr><td class="a1-word">gagner</td><td>to win (basic)</td><td class="b2-word">remporter</td><td class="c1-word">décrocher la victoire</td></tr>
+        <tr><td class="a1-word">montrer</td><td>to show</td><td class="b2-word">démontrer / souligner</td><td class="c1-word">mettre en évidence / attester de</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title" style="color:var(--rose)">🔴 Adjectives</div>
+    <table class="a1-table">
+      <thead><tr style="background:var(--rose)"><th>⚠️ A1 — Never use</th><th>💬 English</th><th>✅ B2 upgrade</th><th>⭐ C1 upgrade</th></tr></thead>
+      <tbody>
+        <tr><td class="a1-word">bon / bonne</td><td>good</td><td class="b2-word">excellent / agréable</td><td class="c1-word">bénéfique / salutaire</td></tr>
+        <tr><td class="a1-word">mauvais(e)</td><td>bad</td><td class="b2-word">négatif / défavorable</td><td class="c1-word">préjudiciable / délétère</td></tr>
+        <tr><td class="a1-word">content(e)</td><td>happy</td><td class="b2-word">ravi(e) / enchanté(e)</td><td class="c1-word">comblé(e) / aux anges</td></tr>
+        <tr><td class="a1-word">intéressant(e)</td><td>interesting</td><td class="b2-word">captivant(e)</td><td class="c1-word">fascinant(e) / saisissant(e)</td></tr>
+        <tr><td class="a1-word">difficile</td><td>difficult</td><td class="b2-word">complexe / ardu(e)</td><td class="c1-word">éprouvant(e) / épineux/épineuse</td></tr>
+        <tr><td class="a1-word">important(e)</td><td>important</td><td class="b2-word">considérable</td><td class="c1-word">prépondérant(e) / primordial(e)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title" style="color:var(--rose)">🔴 Nouns</div>
+    <table class="a1-table">
+      <thead><tr style="background:var(--rose)"><th>⚠️ A1 — Never use</th><th>💬 English</th><th>✅ B2 upgrade</th><th>⭐ C1 upgrade</th></tr></thead>
+      <tbody>
+        <tr><td class="a1-word">problème</td><td>problem</td><td class="b2-word">difficulté / défi</td><td class="c1-word">enjeu / écueil / problématique</td></tr>
+        <tr><td class="a1-word">les gens</td><td>people</td><td class="b2-word">les personnes / les individus</td><td class="c1-word">les habitants / les citoyens</td></tr>
+        <tr><td class="a1-word">chose</td><td>thing</td><td class="b2-word">élément / aspect</td><td class="c1-word">notion / entité</td></tr>
+        <tr><td class="a1-word">idée</td><td>idea</td><td class="b2-word">notion / concept</td><td class="c1-word">paradigme</td></tr>
+        <tr><td class="a1-word">avantage</td><td>advantage</td><td class="b2-word">bénéfice</td><td class="c1-word">atout / plus-value</td></tr>
+        <tr><td class="a1-word">inconvénient</td><td>disadvantage</td><td class="b2-word">désavantage</td><td class="c1-word">écueil / revers</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-title" style="color:var(--rose)">🔴 Adverbs</div>
+    <table class="a1-table">
+      <thead><tr style="background:var(--rose)"><th>⚠️ A1 — Never use</th><th>💬 English</th><th>✅ B2 upgrade</th><th>⭐ C1 upgrade</th></tr></thead>
+      <tbody>
+        <tr><td class="a1-word">très</td><td>very</td><td class="b2-word">particulièrement</td><td class="c1-word">singulièrement / remarquablement</td></tr>
+        <tr><td class="a1-word">beaucoup</td><td>a lot</td><td class="b2-word">considérablement</td><td class="c1-word">abondamment / démesurément</td></tr>
+        <tr><td class="a1-word">vraiment</td><td>really</td><td class="b2-word">véritablement</td><td class="c1-word">réellement / indubitablement</td></tr>
+        <tr><td class="a1-word">maintenant</td><td>now</td><td class="b2-word">actuellement / à présent</td><td class="c1-word">à l'heure actuelle</td></tr>
+        <tr><td class="a1-word">peut-être</td><td>maybe</td><td class="b2-word">éventuellement</td><td class="c1-word">il n'est pas exclu que</td></tr>
+      </tbody>
+    </table>
+    <div class="tip"><span class="tip-icon">💡</span><span><strong>The A1 Alert rule:</strong> Before submitting ANY tâche — scan your text. If you see any word from this list → STOP → replace it with the B2 or C1 version. This alone can boost your Judge 4 score by 1 full point! 🎯</span></div>
+  </div>
+</div>
+
+<!-- ═══ TÂCHE 1 TOPICS ═══ -->
+
+<!-- SPORT -->
+<div class="topic-section" id="sport">
+  <div class="topic-head" style="background:linear-gradient(135deg,var(--teal),#059669);" data-emoji="🏆">
+    <div class="topic-eye">Tâche 1 · Topic</div>
+    <h2>Sport & Competition 🏆</h2>
+    <p>Winning a competition · Describing a match · Talking about your sport</p>
+  </div>
+  <div class="topic-body">
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-en">💬 English</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th></tr></thead>
+      <tbody>
+        <tr><td>j'ai gagné</td><td>I won</td><td>j'ai remporté</td><td>j'ai décroché la victoire</td></tr>
+        <tr><td>je suis content(e)</td><td>I am happy</td><td>je suis ravi(e) / aux anges</td><td>je suis comblé(e) / exalté(e)</td></tr>
+        <tr><td>c'était bien</td><td>it was good</td><td>c'était remarquable</td><td>cela s'est avéré exceptionnel</td></tr>
+        <tr><td>une compétition</td><td>a competition</td><td>un tournoi / une épreuve</td><td>une compétition de haute volée</td></tr>
+        <tr><td>mon équipe</td><td>my team</td><td>mes coéquipiers</td><td>mes partenaires d'entraînement</td></tr>
+        <tr><td>on a travaillé</td><td>we worked</td><td>nous avons œuvré ensemble</td><td>nous avons uni nos efforts</td></tr>
+        <tr><td>faire du sport</td><td>to do sport</td><td>pratiquer un sport</td><td>s'adonner à une discipline sportive</td></tr>
+        <tr><td>c'était difficile</td><td>it was hard</td><td>c'était ardu</td><td>cela s'est avéré particulièrement éprouvant</td></tr>
+        <tr><td>j'ai bien joué</td><td>I played well</td><td>j'ai été à la hauteur</td><td>je suis parvenue à être à la hauteur</td></tr>
+        <tr><td>je veux vous dire</td><td>I want to tell you</td><td>je souhaite vous annoncer</td><td>je suis ravie de vous faire part de</td></tr>
+        <tr><td>j'ai délivré</td><td>❌ FALSE FRIEND!</td><td>je n'ai pas déçu</td><td>j'ai été à la hauteur des attentes</td></tr>
+        <tr><td>l'entraînement</td><td>training</td><td>la séance d'entraînement</td><td>la préparation physique et mentale</td></tr>
+      </tbody>
+    </table>
+    <div class="sub-title" style="color:var(--teal)">💬 Key Sport Phrases</div>
+    <div class="phrase-box"><div class="pfr">C'est avec une joie immense que je souhaite vous annoncer...</div><div class="pen">💬 It is with immense joy that I wish to announce... — C1 opening ⭐</div></div>
+    <div class="phrase-box"><div class="pfr">Après avoir uni nos efforts, nous avons remporté la victoire !</div><div class="pen">💬 After uniting our efforts, we claimed victory! — C1 ⭐</div></div>
+    <div class="phrase-box"><div class="pfr">Malgré le défi, je n'ai pas déçu.</div><div class="pen">💬 Despite the challenge, I did not disappoint. — B2 ✅</div></div>
+    <div class="phrase-box"><div class="pfr">Mes coéquipiers étaient particulièrement fiers de moi.</div><div class="pen">💬 My teammates were particularly proud of me. — B2 ✅</div></div>
+    <div class="tip"><span class="tip-icon">🚨</span><span><strong>False friend alert!</strong> "Délivrer" = to FREE someone (like a prisoner). NEVER use it to mean "to deliver a performance"! Say: <strong>"je n'ai pas déçu"</strong> or <strong>"j'ai été à la hauteur"</strong> instead! 🚫</span></div>
+  </div>
+</div>
+
+<!-- VOYAGE -->
+<div class="topic-section" id="voyage">
+  <div class="topic-head" style="background:linear-gradient(135deg,var(--blue),#1d4ed8);" data-emoji="✈️">
+    <div class="topic-eye">Tâche 1 · Topic</div>
+    <h2>Travel & Holidays ✈️</h2>
+    <p>Describing a trip · Sharing travel memories · Recommending a destination</p>
+  </div>
+  <div class="topic-body">
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-en">💬 English</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th></tr></thead>
+      <tbody>
+        <tr><td>un beau voyage</td><td>a beautiful trip</td><td>un séjour inoubliable</td><td>une expérience marquante / un périple mémorable</td></tr>
+        <tr><td>j'ai vu</td><td>I saw</td><td>j'ai découvert / j'ai observé</td><td>j'ai eu le privilège de contempler</td></tr>
+        <tr><td>j'ai aimé</td><td>I liked</td><td>j'ai été émerveillée par</td><td>j'ai été profondément séduite par</td></tr>
+        <tr><td>c'était bien</td><td>it was good</td><td>c'était remarquable</td><td>cela s'est avéré exceptionnel</td></tr>
+        <tr><td>les gens étaient sympa</td><td>people were nice</td><td>les habitants étaient chaleureux</td><td>les habitants se sont révélés d'une hospitalité remarquable</td></tr>
+        <tr><td>j'ai mangé</td><td>I ate</td><td>j'ai savouré</td><td>j'ai eu le plaisir de déguster</td></tr>
+        <tr><td>je suis allée à</td><td>I went to</td><td>je me suis rendue à</td><td>j'ai rejoint / j'ai gagné</td></tr>
+        <tr><td>je veux y retourner</td><td>I want to go back</td><td>j'aspire à y retourner</td><td>je nourris l'espoir d'y retourner un jour</td></tr>
+        <tr><td>c'est pourquoi</td><td>that is why</td><td>c'est la raison pour laquelle</td><td>voilà pourquoi ce séjour demeure</td></tr>
+        <tr><td>un voyage</td><td>a trip (overused!)</td><td>un séjour / un périple</td><td>une escapade / une aventure humaine</td></tr>
+        <tr><td>les activités</td><td>activities</td><td>les découvertes / les excursions</td><td>les expériences enrichissantes</td></tr>
+        <tr><td>c'était beau</td><td>it was beautiful</td><td>c'était magnifique / splendide</td><td>cela s'est révélé d'une beauté saisissante</td></tr>
+      </tbody>
+    </table>
+    <div class="sub-title" style="color:var(--blue)">💬 Key Travel Phrases</div>
+    <div class="phrase-box"><div class="pfr">Si je devais n'en choisir qu'un seul parmi tous mes voyages...</div><div class="pen">💬 If I were to choose just one among all my trips... — C1 ⭐</div></div>
+    <div class="phrase-box"><div class="pfr">Ce séjour demeure le plus beau de ma vie car cela m'a ouvert les yeux sur...</div><div class="pen">💬 This stay remains the most beautiful of my life because it opened my eyes to... — C1 ⭐</div></div>
+    <div class="phrase-box"><div class="pfr">J'y ai noué des amitiés authentiques avec qui je reste toujours en contact.</div><td><div class="pen">💬 I forged genuine friendships there that I still maintain today. — C1 ⭐</div></div>
+    <div class="phrase-box"><div class="pfr">Il m'arrive de voyager une dizaine de fois par an.</div><div class="pen">💬 I sometimes travel about ten times a year. — C1 ⭐</div></div>
+    <div class="tip"><span class="tip-icon">💡</span><span><strong>City rule:</strong> Cities NEVER take articles! ✅ à Moncton · à Paris · à Toronto. But provinces and countries DO: au Canada · au Nouveau-Brunswick · en France 🏙️</span></div>
+  </div>
+</div>
+
+<!-- LOGEMENT -->
+<div class="topic-section" id="logement">
+  <div class="topic-head" style="background:linear-gradient(135deg,var(--gold),#d97706);" data-emoji="🏠">
+    <div class="topic-eye">Tâche 1 · Topic</div>
+    <h2>Housing & Neighbourhood 🏠</h2>
+    <p>Describing your home · New neighbourhood · Selling/buying items</p>
+  </div>
+  <div class="topic-body">
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-en">💬 English</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th></tr></thead>
+      <tbody>
+        <tr><td>mon appartement</td><td>my apartment</td><td>mon logement / ma résidence</td><td>mon lieu de vie / ma demeure</td></tr>
+        <tr><td>c'est grand</td><td>it is big</td><td>c'est spacieux / vaste</td><td>il dispose d'un espace considérable</td></tr>
+        <tr><td>c'est petit</td><td>it is small</td><td>c'est modeste / restreint</td><td>c'est exigu mais fonctionnel</td></tr>
+        <tr><td>c'est sympa</td><td>it is nice</td><td>c'est agréable / plaisant</td><td>c'est particulièrement propice au bien-être</td></tr>
+        <tr><td>il y a</td><td>there is/are</td><td>on y trouve / il dispose de</td><td>il bénéficie de / on y jouit de</td></tr>
+        <tr><td>le quartier</td><td>the neighbourhood</td><td>le quartier dynamique</td><td>le quartier effervescent / en plein essor</td></tr>
+        <tr><td>près de</td><td>near</td><td>à proximité de</td><td>à deux pas de / à portée de main de</td></tr>
+        <tr><td>bon état</td><td>good condition</td><td>excellent état</td><td>état irréprochable / en parfait état de marche</td></tr>
+        <tr><td>pas cher</td><td>cheap</td><td>à prix abordable</td><td>à tarif compétitif / à un prix des plus raisonnables</td></tr>
+        <tr><td>je vends</td><td>I sell</td><td>je propose à la vente</td><td>je mets en vente / j'ai l'honneur de vous proposer</td></tr>
+        <tr><td>contacter</td><td>to contact</td><td>me joindre / prendre contact</td><td>ne pas hésiter à me solliciter</td></tr>
+        <tr><td>si tu veux</td><td>if you want</td><td>si cela te convient</td><td>selon tes disponibilités / à l'heure qui te conviendra</td></tr>
+      </tbody>
+    </table>
+    <div class="sub-title" style="color:var(--gold)">💬 Key Housing Phrases</div>
+    <div class="phrase-box"><div class="pfr">J'ai récemment emménagé dans un nouveau quartier particulièrement dynamique.</div><div class="pen">💬 I recently moved into a particularly dynamic new neighbourhood. — B2 ✅</div></div>
+    <div class="phrase-box"><div class="pfr">L'appartement bénéficie d'une luminosité exceptionnelle et d'un espace vaste.</div><div class="pen">💬 The apartment enjoys exceptional light and a vast space. — C1 ⭐</div></div>
+    <div class="phrase-box"><div class="pfr">Je reste disponible selon tes disponibilités pour une visite.</div><div class="pen">💬 I remain available at your convenience for a visit. — C1 ⭐</div></div>
+  </div>
+</div>
+
+<!-- INVITATION -->
+<div class="topic-section" id="invitation">
+  <div class="topic-head" style="background:linear-gradient(135deg,var(--purple),#6d28d9);" data-emoji="🎉">
+    <div class="topic-eye">Tâche 1 · Topic</div>
+    <h2>Events & Invitations 🎉</h2>
+    <p>Party invitations · Celebrations · Suggesting activities</p>
+  </div>
+  <div class="topic-body">
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-en">💬 English</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th></tr></thead>
+      <tbody>
+        <tr><td>je t'invite</td><td>I invite you</td><td>je te convie à</td><td>j'ai le plaisir de te convier à</td></tr>
+        <tr><td>la fête</td><td>the party</td><td>la célébration / la soirée</td><td>la réunion festive / l'événement</td></tr>
+        <tr><td>c'est le [date]</td><td>it is on [date]</td><td>cela aura lieu le [date]</td><td>la manifestation se déroulera le [date]</td></tr>
+        <tr><td>c'est à [place]</td><td>it is at [place]</td><td>cela se tiendra à / au</td><td>l'événement aura lieu au cœur de</td></tr>
+        <tr><td>on va manger</td><td>we will eat</td><td>un buffet sera proposé</td><td>un buffet garni sera mis à disposition</td></tr>
+        <tr><td>réponds-moi</td><td>reply to me</td><td>confirme ta présence</td><td>je te saurais gré de confirmer ta venue</td></tr>
+        <tr><td>j'espère te voir</td><td>I hope to see you</td><td>ce serait formidable de te voir</td><td>ta présence nous comblerait de joie</td></tr>
+        <tr><td>on va faire</td><td>we will do</td><td>au programme : [activities]</td><td>diverses animations sont prévues</td></tr>
+        <tr><td>avant le [date]</td><td>before [date]</td><td>d'ici le [date] au plus tard</td><td>dans les meilleurs délais</td></tr>
+        <tr><td>tu peux venir ?</td><td>can you come?</td><td>serais-tu disponible ?</td><td>ta présence nous ferait le plus grand plaisir</td></tr>
+      </tbody>
+    </table>
+    <div class="sub-title" style="color:var(--purple)">💬 Key Invitation Phrases</div>
+    <div class="phrase-box"><div class="pfr">Au programme : de la musique, des danses joyeuses et un buffet garni !</div><div class="pen">💬 On the agenda: music, joyful dancing and a generous buffet! — B2 ✅</div></div>
+    <div class="phrase-box"><div class="pfr">Ce serait formidable si tu pouvais nous rejoindre pour cette occasion !</div><div class="pen">💬 It would be wonderful if you could join us for this occasion! — C1 ⭐</div></div>
+    <div class="phrase-box"><div class="pfr">Merci de confirmer ta présence avant le [date] afin que nous puissions nous organiser.</div><div class="pen">💬 Please confirm your attendance by [date] so we can organise. — B2 ✅</div></div>
+  </div>
+</div>
+
+<!-- TRAVAIL -->
+<div class="topic-section" id="travail">
+  <div class="topic-head" style="background:linear-gradient(135deg,var(--navy),#1e3a8a);" data-emoji="💼">
+    <div class="topic-eye">Tâche 1 · Topic</div>
+    <h2>Work & Job Interview 💼</h2>
+    <p>Describing a job interview · Work experience · Career news</p>
+  </div>
+  <div class="topic-body">
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-en">💬 English</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th></tr></thead>
+      <tbody>
+        <tr><td>un entretien</td><td>an interview</td><td>un entretien d'embauche</td><td>un entretien de recrutement</td></tr>
+        <tr><td>c'était bien</td><td>it went well</td><td>cela s'est bien déroulé</td><td>l'entretien s'est avéré particulièrement positif</td></tr>
+        <tr><td>le patron</td><td>the boss</td><td>le directeur / le responsable</td><td>le directeur des ressources humaines</td></tr>
+        <tr><td>j'ai parlé de</td><td>I talked about</td><td>j'ai abordé la question de</td><td>j'ai mis en évidence mes compétences en</td></tr>
+        <tr><td>je suis qualifiée</td><td>I am qualified</td><td>je dispose des compétences requises</td><td>je bénéficie d'une solide expérience en</td></tr>
+        <tr><td>le travail</td><td>work / job</td><td>le poste / l'emploi</td><td>la fonction / le poste à pourvoir</td></tr>
+        <tr><td>j'ai eu le job</td><td>I got the job</td><td>j'ai obtenu le poste</td><td>ma candidature a été retenue</td></tr>
+        <tr><td>mes collègues</td><td>my colleagues</td><td>mes collaborateurs</td><td>mes partenaires professionnels</td></tr>
+        <tr><td>c'était difficile</td><td>it was hard</td><td>c'était éprouvant</td><td>cela s'est avéré particulièrement ardu</td></tr>
+        <tr><td>j'ai appris</td><td>I learned</td><td>j'ai acquis</td><td>j'ai eu l'opportunité de développer</td></tr>
+      </tbody>
+    </table>
+    <div class="sub-title" style="color:var(--navy)">💬 Key Work Phrases</div>
+    <div class="phrase-box"><div class="pfr">L'entretien s'est déroulé dans une atmosphère particulièrement bienveillante.</div><div class="pen">💬 The interview took place in a particularly welcoming atmosphere. — B2 ✅</div></div>
+    <div class="phrase-box"><div class="pfr">Je dispose des compétences requises et d'une solide expérience dans ce domaine.</div><div class="pen">💬 I have the required skills and solid experience in this field. — B2 ✅</div></div>
+    <div class="phrase-box"><div class="pfr">Ma candidature a été retenue parmi de nombreux postulants.</div><div class="pen">💬 My application was selected among many candidates. — C1 ⭐</div></div>
+  </div>
+</div>
+
+<!-- ═══ TÂCHE 2 TOPICS ═══ -->
+
+<!-- COLOCATION -->
+<div class="topic-section" id="colocation">
+  <div class="topic-head" style="background:linear-gradient(135deg,var(--purple),#6d28d9);" data-emoji="🏡">
+    <div class="topic-eye">Tâche 2 · Topic</div>
+    <h2>Colocation / Shared Living 🏡</h2>
+    <p>Living with others · Testimonial · Shared accommodation experience</p>
+  </div>
+  <div class="topic-body">
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-en">💬 English</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th></tr></thead>
+      <tbody>
+        <tr><td>vivre ensemble</td><td>to live together</td><td>partager un logement</td><td>cohabiter au quotidien</td></tr>
+        <tr><td>mes colocataires</td><td>my housemates</td><td>mes colocataires</td><td>mes partenaires de vie quotidienne</td></tr>
+        <tr><td>c'était bien</td><td>it was good</td><td>c'était enrichissant</td><td>cela s'est avéré particulièrement bénéfique</td></tr>
+        <tr><td>les tâches ménagères</td><td>household chores</td><td>la répartition des tâches</td><td>la gestion du quotidien partagé</td></tr>
+        <tr><td>j'ai appris</td><td>I learned</td><td>j'ai acquis</td><td>j'ai eu l'opportunité de développer</td></tr>
+        <tr><td>parfois difficile</td><td>sometimes difficult</td><td>par moments ardu</td><td>ponctuellement éprouvant</td></tr>
+        <tr><td>je pense que</td><td>I think</td><td>j'estime que</td><td>j'ai la conviction que</td></tr>
+        <tr><td>en conclusion</td><td>in conclusion</td><td>en définitive</td><td>pour clore ce témoignage</td></tr>
+        <tr><td>le loyer</td><td>the rent</td><td>les charges locatives</td><td>les frais de location partagés</td></tr>
+        <tr><td>les conflits</td><td>conflicts</td><td>les désaccords / les tensions</td><td>les frictions inhérentes à la vie commune</td></tr>
+        <tr><td>c'est moins cher</td><td>it is cheaper</td><td>c'est plus abordable</td><td>cela représente une charge financière allégée</td></tr>
+        <tr><td>je recommande</td><td>I recommend</td><td>je conseille vivement</td><td>je préconise cette expérience à</td></tr>
+      </tbody>
+    </table>
+    <div class="sub-title" style="color:var(--purple)">💬 Key Colocation Phrases</div>
+    <div class="phrase-box"><div class="pfr">J'ai eu l'occasion de vivre en colocation pendant [durée] au sein d'un appartement partagé.</div><div class="pen">💬 I had the opportunity to live in shared accommodation for [duration]. — B2 ✅</div></div>
+    <div class="phrase-box"><div class="pfr">Cette expérience m'a permis de développer mon sens du compromis et de la communication.</div><div class="pen">💬 This experience allowed me to develop my sense of compromise and communication. — C1 ⭐</div></div>
+    <div class="phrase-box"><div class="pfr">Certes, la vie commune présente des défis ; néanmoins, les bénéfices l'emportent largement.</div><div class="pen">💬 Admittedly, shared living presents challenges; nevertheless, the benefits far outweigh them. — C1 ⭐</div></div>
+    <div class="phrase-box"><div class="pfr">En définitive, il me semble que la colocation représente une expérience humaine irremplaçable.</div><div class="pen">💬 Ultimately, it seems to me that shared living represents an irreplaceable human experience. — C1 ⭐</div></div>
+    <div class="tip"><span class="tip-icon">💡</span><span><strong>Register reminder:</strong> A website testimonial is NOT a formal letter! No "Madame, Monsieur" and no full sign-off needed. Write like a warm, professional review — like TripAdvisor but in beautiful French! 🌐</span></div>
+  </div>
+</div>
+
+<!-- PLAINTE -->
+<div class="topic-section" id="plainte">
+  <div class="topic-head" style="background:linear-gradient(135deg,var(--rose),#be123c);" data-emoji="📢">
+    <div class="topic-eye">Tâche 2 · Topic</div>
+    <h2>Complaint / Problem 📢</h2>
+    <p>Complaining to a landlord · Airline complaint · Service complaint</p>
+  </div>
+  <div class="topic-body">
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-en">💬 English</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th></tr></thead>
+      <tbody>
+        <tr><td>il y a un problème</td><td>there is a problem</td><td>je souhaite vous informer d'un dysfonctionnement</td><td>je me vois dans l'obligation de signaler</td></tr>
+        <tr><td>c'est cassé</td><td>it is broken</td><td>cela présente un défaut</td><td>cela s'avère défectueux / hors d'usage</td></tr>
+        <tr><td>je veux une solution</td><td>I want a solution</td><td>je vous sollicite pour remédier à</td><td>je vous serais reconnaissante de bien vouloir</td></tr>
+        <tr><td>c'est inacceptable</td><td>it is unacceptable</td><td>cela est particulièrement regrettable</td><td>force est de constater que cette situation est intolérable</td></tr>
+        <tr><td>depuis longtemps</td><td>for a long time</td><td>depuis un certain temps déjà</td><td>depuis un délai qui excède tout entendement</td></tr>
+        <tr><td>réparer</td><td>to fix/repair</td><td>remédier à / effectuer les réparations</td><td>procéder aux réparations nécessaires</td></tr>
+        <tr><td>rembourser</td><td>to refund</td><td>procéder au remboursement</td><td>effectuer un remboursement intégral</td></tr>
+        <tr><td>bientôt</td><td>soon</td><td>dans les meilleurs délais</td><td>dans les plus brefs délais</td></tr>
+        <tr><td>je suis en colère</td><td>I am angry</td><td>je suis particulièrement déçue</td><td>je ne peux que deplorer cette situation</td></tr>
+        <tr><td>je vous écris</td><td>I am writing to you</td><td>je me permets de vous contacter</td><td>je me vois dans l'obligation de vous écrire</td></tr>
+      </tbody>
+    </table>
+    <div class="sub-title" style="color:var(--rose)">💬 Key Complaint Phrases</div>
+    <div class="phrase-box"><div class="pfr">Je me permets de vous contacter au sujet d'un problème persistant que je rencontre.</div><div class="pen">💬 I take the liberty of contacting you regarding a persistent problem I am experiencing. — B2 ✅</div></div>
+    <div class="phrase-box"><div class="pfr">Force est de constater que la situation n'a pas évolué malgré mes signalements répétés.</div><div class="pen">💬 One cannot help but notice that the situation has not improved despite my repeated reports. — C1 ⭐</div></div>
+    <div class="phrase-box"><div class="pfr">Je vous serais reconnaissante de bien vouloir remédier à cette situation dans les plus brefs délais.</div><div class="pen">💬 I would be grateful if you could kindly address this situation as soon as possible. — C1 ⭐</div></div>
+  </div>
+</div>
+
+<!-- DEMANDE -->
+<div class="topic-section" id="demande">
+  <div class="topic-head" style="background:linear-gradient(135deg,var(--teal),#0f766e);" data-emoji="📋">
+    <div class="topic-eye">Tâche 2 · Topic</div>
+    <h2>Formal Request 📋</h2>
+    <p>Requesting information · Asking for changes · Official requests</p>
+  </div>
+  <div class="topic-body">
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-en">💬 English</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th></tr></thead>
+      <tbody>
+        <tr><td>je veux savoir</td><td>I want to know</td><td>je souhaite obtenir des informations</td><td>je vous serais reconnaissante de m'informer de</td></tr>
+        <tr><td>s'il vous plaît</td><td>please</td><td>je vous prie de</td><td>je vous saurais gré de bien vouloir</td></tr>
+        <tr><td>je veux changer</td><td>I want to change</td><td>je sollicite une modification de</td><td>je me permets de vous soumettre une demande de</td></tr>
+        <tr><td>est-ce possible ?</td><td>is it possible?</td><td>serait-il envisageable de ?</td><td>vous serait-il possible de ?</td></tr>
+        <tr><td>pour des informations</td><td>for information</td><td>pour tout renseignement complémentaire</td><td>pour toute information additionnelle</td></tr>
+        <tr><td>je suis disponible</td><td>I am available</td><td>je reste à votre disposition</td><td>je demeure disponible selon vos disponibilités</td></tr>
+        <tr><td>j'attends votre réponse</td><td>I await your reply</td><td>dans l'attente de votre réponse</td><td>dans l'espoir d'une réponse favorable</td></tr>
+        <tr><td>merci</td><td>thank you</td><td>je vous remercie de l'attention portée</td><td>en vous remerciant par avance de votre compréhension</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- TRANSPORT -->
+<div class="topic-section" id="transport">
+  <div class="topic-head" style="background:linear-gradient(135deg,var(--blue),#1e40af);" data-emoji="🚌">
+    <div class="topic-eye">Tâche 2 · Topic</div>
+    <h2>Transport & Services 🚌</h2>
+    <p>Public transport complaints · Airline issues · Service problems</p>
+  </div>
+  <div class="topic-body">
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-en">💬 English</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th></tr></thead>
+      <tbody>
+        <tr><td>le bus / le train</td><td>bus / train</td><td>les transports en commun</td><td>les réseaux de transport collectif</td></tr>
+        <tr><td>c'était en retard</td><td>it was late</td><td>cela accusait un retard considérable</td><td>cela présentait un retard particulièrement préjudiciable</td></tr>
+        <tr><td>mes bagages</td><td>my luggage</td><td>mes effets personnels</td><td>mes bagages enregistrés</td></tr>
+        <tr><td>ils ont perdu</td><td>they lost</td><td>ils ont égaré</td><td>ceux-ci ont été égarés / n'ont pu être localisés</td></tr>
+        <tr><td>je veux un remboursement</td><td>I want a refund</td><td>je sollicite un remboursement</td><td>je vous demande de procéder au remboursement intégral</td></tr>
+        <tr><td>c'était dangereux</td><td>it was dangerous</td><td>cela présentait des risques</td><td>cela s'est avéré particulièrement problématique</td></tr>
+        <tr><td>la compagnie</td><td>the company</td><td>la compagnie aérienne / ferroviaire</td><td>votre prestataire de services</td></tr>
+        <tr><td>j'ai payé</td><td>I paid</td><td>j'ai acquitté la somme de</td><td>j'ai honoré le montant de</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SANTE -->
+<div class="topic-section" id="sante">
+  <div class="topic-head" style="background:linear-gradient(135deg,var(--green),#15803d);" data-emoji="🏥">
+    <div class="topic-eye">Tâche 2 · Topic</div>
+    <h2>Health & Wellbeing 🏥</h2>
+    <p>Letters to clinics · Health services · Wellbeing concerns</p>
+  </div>
+  <div class="topic-body">
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-en">💬 English</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th></tr></thead>
+      <tbody>
+        <tr><td>je suis malade</td><td>I am sick</td><td>je souffre de</td><td>je présente des symptômes de</td></tr>
+        <tr><td>un médecin</td><td>a doctor</td><td>un professionnel de santé</td><td>un praticien / un spécialiste</td></tr>
+        <tr><td>je veux un rendez-vous</td><td>I want an appointment</td><td>je sollicite un rendez-vous</td><td>je souhaite prendre rendez-vous auprès de</td></tr>
+        <tr><td>ma santé</td><td>my health</td><td>mon état de santé</td><td>mon bien-être physique et mental</td></tr>
+        <tr><td>le traitement</td><td>the treatment</td><td>la prise en charge médicale</td><td>le protocole thérapeutique</td></tr>
+        <tr><td>c'est urgent</td><td>it is urgent</td><td>la situation est préoccupante</td><td>cela requiert une attention immédiate</td></tr>
+        <tr><td>depuis longtemps</td><td>for a long time</td><td>depuis plusieurs semaines</td><td>depuis un délai qui excède</td></tr>
+        <tr><td>j'ai mal</td><td>I am in pain</td><td>j'éprouve des douleurs</td><td>je souffre de douleurs persistantes</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ TÂCHE 3 TOPICS ═══ -->
+
+<!-- EDUCATION -->
+<div class="topic-section" id="education">
+  <div class="topic-head" style="background:linear-gradient(135deg,var(--rose),#9f1239);" data-emoji="🎓">
+    <div class="topic-eye">Tâche 3 · Topic</div>
+    <h2>Education & Schools 🎓</h2>
+    <p>Home schooling · School uniforms · Free university · Teaching methods</p>
+  </div>
+  <div class="topic-body">
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-en">💬 English</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th></tr></thead>
+      <tbody>
+        <tr><td>l'école</td><td>school</td><td>l'établissement scolaire</td><td>l'institution éducative</td></tr>
+        <tr><td>apprendre</td><td>to learn</td><td>acquérir des connaissances</td><td>développer ses compétences</td></tr>
+        <tr><td>les élèves</td><td>students/pupils</td><td>les apprenants / les jeunes</td><td>les acteurs de leur propre formation</td></tr>
+        <tr><td>à la maison</td><td>at home</td><td>au sein du foyer</td><td>dans un cadre familial</td></tr>
+        <tr><td>la scolarisation</td><td>schooling</td><td>la scolarisation / l'enseignement</td><td>le parcours éducatif</td></tr>
+        <tr><td>c'est bien</td><td>it is good</td><td>cela s'avère bénéfique</td><td>cela représente un atout considérable</td></tr>
+        <tr><td>c'est mauvais</td><td>it is bad</td><td>cela présente des inconvénients</td><td>cela représente un véritable écueil</td></tr>
+        <tr><td>avec les autres</td><td>with others</td><td>au sein du groupe</td><td>au sein d'un cadre scolaire collectif</td></tr>
+        <tr><td>les parents</td><td>parents</td><td>les parents / les familles</td><td>les acteurs parentaux</td></tr>
+        <tr><td>la socialisation</td><td>socialisation</td><td>le développement social</td><td>l'épanouissement social et relationnel</td></tr>
+        <tr><td>les notes</td><td>grades/marks</td><td>les évaluations</td><td>les modalités d'évaluation</td></tr>
+        <tr><td>cher / coûteux</td><td>expensive</td><td>représente une charge financière</td><td>engendre des coûts considérables</td></tr>
+      </tbody>
+    </table>
+    <div class="sub-title" style="color:var(--rose)">💬 Key Education Phrases for Tâche 3</div>
+    <div class="phrase-box"><div class="pfr">Le premier document met en évidence que la scolarisation à domicile permet aux enfants d'acquérir des connaissances à leur propre rythme.</div><div class="pen">💬 The first document highlights that home schooling allows children to acquire knowledge at their own pace. — C1 ⭐</div></div>
+    <div class="phrase-box"><div class="pfr">En revanche, le second document souligne que l'enseignement en établissement scolaire favorise le développement social des jeunes.</div><div class="pen">💬 On the other hand, the second document emphasises that school-based teaching fosters the social development of young people. — C1 ⭐</div></div>
+    <div class="phrase-box"><div class="pfr">Il est primordial que tout enfant évolue au sein d'un cadre scolaire collectif.</div><div class="pen">💬 It is essential that every child develops within a collective school environment. — C1 ⭐</div></div>
+    <div class="tip"><span class="tip-icon">🚨</span><span><strong>Remember!</strong> "Pédagogique" is an ADJECTIVE — NEVER use it as a noun! ❌ *la pédagogique* → ✅ *la scolarisation* / *l'enseignement* / *le matériel pédagogique* 📦</span></div>
+  </div>
+</div>
+
+<!-- TECHNOLOGIE -->
+<div class="topic-section" id="technologie">
+  <div class="topic-head" style="background:linear-gradient(135deg,var(--purple),#4c1d95);" data-emoji="📱">
+    <div class="topic-eye">Tâche 3 · Topic</div>
+    <h2>Technology & Social Media 📱</h2>
+    <p>Benefits vs dangers · Screen time · Digital connection · AI</p>
+  </div>
+  <div class="topic-body">
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-en">💬 English</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th></tr></thead>
+      <tbody>
+        <tr><td>les réseaux sociaux</td><td>social media</td><td>les plateformes numériques</td><td>les réseaux sociaux numériques</td></tr>
+        <tr><td>c'est dangereux</td><td>it is dangerous</td><td>cela présente des risques</td><td>cela s'avère particulièrement préjudiciable</td></tr>
+        <tr><td>c'est utile</td><td>it is useful</td><td>cela s'avère bénéfique</td><td>cela représente un outil précieux</td></tr>
+        <tr><td>les jeunes</td><td>young people</td><td>les adolescents / les jeunes</td><td>les nouvelles générations</td></tr>
+        <tr><td>trop d'écran</td><td>too much screen</td><td>une utilisation excessive des écrans</td><td>une surexposition aux écrans</td></tr>
+        <tr><td>les amis en ligne</td><td>online friends</td><td>les relations virtuelles</td><td>les liens sociaux dématérialisés</td></tr>
+        <tr><td>la technologie</td><td>technology</td><td>les outils numériques</td><td>les technologies de l'information et de la communication</td></tr>
+        <tr><td>se sentir seul</td><td>to feel lonely</td><td>souffrir d'isolement</td><td>éprouver un sentiment de solitude profonde</td></tr>
+        <tr><td>partager</td><td>to share</td><td>diffuser / partager</td><td>mettre en circulation / disséminer</td></tr>
+        <tr><td>les dangers</td><td>dangers</td><td>les risques / les dérives</td><td>les écueils / les dérives comportementales</td></tr>
+      </tbody>
+    </table>
+    <div class="sub-title" style="color:var(--purple)">💬 Key Technology Phrases</div>
+    <div class="phrase-box"><div class="pfr">Les plateformes numériques facilitent le maintien des liens sociaux à distance.</div><div class="pen">💬 Digital platforms facilitate the maintenance of social bonds at a distance. — C1 ⭐</div></div>
+    <div class="phrase-box"><div class="pfr">Il convient de souligner que la surexposition aux écrans peut engendrer des troubles comportementaux.</div><div class="pen">💬 It is worth emphasising that overexposure to screens can generate behavioural disorders. — C1 ⭐</div></div>
+  </div>
+</div>
+
+<!-- ENVIRONNEMENT -->
+<div class="topic-section" id="environnement">
+  <div class="topic-head" style="background:linear-gradient(135deg,var(--green),#14532d);" data-emoji="🌍">
+    <div class="topic-eye">Tâche 3 · Topic</div>
+    <h2>Environment & Ecology 🌍</h2>
+    <p>Climate change · Electric cars · Cycling · Sustainable living</p>
+  </div>
+  <div class="topic-body">
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-en">💬 English</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th></tr></thead>
+      <tbody>
+        <tr><td>l'environnement</td><td>environment</td><td>l'environnement / l'écosystème</td><td>l'équilibre environnemental</td></tr>
+        <tr><td>la pollution</td><td>pollution</td><td>les émissions de CO2</td><td>les rejets de gaz à effet de serre</td></tr>
+        <tr><td>c'est mauvais pour</td><td>it is bad for</td><td>cela est préjudiciable à</td><td>cela porte atteinte à</td></tr>
+        <tr><td>les voitures électriques</td><td>electric cars</td><td>les véhicules électriques</td><td>les véhicules à faibles émissions</td></tr>
+        <tr><td>faire du vélo</td><td>to cycle</td><td>pratiquer le cyclisme urbain</td><td>recourir aux modes de transport doux</td></tr>
+        <tr><td>sauver la planète</td><td>to save the planet</td><td>préserver l'environnement</td><td>assurer la pérennité de notre écosystème</td></tr>
+        <tr><td>le réchauffement</td><td>warming</td><td>le réchauffement climatique</td><td>le dérèglement climatique</td></tr>
+        <tr><td>changer nos habitudes</td><td>change our habits</td><td>adopter des comportements écoresponsables</td><td>opérer une transition vers des modes de vie durables</td></tr>
+        <tr><td>les énergies vertes</td><td>green energy</td><td>les énergies renouvelables</td><td>les sources d'énergie propres et durables</td></tr>
+        <tr><td>protéger</td><td>to protect</td><td>préserver / sauvegarder</td><td>assurer la protection de</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- TELETRAVAIL -->
+<div class="topic-section" id="teletravail">
+  <div class="topic-head" style="background:linear-gradient(135deg,var(--teal),#134e4a);" data-emoji="🏠">
+    <div class="topic-eye">Tâche 3 · Topic</div>
+    <h2>Remote Work / Télétravail 🏠</h2>
+    <p>Working from home vs office · Productivity · Isolation</p>
+  </div>
+  <div class="topic-body">
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-en">💬 English</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th></tr></thead>
+      <tbody>
+        <tr><td>travailler à la maison</td><td>work from home</td><td>le télétravail / travailler à distance</td><td>exercer ses fonctions en mode distanciel</td></tr>
+        <tr><td>c'est pratique</td><td>it is convenient</td><td>cela s'avère pratique</td><td>cela offre une flexibilité considérable</td></tr>
+        <tr><td>se sentir seul</td><td>to feel lonely</td><td>souffrir d'isolement professionnel</td><td>éprouver un sentiment d'isolement social</td></tr>
+        <tr><td>plus productif</td><td>more productive</td><td>plus efficace / productif</td><td>d'une productivité accrue</td></tr>
+        <tr><td>les collègues</td><td>colleagues</td><td>les collaborateurs</td><td>les partenaires professionnels</td></tr>
+        <tr><td>le bureau</td><td>the office</td><td>l'environnement professionnel</td><td>le cadre de travail collectif</td></tr>
+        <tr><td>la vie privée</td><td>private life</td><td>l'équilibre vie professionnelle/personnelle</td><td>la frontière entre sphère privée et professionnelle</td></tr>
+        <tr><td>c'est difficile</td><td>it is difficult</td><td>cela présente des défis</td><td>cela soulève des enjeux considérables</td></tr>
+        <tr><td>les avantages</td><td>advantages</td><td>les bénéfices / les atouts</td><td>les plus-values considérables</td></tr>
+        <tr><td>les inconvénients</td><td>disadvantages</td><td>les écueils / les défis</td><td>les revers inhérents à ce mode de travail</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- IMMIGRATION -->
+<div class="topic-section" id="immigration">
+  <div class="topic-head" style="background:linear-gradient(135deg,var(--navy),#1e3a8a);" data-emoji="🇨🇦">
+    <div class="topic-eye">Tâche 3 · Topic</div>
+    <h2>Immigration & Society 🇨🇦</h2>
+    <p>Benefits of immigration · Housing pressure · Cultural integration</p>
+  </div>
+  <div class="topic-body">
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">B1 — Basic</th><th class="col-en">💬 English</th><th class="col-b2">B2 — Good ✅</th><th class="col-c1">C1 — Impressive ⭐</th></tr></thead>
+      <tbody>
+        <tr><td>les immigrants</td><td>immigrants</td><td>les nouveaux arrivants</td><td>les personnes issues de l'immigration</td></tr>
+        <tr><td>venir dans un pays</td><td>to come to a country</td><td>s'installer dans un pays d'accueil</td><td>s'établir au sein d'une société d'accueil</td></tr>
+        <tr><td>c'est bien</td><td>it is good</td><td>cela s'avère bénéfique</td><td>cela représente un atout économique majeur</td></tr>
+        <tr><td>trouver du travail</td><td>to find work</td><td>s'insérer dans le marché du travail</td><td>intégrer le tissu économique local</td></tr>
+        <tr><td>la culture</td><td>culture</td><td>la diversité culturelle</td><td>l'enrichissement interculturel</td></tr>
+        <tr><td>les problèmes</td><td>problems</td><td>les défis / les enjeux</td><td>les problématiques sociales</td></tr>
+        <tr><td>le logement</td><td>housing</td><td>la crise du logement</td><td>la pression sur le marché immobilier</td></tr>
+        <tr><td>s'intégrer</td><td>to integrate</td><td>s'adapter / s'intégrer</td><td>s'insérer pleinement dans la société d'accueil</td></tr>
+        <tr><td>différent</td><td>different</td><td>issu de milieux divers</td><td>porteur d'une richesse culturelle singulière</td></tr>
+        <tr><td>ensemble</td><td>together</td><td>au sein d'une société plurielle</td><td>dans le cadre d'une coexistence harmonieuse</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- POWER PHRASES -->
+<div class="topic-section" id="power-phrases">
+  <div class="topic-head" style="background:linear-gradient(135deg,var(--gold),#b45309);" data-emoji="⭐">
+    <div class="topic-eye">All Tâches · Reference</div>
+    <h2>C1/C2 Power Phrases ⭐</h2>
+    <p>Drop one into every tâche — instant C1 signal to the examiner!</p>
+  </div>
+  <div class="topic-body">
+    <div class="power-grid">
+      <div class="power-card"><div class="pc-fr">Il convient de souligner que...</div><div class="pc-en">💬 It is worth emphasising that...</div><div class="pc-level"><span class="lc lc1">C1</span> Any tâche — highlight a key point</div></div>
+      <div class="power-card"><div class="pc-fr">Force est de constater que...</div><div class="pc-en">💬 One cannot help but notice that...</div><div class="pc-level"><span class="lc lc2">C2</span> Making an undeniable observation</div></div>
+      <div class="power-card"><div class="pc-fr">Il n'en demeure pas moins que...</div><div class="pc-en">💬 It remains true nonetheless that...</div><div class="pc-level"><span class="lc lc2">C2</span> Ultimate contrast — Tâche 3</div></div>
+      <div class="power-card"><div class="pc-fr">Dans cette optique,...</div><div class="pc-en">💬 With this in mind,...</div><div class="pc-level"><span class="lc lc1">C1</span> Linking argument to a goal</div></div>
+      <div class="power-card"><div class="pc-fr">Il va sans dire que...</div><div class="pc-en">💬 It goes without saying that...</div><div class="pc-level"><span class="lc lc1">C1</span> Stating something obvious — elegantly</div></div>
+      <div class="power-card"><div class="pc-fr">En définitive, il me semble que...</div><div class="pc-en">💬 Ultimately, it seems to me that...</div><div class="pc-level"><span class="lc lc1">C1</span> Perfect conclusion for Tâche 3</div></div>
+      <div class="power-card"><div class="pc-fr">Force est d'admettre que...</div><div class="pc-en">💬 One must admit that...</div><div class="pc-level"><span class="lc lc1">C1</span> Elegant concession</div></div>
+      <div class="power-card"><div class="pc-fr">Aussi peut-on affirmer que...</div><div class="pc-en">💬 Thus one can affirm that... (+ inversion)</div><div class="pc-level"><span class="lc lc2">C2</span> Literary conclusion — very impressive</div></div>
+      <div class="power-card"><div class="pc-fr">Cela s'est avéré particulièrement...</div><div class="pc-en">💬 This proved to be particularly...</div><div class="pc-level"><span class="lc lc1">C1</span> Replaces "c'était" everywhere!</div></div>
+      <div class="power-card"><div class="pc-fr">Il est à noter que...</div><div class="pc-en">💬 It should be noted that...</div><div class="pc-level"><span class="lc lc1">C1</span> Adding a formal detail</div></div>
+      <div class="power-card"><div class="pc-fr">On ne saurait sous-estimer...</div><div class="pc-en">💬 One cannot underestimate...</div><div class="pc-level"><span class="lc lc1">C1</span> Stressing importance</div></div>
+      <div class="power-card"><div class="pc-fr">C'est la raison pour laquelle...</div><div class="pc-en">💬 That is why / That is the reason why...</div><div class="pc-level"><span class="lc lc1">C1</span> Elegant consequence — all tâches</div></div>
+    </div>
+    <div class="tip"><span class="tip-icon">💡</span><span><strong>Strategy:</strong> Pick your TOP 3 power phrases and use one in every tâche until it feels automatic. Then add a 4th. Consistency beats quantity! 🎯</span></div>
+  </div>
+</div>
+
+<!-- CONNECTORS -->
+<div class="topic-section" id="connectors">
+  <div class="topic-head" style="background:linear-gradient(135deg,var(--navy),#312e81);" data-emoji="🔗">
+    <div class="topic-eye">All Tâches · Reference</div>
+    <h2>Universal Connectors 🔗</h2>
+    <p>Use these in every single tâche — they signal B2/C1 to all 4 judges!</p>
+  </div>
+  <div class="topic-body">
+    <table class="stair-table">
+      <thead><tr><th class="col-b1">Instead of...</th><th class="col-en">💬 Meaning</th><th class="col-b2">B2 — Use this ✅</th><th class="col-c1">C1 — Even better ⭐</th></tr></thead>
+      <tbody>
+        <tr><td>et (overused)</td><td>and / moreover</td><td>de plus / en outre</td><td>qui plus est / de surcroît</td></tr>
+        <tr><td>mais (overused)</td><td>but / however</td><td>cependant / toutefois</td><td>néanmoins / il n'en demeure pas moins que</td></tr>
+        <tr><td>parce que</td><td>because</td><td>car / en raison de</td><td>dans la mesure où / attendu que</td></tr>
+        <tr><td>donc</td><td>so / therefore</td><td>ainsi / par conséquent</td><td>dès lors / de ce fait</td></tr>
+        <tr><td>d'abord</td><td>first</td><td>tout d'abord / en premier lieu</td><td>en premier lieu / liminairement</td></tr>
+        <tr><td>ensuite</td><td>then</td><td>dans un second temps</td><td>par la suite / subséquemment</td></tr>
+        <tr><td>pour finir</td><td>to finish</td><td>enfin / en dernier lieu</td><td>pour clore cette réflexion / in fine</td></tr>
+        <tr><td>mais (conceding)</td><td>admittedly</td><td>certes... mais</td><td>il est indéniable que / on ne saurait nier que</td></tr>
+        <tr><td>par exemple</td><td>for example</td><td>notamment / tel que</td><td>à l'instar de / à titre d'exemple</td></tr>
+        <tr><td>en conclusion</td><td>in conclusion</td><td>en somme / en définitive</td><td>en guise de conclusion / pour clore cette réflexion</td></tr>
+      </tbody>
+    </table>
+    <div class="tip"><span class="tip-icon">💡</span><span><strong>Your daily standard:</strong> Replace "et" → de plus · "mais" → cependant · "parce que" → car · "donc" → ainsi · "pour finir" → en définitive. These 5 swaps alone boost your Judge 3 score immediately! 🎯</span></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>🇨🇦 <strong>You are not just learning French.</strong> You are building your future in Canada.</p>
+  <p style="margin-top:6px">Every word you upgrade = one more point closer to C1. <strong>Keep going Maryjoe! 💪🔥</strong></p>
+</div>
+
+</main>
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const el=document.getElementById('progress');
+  const s=window.scrollY,t=document.body.scrollHeight-window.innerHeight;
+  if(t>0) el.style.transform=`scaleX(${s/t})`;
+});
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      document.querySelectorAll('.nav-item').forEach(l=>l.classList.remove('active'));
+      const a=document.querySelector(`.nav-item[href="#${e.target.id}"]`);
+      if(a) a.classList.add('active');
+    }
+  });
+},{threshold:0.25});
+document.querySelectorAll('[id]').forEach(s=>obs.observe(s));
+function filterNav(){
+  const q=document.getElementById('si').value.toLowerCase();
+  document.querySelectorAll('.nav-item').forEach(l=>{l.style.display=l.textContent.toLowerCase().includes(q)?'flex':'none';});
+  document.querySelectorAll('.nav-group-label').forEach(l=>{l.style.display=q?'none':'block';});
+}
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
+</body>
+</html>
